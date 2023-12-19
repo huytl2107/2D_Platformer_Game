@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private float dirX = 0;
     [SerializeField] private float moveSpeed = 7;
-    [SerializeField] private float jumpForce = 7;
+    [SerializeField] private float jumpForce = 8;
     [SerializeField] private LayerMask jumpableGround;
     private enum movementState{idle, running, jumping, falling};   
 
