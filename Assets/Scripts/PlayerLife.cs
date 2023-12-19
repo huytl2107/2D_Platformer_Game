@@ -7,6 +7,7 @@ public class PlayerLife : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody2D rb;
+    [SerializeField] private AudioSource deathSoundEffect;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class PlayerLife : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.CompareTag("Trap")){
+            deathSoundEffect.Play();
             Die();
         }
     }

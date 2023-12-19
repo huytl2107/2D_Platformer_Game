@@ -7,6 +7,7 @@ public class ItemCollector : MonoBehaviour
 {
     private int fruits = 0;
     [SerializeField] private Text fruitsText;
+    [SerializeField] private AudioSource collectItemSoundEffect;
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Apple"))
@@ -14,6 +15,7 @@ public class ItemCollector : MonoBehaviour
             Destroy(col.gameObject);
             fruits++;
             fruitsText.text = "Fruits: " + fruits;
+            collectItemSoundEffect.Play();
         }
     }
 }
