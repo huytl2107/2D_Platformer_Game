@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     movementState state;
     [SerializeField] private AudioSource jumpSoundEffect;
     private StickyWall stickyWall;
+    private PlayerLife playerLife;
     private bool jumpOnStickyWall = false;
 
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         stickyWall = GetComponent<StickyWall>();
+        playerLife = GetComponent<PlayerLife>();
     }
 
     // Update is called once per frame
@@ -37,7 +39,12 @@ public class PlayerMovement : MonoBehaviour
         {
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
         }
-
+        if(playerLife.isHeadStomped)
+        {
+            playerLife.isHeadStomped = false;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpSoundEffect.Play();
+        }
         if (Input.GetButtonDown("Jump"))
         {
             if (IsGrounded())
@@ -63,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
                 jumpSoundEffect.Play();
             }
         }
+        
         UpdateAnimationState();
     }
 
@@ -109,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetInteger("state", (int)state);
     }
+
 
     private bool IsGrounded()
     {
