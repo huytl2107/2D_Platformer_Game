@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemiesMovement : MonoBehaviour
+public class WeakEnemiesMovement : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
     private int currenWaypointIndex = 0;
@@ -27,5 +27,4 @@ public class EnemiesMovement : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, waypoints[currenWaypointIndex].transform.position, Time.deltaTime * speed);
 
     }
-
 }

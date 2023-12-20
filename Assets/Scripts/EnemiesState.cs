@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemiesState : MonoBehaviour
 {
     private Animator anim;
-    private bool isEnemiesDeath = false;
+    private bool onTriggerEnter = false;
     
     // Start is called before the first frame update
     private void Start()
@@ -16,17 +16,21 @@ public class EnemiesState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isEnemiesDeath)
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.name == "Player")
         {
-            anim.SetBool("Death", isEnemiesDeath);
-            isEnemiesDeath = false;
+            onTriggerEnter = false;
+            anim.SetBool("State", onTriggerEnter);
         }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "Player")
         {
-            isEnemiesDeath = true;
+            onTriggerEnter = true;
+            anim.SetBool("State", onTriggerEnter);
         }
     }
 }

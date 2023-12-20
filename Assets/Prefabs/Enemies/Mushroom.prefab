@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 764478960679008046}
   - component: {fileID: 764478960679008047}
   - component: {fileID: 764478960679008045}
-  - component: {fileID: 2541622862320447568}
+  - component: {fileID: 2683940681052088871}
   m_Layer: 0
   m_Name: Mushroom
-  m_TagString: Trap
+  m_TagString: WeakEnemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   speed: 3
---- !u!114 &2541622862320447568
+--- !u!114 &2683940681052088871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -20,17 +20,21 @@ public class PlayerLife : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.CompareTag("Trap")){
+        if(col.gameObject.CompareTag("Trap") || col.gameObject.CompareTag("WeakEnemies") || col.gameObject.CompareTag("StrongEnemies")){
             deathSoundEffect.Play();
             Die();
         }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Trap"))
+        if (col.gameObject.CompareTag("WeakEnemies"))
         {
             IsHeadStomped = true;
             StartCoroutine(DestroyAfterDelay(col.gameObject, 1f));
+        }
+        if (col.gameObject.CompareTag("StrongEnemies"))
+        {
+            
         }
     }
     private IEnumerator DestroyAfterDelay(GameObject objectToDestroy, float delay)

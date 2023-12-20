@@ -7,6 +7,8 @@ TagManager:
   - Apple
   - Trap
   - StickyWall
+  - WeakEnemies
+  - StrongEnemies
   layers:
   - Default
   - TransparentFX
