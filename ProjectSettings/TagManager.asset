@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Apple
   - Trap
+  - StickyWall
   layers:
   - Default
   - TransparentFX
