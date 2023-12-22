@@ -17,6 +17,11 @@ public class WaypointFollower : MonoBehaviour
             {
                 currenWaypointIndex = 0;
             }
+            if(waypoints.Length == 1)
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
         transform.position = Vector2.MoveTowards(transform.position, waypoints[currenWaypointIndex].transform.position, Time.deltaTime * speed);
     }
