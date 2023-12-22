@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemiesState : MonoBehaviour
+public class EnemiesDeath : MonoBehaviour
 {
     private Animator anim;
     private bool onTriggerEnter = false;
@@ -13,21 +13,12 @@ public class EnemiesState : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.gameObject.name == "Player")
-        {
-            onTriggerEnter = false;
-            anim.SetBool("State", onTriggerEnter);
-        }
-    }
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.name == "Player")
         {
             onTriggerEnter = true;
-            anim.SetBool("State", onTriggerEnter);
+            anim.SetBool("Death", onTriggerEnter);
         }
     }
 }

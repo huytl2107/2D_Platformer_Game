@@ -4,74 +4,77 @@ using UnityEngine;
 
 public class StrongEnemiesMovement : MonoBehaviour
 {
-    [SerializeField] private GameObject[] waypoints;
-    private GameObject[] waypointsclone;
-    private int currenWaypointIndex = 0;
+    [SerializeField] EnemiesRaycast leftRaycast;
+    [SerializeField] EnemiesRaycast rightRaycast;
     [SerializeField] private float speed = 3f;
-    private SpriteRenderer sprite;
-    private bool playerEnter = false;
     [SerializeField] private AudioSource dangerSound;
+    [SerializeField] LayerMask ground;
+    private SpriteRenderer sprite;
+    private Rigidbody2D rb;
+    private Animator anim;
+    private int move = -1;
+    private bool isStartedRunning = false;
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        waypointsclone = waypoints;
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
     // Update is called once per frame
     private void Update()
     {
-        if (playerEnter)
+        leftRaycast.RaycastCheck();
+        rightRaycast.RaycastCheck();
+        if (leftRaycast.seeGround)
         {
-            Vector3 targetPosition = new Vector3(waypoints[0].transform.position.x, transform.position.y, transform.position.z);
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, Time.deltaTime * 2 * speed);
-            if(targetPosition.x - transform.position.x < 0)
+            move = 1;
+            sprite.flipX = true;
+        }
+        if (rightRaycast.seeGround)
+        {
+            move = -1;
+            sprite.flipX = false;
+        }
+        if ((leftRaycast.seePlayer || rightRaycast.seePlayer) && !isStartedRunning)
+        {
+            if (leftRaycast.seePlayer && move == 1)
             {
                 sprite.flipX = false;
+                move = -1;
+                anim.SetBool("State", true);
+                rb.velocity = new Vector2(move * speed * 2, rb.velocity.y);
+                isStartedRunning = true;
+            }
+            if (rightRaycast.seePlayer && move == -1)
+            {
+                sprite.flipX = true;
+                move = 1;
+                anim.SetBool("State", true);
+                rb.velocity = new Vector2(move * speed * 2, rb.velocity.y);
+                isStartedRunning = true;
+
             }
             else
             {
-                sprite.flipX = true;
+                anim.SetBool("State", true);
+                rb.velocity = new Vector2(move * speed * 2, rb.velocity.y);
+                isStartedRunning = true;
             }
+        }
+        else if (isStartedRunning)
+        {
+            rb.velocity = new Vector2(move * speed * 2, rb.velocity.y);
+            Invoke("StopRunning", 1.5f);
         }
         else
         {
-            waypoints = waypointsclone;
-            if(transform.position.x - waypoints[currenWaypointIndex].transform.position.x > 0)
-            {
-                sprite.flipX = false;
-            }
-            else
-            {
-                sprite.flipX = true;
-            }
-    
-            if (Vector2.Distance(waypoints[currenWaypointIndex].transform.position, transform.position) < .1f)
-            {
-                currenWaypointIndex++;
-                if (currenWaypointIndex >= waypoints.Length)
-                {
-                    currenWaypointIndex = 0;
-                }
-            }
-            transform.position = Vector2.MoveTowards(transform.position, waypoints[currenWaypointIndex].transform.position, Time.deltaTime * speed);
+            anim.SetBool("State", false);
+            rb.velocity = new Vector2(move * speed, rb.velocity.y);
+        }
 
-        }
     }
-    private void OnTriggerEnter2D(Collider2D col)
+    void StopRunning()
     {
-        if (col.gameObject.name == "Player")
-        {
-            dangerSound.Play();
-            waypoints = null;
-            waypoints = new GameObject[] { col.gameObject };
-            playerEnter = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.gameObject.name == "Player")
-        {
-            dangerSound.Stop();
-            playerEnter = false;
-        }
+        isStartedRunning = false;
     }
 }

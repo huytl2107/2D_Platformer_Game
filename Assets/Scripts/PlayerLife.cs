@@ -34,7 +34,8 @@ public class PlayerLife : MonoBehaviour
         }
         if (col.gameObject.CompareTag("StrongEnemies"))
         {
-            
+            IsHeadStomped = true;
+            StartCoroutine(DestroyAfterDelay(col.gameObject, 1f));
         }
     }
     private IEnumerator DestroyAfterDelay(GameObject objectToDestroy, float delay)
