@@ -27,22 +27,12 @@ public class PlayerLife : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("WeakEnemies"))
+        if (col.gameObject.CompareTag("WeakEnemies") || col.gameObject.CompareTag("StrongEnemies"))
         {
             IsHeadStomped = true;
-            StartCoroutine(DestroyAfterDelay(col.gameObject, 1f));
-        }
-        if (col.gameObject.CompareTag("StrongEnemies"))
-        {
-            IsHeadStomped = true;
-            StartCoroutine(DestroyAfterDelay(col.gameObject, 1f));
         }
     }
-    private IEnumerator DestroyAfterDelay(GameObject objectToDestroy, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Destroy(objectToDestroy);
-    }
+
     private void Die(){
         anim.SetTrigger("death");
         rb.bodyType = RigidbodyType2D.Static;

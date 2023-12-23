@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemiesDeath : MonoBehaviour
 {
     private Animator anim;
-    private bool onTriggerEnter = false;
+    private bool death = false;
     
     // Start is called before the first frame update
     private void Start()
@@ -15,19 +15,26 @@ public class EnemiesDeath : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.name == "Player")
+        if ((col.gameObject.name == "Player") || col.CompareTag("Weapon"))
         {
-            onTriggerEnter = true;
-            anim.SetBool("Death", onTriggerEnter);
-        }
-        if (col.CompareTag("Weapon"))
-        {
-            onTriggerEnter = true;
-            anim.SetBool("Death", onTriggerEnter);
+            Debug.Log("Va chạm");
+            anim.SetTrigger("Death");
+            Death();
         }
     }
-    public bool Death()
+
+    private void Death()
     {
-        return onTriggerEnter;
+        death = true;
+        StartCoroutine(DestroyAfterDelay(gameObject, 1f));
+    }
+    private IEnumerator DestroyAfterDelay(GameObject objectToDestroy, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(objectToDestroy);
+    }
+    public bool isDeath()
+    {
+        return death;
     }
 }

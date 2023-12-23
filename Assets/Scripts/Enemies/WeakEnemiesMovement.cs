@@ -17,7 +17,7 @@ public class WeakEnemiesMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (enemiesDeath.Death())
+        if (enemiesDeath.isDeath())
         { }
         else
         {

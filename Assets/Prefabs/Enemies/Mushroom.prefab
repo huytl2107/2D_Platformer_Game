@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 764478960679008046}
   - component: {fileID: 764478960679008047}
   - component: {fileID: 764478960679008045}
-  - component: {fileID: -2168964939107173579}
+  - component: {fileID: 7202252005107959693}
+  - component: {fileID: 7509743622630831350}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: WeakEnemies
@@ -177,7 +178,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   speed: 3
---- !u!114 &-2168964939107173579
+  enemiesDeath: {fileID: 0}
+--- !u!114 &7202252005107959693
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,3 +191,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcda279bbfb45340b7693c2c9a305d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &7509743622630831350
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764478960679008020}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

@@ -73,16 +73,15 @@ public class StrongEnemiesMovement : MonoBehaviour
             anim.SetBool("State", false);
             rb.velocity = new Vector2(move * speed, rb.velocity.y);
         }
-
-        if(enemiesDeath.Death())
+        if(enemiesDeath.isDeath())
         {
             rb.bodyType = RigidbodyType2D.Static;
-            Debug.Log("Enemy Death");
-        };
+        }
 
     }
-    void StopRunning()
+    private void StopRunning()
     {
         isStartedRunning = false;
     }
+
 }
