@@ -9,6 +9,7 @@ public class StrongEnemiesMovement : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private AudioSource dangerSound;
     [SerializeField] LayerMask ground;
+    [SerializeField] EnemiesDeath enemiesDeath;
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
     private Animator anim;
@@ -19,6 +20,7 @@ public class StrongEnemiesMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        enemiesDeath = GetComponent<EnemiesDeath>();
     }
     // Update is called once per frame
     private void Update()
@@ -71,6 +73,12 @@ public class StrongEnemiesMovement : MonoBehaviour
             anim.SetBool("State", false);
             rb.velocity = new Vector2(move * speed, rb.velocity.y);
         }
+
+        if(enemiesDeath.Death())
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+            Debug.Log("Enemy Death");
+        };
 
     }
     void StopRunning()

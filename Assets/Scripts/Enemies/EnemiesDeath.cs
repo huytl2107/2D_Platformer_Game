@@ -20,5 +20,14 @@ public class EnemiesDeath : MonoBehaviour
             onTriggerEnter = true;
             anim.SetBool("Death", onTriggerEnter);
         }
+        if (col.CompareTag("Weapon"))
+        {
+            onTriggerEnter = true;
+            anim.SetBool("Death", onTriggerEnter);
+        }
+    }
+    public bool Death()
+    {
+        return onTriggerEnter;
     }
 }

@@ -9,16 +9,19 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D coll;
     private Animator anim;
     private float dirX = 0;
+    public float DirX { get => dirX; set => dirX = value; }
     private bool isDoubleJump = false;
     [SerializeField] private float moveSpeed = 7;
+    public float MoveSpeed {get => moveSpeed; set => moveSpeed = value; }
     [SerializeField] private float jumpForce = 8;
     [SerializeField] private LayerMask jumpableGround;
-    private enum movementState { idle, running, jumping, falling, doubleJump, wallJump };
+    private enum movementState { idle, running, jumping, falling, doubleJump, wallJump, throwAxe };
     movementState state;
     [SerializeField] private AudioSource jumpSoundEffect;
     private StickyWall stickyWall;
     private PlayerLife playerLife;
     private bool jumpOnStickyWall = false;
+
 
     // Start is called before the first frame update
     private void Start()
@@ -34,10 +37,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        dirX = Input.GetAxisRaw("Horizontal");
+        DirX = Input.GetAxisRaw("Horizontal");
         if(!jumpOnStickyWall)
         {
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(DirX * moveSpeed, rb.velocity.y);
         }
         if(playerLife.isHeadStomped)
         {
@@ -59,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
                 isDoubleJump = false;
                 jumpOnStickyWall = true;
                 //Jump
-                rb.velocity = new Vector2(-dirX*6f, jumpForce);
+                rb.velocity = new Vector2(-DirX*6f, jumpForce);
                 jumpSoundEffect.Play();
             }
             else if (!isDoubleJump)
@@ -76,12 +79,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAnimationState()
     {
-        if (dirX > 0f)
+        if (DirX > 0f)
         {
             state = movementState.running;
             sprite.flipX = false;
         }
-        else if (dirX < 0f)
+        else if (DirX < 0f)
         {
             state = movementState.running;
             sprite.flipX = true;
@@ -113,6 +116,10 @@ public class PlayerMovement : MonoBehaviour
         if(stickyWall.isWallJump)
         {
             state = movementState.wallJump;
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            state = movementState.throwAxe;
         }
 
         anim.SetInteger("state", (int)state);

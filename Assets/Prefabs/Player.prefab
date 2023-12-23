@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 147029185374098176}
   - component: {fileID: 147029185374098191}
   - component: {fileID: 147029185374098190}
+  - component: {fileID: 4080404101442133225}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -204,6 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07df4fc8f506254d95e65fcfaea75d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHeadStomped: 0
   deathSoundEffect: {fileID: 147029185374098190}
 --- !u!82 &147029185374098176
 AudioSource:
@@ -493,3 +495,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4080404101442133225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147029185374098293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5154fbb1b3b313e4184159d867d3df07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWallJump: 0

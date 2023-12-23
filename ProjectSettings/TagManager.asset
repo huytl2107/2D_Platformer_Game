@@ -9,6 +9,7 @@ TagManager:
   - StickyWall
   - WeakEnemies
   - StrongEnemies
+  - Weapon
   layers:
   - Default
   - TransparentFX
