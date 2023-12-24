@@ -26,12 +26,11 @@ public class EnemiesDeath : MonoBehaviour
     private void Death()
     {
         death = true;
-        StartCoroutine(DestroyAfterDelay(gameObject, 1f));
+        Invoke("Destroy", 1f);
     }
-    private IEnumerator DestroyAfterDelay(GameObject objectToDestroy, float delay)
+    private void Destroy()
     {
-        yield return new WaitForSeconds(delay);
-        Destroy(objectToDestroy);
+        Destroy(gameObject);
     }
     public bool isDeath()
     {

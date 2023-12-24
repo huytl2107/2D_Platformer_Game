@@ -29,14 +29,13 @@ public class EnemiesRaycast : MonoBehaviour
         {
            seePlayer = false;
         }
-        hitground = Physics2D.Raycast(transform.position, rayDirection, 2f);
+        hitground = Physics2D.Raycast(transform.position, rayDirection, .5f);
         if (hitground.collider != null)
         {
             if (hitground.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
                 seeGround = true;
                 Debug.DrawLine(transform.position, hitground.point, Color.white);
-                Debug.Log("See Ground");
             }
             else
             {
