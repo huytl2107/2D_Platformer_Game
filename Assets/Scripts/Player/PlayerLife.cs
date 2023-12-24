@@ -20,8 +20,8 @@ public class PlayerLife : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.CompareTag("Trap") || col.gameObject.CompareTag("WeakEnemies") || col.gameObject.CompareTag("StrongEnemies")){
-            deathSoundEffect.Play();
+        if(col.gameObject.CompareTag("Trap") || col.gameObject.CompareTag("WeakEnemies") || col.gameObject.CompareTag("StrongEnemies"))
+        {
             Die();
         }
     }
@@ -31,9 +31,14 @@ public class PlayerLife : MonoBehaviour
         {
             IsHeadStomped = true;
         }
+        if(col.gameObject.CompareTag("TriggerTrap"))
+        {
+            Die();
+        }
     }
 
     private void Die(){
+        deathSoundEffect.Play();
         anim.SetTrigger("death");
         rb.bodyType = RigidbodyType2D.Static;
     }

@@ -1036,29 +1036,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5758136818989002743, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+      propertyPath: axeSound
+      value: 
+      objectReference: {fileID: 283334565}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
---- !u!1 &283334552 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 147029185374098293, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
-  m_PrefabInstance: {fileID: 283334551}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &283334553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 283334552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5154fbb1b3b313e4184159d867d3df07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isWallJump: 0
 --- !u!4 &283334564 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 147029185374098184, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+  m_PrefabInstance: {fileID: 283334551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &283334565 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3616446146289492499, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
   m_PrefabInstance: {fileID: 283334551}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &285447255
