@@ -101,7 +101,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -559,7 +559,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Idle (64x32)_15: -296839413648762863
+      Idle (64x32)_13: 4397096775800396760
       Idle (64x32)_0: -5219337101871392587
       Idle (64x32)_3: -6742546426324391505
       Idle (64x32)_8: 8243258920512019660
@@ -576,7 +576,7 @@ TextureImporter:
       Idle (64x32)_1: 7138469259204825589
       Idle (64x32)_10: 4205727401104411494
       Idle (64x32)_12: -952279733747984055
-      Idle (64x32)_13: 4397096775800396760
+      Idle (64x32)_15: -296839413648762863
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

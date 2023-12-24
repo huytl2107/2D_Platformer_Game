@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 299698372435513419}
   - component: {fileID: 5430710129473237222}
   - component: {fileID: 6272593129218969689}
-  - component: {fileID: 8003857437679185388}
   - component: {fileID: 7909741187700601654}
   - component: {fileID: 6251571912783105007}
+  - component: {fileID: 4377837653908226785}
   m_Layer: 0
   m_Name: AngryPig
   m_TagString: StrongEnemies
@@ -288,26 +288,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0089006, y: 0.12529266}
   m_EdgeRadius: 0
---- !u!114 &8003857437679185388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299698372435513436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d471fc5153575d649906742de9aec007, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftRaycast: {fileID: 3897322652896425026}
-  rightRaycast: {fileID: 6333895280193288483}
-  speed: 3
-  dangerSound: {fileID: 299698372435513419}
-  ground:
-    serializedVersion: 2
-    m_Bits: 64
-  enemiesDeath: {fileID: 6251571912783105007}
 --- !u!114 &7909741187700601654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +314,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcda279bbfb45340b7693c2c9a305d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4377837653908226785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299698372435513436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 195f533740230f7488ec191b909fedce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  delayRun: 1
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
+  dangerSound: {fileID: 299698372435513419}
+  leftRaycast: {fileID: 3897322652896425026}
+  rightRaycast: {fileID: 6333895280193288483}
 --- !u!1 &1415435052178257336
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 8
+  distanceGround: 0.5
   right: 0
   seePlayer: 0
   seeGround: 0
@@ -427,6 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 8
+  distanceGround: 0.5
   right: 1
   seePlayer: 0
   seeGround: 0

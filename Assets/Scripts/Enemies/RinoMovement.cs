@@ -2,38 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RinoMovement : MonoBehaviour
+public class RinoMovement : StrongEnemiesMovement
 {
     [SerializeField] private EnemiesRaycast enemiesRaycast;
-    [SerializeField] private float speed = 3f;
-    [SerializeField] LayerMask ground;
-    [SerializeField] EnemiesDeath enemiesDeath;
-    private Rigidbody2D rb;
-    private bool isStartedRunning = false;
     private enum state {idle, running, hitwall};
     state currentState;
-    private Animator anim;
 
-    private void Start()
+    protected override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        enemiesDeath = GetComponent<EnemiesDeath>();
-        anim = GetComponent<Animator>();
+        base.Start();
     }
 
     private void Update()
     {
+        move = enemiesRaycast.right ? 1: -1;
         enemiesRaycast.RaycastCheck();
         if(enemiesRaycast.seePlayer && !isStartedRunning)
         {
-            rb.velocity = new Vector2(-1 * speed * 2, rb.velocity.y);
-            isStartedRunning = true;
+            Running();
             currentState = state.running;
         }
         else if (isStartedRunning)
         {
-            rb.velocity = new Vector2(-1* speed * 2, rb.velocity.y);
-            Invoke("StopRunning", 3f);
+            DelayRunning();
         }
 
         else
@@ -52,17 +43,9 @@ public class RinoMovement : MonoBehaviour
             currentState = state.hitwall;
             Debug.Log("Hit wall");
             Invoke("Destroy", 1f);
-            rb.velocity = new Vector2(speed, rb.velocity.y);
+            rb.velocity = new Vector2(-1*  move * speed, rb.velocity.y);
         }
         anim.SetInteger("State", (int)currentState);
+        ChangeAudioSound();
     }
-    private void StopRunning()
-    {
-        isStartedRunning = false;
-    }
-    private void Destroy()
-    {
-        Destroy(gameObject);
-    }
-
 }

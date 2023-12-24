@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raycast: {fileID: 3590988988930285335}
   shootSound: {fileID: 4471548634855470610}
-  bullet: {fileID: 5661157836133930270, guid: 8d18c4faae500fe4ebf41e9f54e67a7c, type: 3}
+  bullet: {fileID: 7170538318078249915, guid: b39c6fca01cf20b48884824f7083dcb8, type: 3}
   waitBeforeShoot: 0.65
   plusYBullet: -0.05
 --- !u!82 &4471548634855470610

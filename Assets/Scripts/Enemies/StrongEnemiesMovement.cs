@@ -4,84 +4,59 @@ using UnityEngine;
 
 public class StrongEnemiesMovement : MonoBehaviour
 {
-    [SerializeField] EnemiesRaycast leftRaycast;
-    [SerializeField] EnemiesRaycast rightRaycast;
-    [SerializeField] private float speed = 3f;
-    [SerializeField] private AudioSource dangerSound;
-    [SerializeField] LayerMask ground;
-    [SerializeField] EnemiesDeath enemiesDeath;
-    private SpriteRenderer sprite;
-    private Rigidbody2D rb;
-    private Animator anim;
-    private int move = -1;
-    private bool isStartedRunning = false;
-    private void Start()
+    [SerializeField] protected float speed = 3f;
+    [SerializeField] protected float delayRun = 3f;
+    protected Rigidbody2D rb;
+    protected Animator anim;
+    protected EnemiesDeath enemiesDeath;
+    [SerializeField] protected LayerMask ground;
+    protected float move = -1;
+    [SerializeField] protected AudioSource dangerSound;
+    protected bool dangerSoundPlaying = false;
+    protected bool isStartedRunning = false;
+    
+    protected virtual void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         enemiesDeath = GetComponent<EnemiesDeath>();
+        anim = GetComponent<Animator>();
     }
-    // Update is called once per frame
-    private void Update()
+
+    protected void ChangeAudioSound()
     {
-        leftRaycast.RaycastCheck();
-        rightRaycast.RaycastCheck();
-        if (leftRaycast.seeGround)
+        if(isStartedRunning && !dangerSoundPlaying)
         {
-            move = 1;
-            sprite.flipX = true;
+            dangerSound.Play();
+            dangerSoundPlaying = true;
         }
-        if (rightRaycast.seeGround)
+        if(!isStartedRunning && dangerSoundPlaying)
         {
-            move = -1;
-            sprite.flipX = false;
+            dangerSound.Stop();
+            dangerSoundPlaying = false;
         }
-        if ((leftRaycast.seePlayer || rightRaycast.seePlayer) && !isStartedRunning)
-        {
-            if (leftRaycast.seePlayer && move == 1)
-            {
-                sprite.flipX = false;
-                move = -1;
-                anim.SetBool("State", true);
-                rb.velocity = new Vector2(move * speed * 2, rb.velocity.y);
-                isStartedRunning = true;
-            }
-            if (rightRaycast.seePlayer && move == -1)
-            {
-                sprite.flipX = true;
-                move = 1;
-                anim.SetBool("State", true);
-                rb.velocity = new Vector2(move * speed * 2, rb.velocity.y);
-                isStartedRunning = true;
-
-            }
-            else
-            {
-                anim.SetBool("State", true);
-                rb.velocity = new Vector2(move * speed * 2, rb.velocity.y);
-                isStartedRunning = true;
-            }
-        }
-        else if (isStartedRunning)
-        {
-            rb.velocity = new Vector2(move * speed * 2, rb.velocity.y);
-            Invoke("StopRunning", 1.5f);
-        }
-        else
-        {
-            anim.SetBool("State", false);
-            rb.velocity = new Vector2(move * speed, rb.velocity.y);
-        }
-        if(enemiesDeath.isDeath())
-        {
-            rb.bodyType = RigidbodyType2D.Static;
-        }
-
     }
-    private void StopRunning()
+    protected void Running()
+    {
+        rb.velocity = new Vector2(move * speed * 2, rb.velocity.y);
+        isStartedRunning = true;
+    }
+    protected void Walking()
+    {
+        rb.velocity = new Vector2(move * speed, rb.velocity.y);
+        isStartedRunning = false;
+    }
+    protected void DelayRunning()
+    {
+        rb.velocity = new Vector2(move* speed * 2, rb.velocity.y);
+        Debug.Log("Delay run");
+        Invoke("StopRunning", delayRun);
+    }
+    protected void StopRunning()
     {
         isStartedRunning = false;
     }
-
+    protected void Destroy()
+    {
+        Destroy(gameObject);
+    }
 }

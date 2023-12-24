@@ -11,6 +11,8 @@ public class Plants : MonoBehaviour
     private bool canShoot = true;
     [SerializeField] private float waitBeforeShoot = .65f;
     [SerializeField] private float plusYBullet = 0;
+    [SerializeField] private float plusXBullet = 0;
+    [SerializeField] private float reloadBullet = 1.5f;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -30,7 +32,7 @@ public class Plants : MonoBehaviour
     void ShootBullet()
     {
         // Tạo một bản sao của prefab viên đạn tại vị trí và hướng của đối tượng Plants
-        Vector3 bulletPosition = new Vector3(transform.position.x, transform.position.y + plusYBullet, transform.position.z);
+        Vector3 bulletPosition = new Vector3(transform.position.x + plusXBullet, transform.position.y + plusYBullet, transform.position.z);
         GameObject thisbullet = Instantiate(bullet, bulletPosition, transform.rotation);
 
         // Phát âm thanh bắn
@@ -40,7 +42,7 @@ public class Plants : MonoBehaviour
     {
         // Chờ trong khoảng thời gian quy định trước khi có thể bắn lần tiếp theo
         canShoot = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(reloadBullet);
         canShoot = true;
     }
     IEnumerator WaitAnimationAndShot()

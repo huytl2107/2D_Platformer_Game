@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EnemiesRaycast : MonoBehaviour
 {
-    [SerializeField] float distance = 5f;
-    [SerializeField] bool right = false;
+    [SerializeField] private float distance = 5f;
+    [SerializeField] private float distanceGround = .5f;
+    [SerializeField] public bool right = false;
     RaycastHit2D hit, hitground;
     public bool seePlayer, seeGround;
     // Start is called before the first frame update
@@ -29,7 +30,7 @@ public class EnemiesRaycast : MonoBehaviour
         {
            seePlayer = false;
         }
-        hitground = Physics2D.Raycast(transform.position, rayDirection, .5f);
+        hitground = Physics2D.Raycast(transform.position, rayDirection, distanceGround);
         if (hitground.collider != null)
         {
             if (hitground.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
