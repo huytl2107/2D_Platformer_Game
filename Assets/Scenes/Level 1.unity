@@ -37629,6 +37629,31 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 147029185374098293, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
   m_PrefabInstance: {fileID: 147029183843249608}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &483087091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 738225621021636709, guid: 663669d6270d8304bbd08eb093aef0ef, type: 3}
+  m_PrefabInstance: {fileID: 738225622944994203}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &483087098
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483087091}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d522c09ba65856c44b992d1b983fc5f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &514708734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44909,6 +44934,22 @@ PrefabInstance:
     - target: {fileID: 738225621021638552, guid: 663669d6270d8304bbd08eb093aef0ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 738225621021638554, guid: 663669d6270d8304bbd08eb093aef0ef, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 738225621021638554, guid: 663669d6270d8304bbd08eb093aef0ef, type: 3}
+      propertyPath: m_Constraints
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 738225621021638555, guid: 663669d6270d8304bbd08eb093aef0ef, type: 3}
+      propertyPath: m_Size.y
+      value: 1.8554144
+      objectReference: {fileID: 0}
+    - target: {fileID: 738225621021638555, guid: 663669d6270d8304bbd08eb093aef0ef, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.058232307
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 663669d6270d8304bbd08eb093aef0ef, type: 3}

@@ -7,6 +7,7 @@ public class PlayerLife : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody2D rb;
+    private BoxCollider2D col;
     public bool isHeadStomped = false;
     [SerializeField] private AudioSource deathSoundEffect;
 
@@ -16,6 +17,7 @@ public class PlayerLife : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<BoxCollider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -40,6 +42,7 @@ public class PlayerLife : MonoBehaviour
     private void Die(){
         deathSoundEffect.Play();
         anim.SetTrigger("death");
+        col.isTrigger = true;
         rb.bodyType = RigidbodyType2D.Static;
     }
     private void RestartLevel(){

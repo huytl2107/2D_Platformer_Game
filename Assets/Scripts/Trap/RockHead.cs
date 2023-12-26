@@ -18,6 +18,7 @@ public class RockHead : MonoBehaviour
     {
         if(col.gameObject.name == "Player")
         {
+            anim.SetBool("State", true);
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.gravityScale *= 3f;
         }
@@ -26,7 +27,9 @@ public class RockHead : MonoBehaviour
     {
         if(col.collider.CompareTag("Ground"))
         {
-           Invoke("Destroy", 1f);
+            rb.AddForce(Vector2.up * 7f, ForceMode2D.Impulse);
+            anim.SetTrigger("Death");
+            Invoke("Destroy", .5f);
         }
     }
     private void Destroy()
