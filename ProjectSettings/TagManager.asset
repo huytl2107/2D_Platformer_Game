@@ -11,6 +11,8 @@ TagManager:
   - StrongEnemies
   - Weapon
   - TriggerTrap
+  - FallingPlatform
+  - Ground
   layers:
   - Default
   - TransparentFX

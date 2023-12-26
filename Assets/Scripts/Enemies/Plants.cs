@@ -9,7 +9,6 @@ public class Plants : MonoBehaviour
     [SerializeField] private GameObject bullet;
     private Animator anim;
     private bool canShoot = true;
-    [SerializeField] private float waitBeforeShoot = .65f;
     [SerializeField] private float plusYBullet = 0;
     [SerializeField] private float plusXBullet = 0;
     [SerializeField] private float reloadBullet = 1.5f;
@@ -25,7 +24,6 @@ public class Plants : MonoBehaviour
         if (raycast.seePlayer && canShoot)
         {
             anim.SetBool("State", true);
-            StartCoroutine(WaitAnimationAndShot());
             StartCoroutine(WaitForNextShot());
         }
     }
@@ -34,7 +32,8 @@ public class Plants : MonoBehaviour
         // Tạo một bản sao của prefab viên đạn tại vị trí và hướng của đối tượng Plants
         Vector3 bulletPosition = new Vector3(transform.position.x + plusXBullet, transform.position.y + plusYBullet, transform.position.z);
         GameObject thisbullet = Instantiate(bullet, bulletPosition, transform.rotation);
-
+        Bullet bulletController = thisbullet.GetComponent<Bullet>();
+        bulletController.right = raycast.right ? true : false;
         // Phát âm thanh bắn
         shootSound.Play();
     }
@@ -42,13 +41,9 @@ public class Plants : MonoBehaviour
     {
         // Chờ trong khoảng thời gian quy định trước khi có thể bắn lần tiếp theo
         canShoot = false;
-        yield return new WaitForSeconds(reloadBullet);
-        canShoot = true;
-    }
-    IEnumerator WaitAnimationAndShot()
-    {
-        yield return new WaitForSeconds(waitBeforeShoot);
-        ShootBullet();
+        yield return new WaitForSeconds(0.889f);
         anim.SetBool("State", false);
+        yield return new WaitForSeconds(reloadBullet - 0.889f);
+        canShoot = true;
     }
 }

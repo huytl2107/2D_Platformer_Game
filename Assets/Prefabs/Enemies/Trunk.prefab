@@ -192,9 +192,8 @@ MonoBehaviour:
   raycast: {fileID: 6099567496723904359}
   bullet: {fileID: 3324371872058845817, guid: 9035938a3634d4d45bd2b1c45b31684f, type: 3}
   shootSound: {fileID: 6099567495710823893}
-  waitBeforeShoot: 0.65
-  plusYBullet: -0.1
-  plusXBullet: 0
+  plusYBullet: -0.2
+  plusXBullet: 0.3
   reloadBullet: 0.5
 --- !u!61 &6099567495710823892
 BoxCollider2D:

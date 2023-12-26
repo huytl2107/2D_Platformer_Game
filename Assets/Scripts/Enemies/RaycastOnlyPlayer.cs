@@ -5,7 +5,7 @@ using UnityEngine;
 public class RaycastOnlyPlayer : MonoBehaviour
 {
     [SerializeField] float distance = 10f;
-    [SerializeField] bool right = false;
+    [SerializeField] public bool right = false;
     RaycastHit2D hit;
     public bool seePlayer;
     // Start is called before the first frame update
