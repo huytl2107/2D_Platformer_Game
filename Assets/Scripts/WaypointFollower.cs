@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class WaypointFollower : MonoBehaviour
 {
-    [SerializeField] private GameObject[] waypoints;
+    [SerializeField] protected GameObject[] waypoints;
     private int currenWaypointIndex = 0;
-    [SerializeField] private float speed = 4f;
+    [SerializeField] protected float speed = 4f;
     // Update is called once per frame
     private void Update()
     {
-        if(Vector2.Distance(waypoints[currenWaypointIndex].transform.position, transform.position) < .1f)
+        FollowWaypoints();
+    }
+    protected void FollowWaypoints()
+    {
+        if (Vector2.Distance(waypoints[currenWaypointIndex].transform.position, transform.position) < .1f)
         {
             currenWaypointIndex++;
-            if(currenWaypointIndex >= waypoints.Length)
+            if (currenWaypointIndex >= waypoints.Length)
             {
                 currenWaypointIndex = 0;
             }
-            if(waypoints.Length == 1)
+            if (waypoints.Length == 1)
             {
                 Destroy(gameObject);
                 return;
