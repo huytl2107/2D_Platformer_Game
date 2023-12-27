@@ -12,7 +12,15 @@ public class RaycastOnlyPlayer : MonoBehaviour
     // Start is called before the first frame update
     public void RaycastCheck()
     {
-        Vector2 rayDirection = Quaternion.Euler(0, 0, rayDirectionAngle) * Vector2.right;
+        Vector2 rayDirection;
+        if(rayDirectionAngle != 0)
+        {
+        rayDirection = Quaternion.Euler(0, 0, rayDirectionAngle) * Vector2.right;
+        }
+        else
+        {
+        rayDirection = right ? Vector2.right : Vector2.left;
+        }
         hit = Physics2D.Raycast(transform.position, rayDirection, distance);
         if (hit.collider != null)
         {

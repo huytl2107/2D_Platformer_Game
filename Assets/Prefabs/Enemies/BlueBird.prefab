@@ -231,4 +231,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 5
   right: 0
+  rayDirectionAngle: 0
   seePlayer: 0
