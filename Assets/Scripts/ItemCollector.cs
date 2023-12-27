@@ -17,5 +17,10 @@ public class ItemCollector : MonoBehaviour
             fruitsText.text = "Fruits: " + fruits;
             collectItemSoundEffect.Play();
         }
+        if (col.gameObject.CompareTag("LivesItem"))
+        {
+            Destroy(col.gameObject);
+            collectItemSoundEffect.Play();
+        }
     }
 }

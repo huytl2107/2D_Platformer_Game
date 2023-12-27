@@ -13,6 +13,7 @@ TagManager:
   - TriggerTrap
   - FallingPlatform
   - Ground
+  - LivesItem
   layers:
   - Default
   - TransparentFX

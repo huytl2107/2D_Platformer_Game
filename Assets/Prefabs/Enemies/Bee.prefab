@@ -239,7 +239,7 @@ MonoBehaviour:
   speed: 3
   bullet: {fileID: 6061698788978010179, guid: e07e27a984d3e5d43b9a17b5a439b4c2, type: 3}
   plusXBullet: 0
-  plusYBullet: 0
+  plusYBullet: -0.5
 --- !u!1 &7857234619761964282
 GameObject:
   m_ObjectHideFlags: 0

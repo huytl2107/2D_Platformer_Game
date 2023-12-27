@@ -59,6 +59,10 @@ public class PlayerLife : MonoBehaviour
             DeathOrAlive();
             Debug.Log("Lives: " + lives);
         }
+        if(col.gameObject.CompareTag("LivesItem"))
+        {
+            lives += 1;
+        }
     }
     private void GotHit()
     {

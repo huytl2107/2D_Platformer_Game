@@ -5,17 +5,17 @@ using UnityEngine;
 public class Bee : MonoBehaviour
 {
     [SerializeField] private RaycastOnlyPlayer shootRaycast;
-    [SerializeField] private RaycastOnlyPlayer leftRaycast;
-    [SerializeField] private RaycastOnlyPlayer rightRaycast;
-    [SerializeField] GameObject player;
-    [SerializeField] AudioSource shootSound;
-    [SerializeField] float speed = 3f;
-    private bool seenPlayer = false;
+    [SerializeField] protected RaycastOnlyPlayer leftRaycast;
+    [SerializeField] protected RaycastOnlyPlayer rightRaycast;
+    [SerializeField] protected GameObject player;
+    [SerializeField] private AudioSource shootSound;
+    [SerializeField] protected float speed = 3f;
+    protected bool seenPlayer = false;
     [SerializeField] private GameObject bullet;
-    private Animator anim;
+    protected Animator anim;
     [SerializeField] private float plusXBullet = 0f;
     [SerializeField] private float plusYBullet = 0f;
-    private bool idle = true;
+    protected bool idle = true;
     
     private void Start() 
     {
@@ -26,7 +26,7 @@ public class Bee : MonoBehaviour
         shootRaycast.RaycastCheck();
         leftRaycast.RaycastCheck();
         rightRaycast.RaycastCheck();
-        if(leftRaycast.seePlayer || rightRaycast.seePlayer)
+        if(leftRaycast.seePlayer || rightRaycast.seePlayer && !seenPlayer)
         {
             seenPlayer = true;
             Invoke("NotSeeingPlayer",5f);
@@ -41,7 +41,7 @@ public class Bee : MonoBehaviour
             anim.SetBool("State", true);
         }
     }
-    private void NotSeeingPlayer()
+    protected void NotSeeingPlayer()
     {
         seenPlayer = false;
     }
@@ -55,7 +55,7 @@ public class Bee : MonoBehaviour
         // Phát âm thanh bắn
         shootSound.Play();
     }
-    private void SetIdle()
+    protected void SetIdle()
     {
         anim.SetBool("State", false);
         idle = true;
