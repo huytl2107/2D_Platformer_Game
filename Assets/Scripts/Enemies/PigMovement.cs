@@ -59,10 +59,6 @@ public class PigMovement : StrongEnemiesMovement
             anim.SetBool("State", false);
             Walking();
         }
-        if(enemiesDeath.isDeath())
-        {
-            rb.bodyType = RigidbodyType2D.Static;
-        }
         ChangeAudioSound();
 
     }

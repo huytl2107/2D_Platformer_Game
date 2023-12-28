@@ -11,8 +11,7 @@ public class PlayerLife : MonoBehaviour
     private BoxCollider2D col;
     public bool isHeadStomped = false;
     private int lives = 3;
-    private float dirX = 1;
-    private float horizontal = 0;
+    public bool gotHit = false;
     [SerializeField] private AudioSource deathSoundEffect;
     [SerializeField] private AudioSource gotHitSound;
     [SerializeField] private Image head1Image;
@@ -31,13 +30,9 @@ public class PlayerLife : MonoBehaviour
     }
     private void Update() 
     {
-        dirX = Input.GetAxisRaw("Horizontal");
-        if(dirX!=0)
-        {
-            horizontal = dirX;
-        }
         if(lives > 3){lives = 3;}
         UpdatePlayerLivesUI();
+
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -66,6 +61,8 @@ public class PlayerLife : MonoBehaviour
     }
     private void GotHit()
     {
+        gotHit = true;
+        Invoke("setFalseGotHit", .5f);
         gotHitSound.Play();
         rb.AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
         lives -= 1;
@@ -95,6 +92,10 @@ public class PlayerLife : MonoBehaviour
     private void SetIdle()
     {
         anim.SetBool("Hit", false);
+    }
+    private void setFalseGotHit()
+    {
+        gotHit = false;
     }
     public void UpdatePlayerLivesUI()
     {

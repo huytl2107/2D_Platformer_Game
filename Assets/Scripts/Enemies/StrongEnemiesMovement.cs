@@ -8,7 +8,6 @@ public class StrongEnemiesMovement : MonoBehaviour
     [SerializeField] protected float delayRun = 3f;
     protected Rigidbody2D rb;
     protected Animator anim;
-    protected EnemiesDeath enemiesDeath;
     [SerializeField] protected LayerMask ground;
     protected float move = -1;
     [SerializeField] protected AudioSource dangerSound;
@@ -18,7 +17,6 @@ public class StrongEnemiesMovement : MonoBehaviour
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        enemiesDeath = GetComponent<EnemiesDeath>();
         anim = GetComponent<Animator>();
     }
 

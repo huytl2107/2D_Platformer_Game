@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private float dirX = 0;
     public float DirX { get => dirX; set => dirX = value; }
+    private float horizontal = 1;
     private bool isDoubleJump = false;
     [SerializeField] private float moveSpeed = 7;
     public float MoveSpeed {get => moveSpeed; set => moveSpeed = value; }
@@ -38,6 +39,10 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         DirX = Input.GetAxisRaw("Horizontal");
+        if(DirX != 0)
+        {
+            horizontal = DirX;
+        }
         if(!jumpOnStickyWall)
         {
         rb.velocity = new Vector2(DirX * moveSpeed, rb.velocity.y);
@@ -72,6 +77,10 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 jumpSoundEffect.Play();
             }
+        }
+        if(playerLife.gotHit)
+        {
+            rb.velocity = new Vector2(-horizontal * moveSpeed/2, rb.velocity.y);
         }
         
         UpdateAnimationState();

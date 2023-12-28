@@ -32,12 +32,6 @@ public class RinoMovement : StrongEnemiesMovement
             currentState = state.idle;
         }
 
-        //Set enim Death
-        if(enemiesDeath.isDeath())
-        {
-            rb.bodyType = RigidbodyType2D.Static;
-        }
-
         if(enemiesRaycast.seeGround)
         {
             currentState = state.hitwall;
