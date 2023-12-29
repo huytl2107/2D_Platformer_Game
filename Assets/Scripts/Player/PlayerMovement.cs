@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private StickyWall stickyWall;
     private PlayerLife playerLife;
     private bool jumpOnStickyWall = false;
-
+    private bool canMove = true;
 
     // Start is called before the first frame update
     private void Start()
@@ -38,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        UpdateAnimationState();
+        if(!canMove)
+        {
+            return;
+        }
         DirX = Input.GetAxisRaw("Horizontal");
         if(DirX != 0)
         {
@@ -82,18 +87,16 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(-horizontal * moveSpeed/2, rb.velocity.y);
         }
-        
-        UpdateAnimationState();
     }
 
     private void UpdateAnimationState()
     {
-        if (DirX > 0f)
+        if (DirX > 0f && canMove)
         {
             state = movementState.running;
             sprite.flipX = false;
         }
-        else if (DirX < 0f)
+        else if (DirX < 0f && canMove)
         {
             state = movementState.running;
             sprite.flipX = true;
@@ -138,6 +141,18 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+    }
+    private void OnTriggerEnter2D(Collider2D col) 
+    {
+        if(col.gameObject.CompareTag("NPC"))
+        {
+            rb.velocity = Vector2.zero;
+            canMove = false;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D col) 
+    {
+        canMove = true;
     }
 
 }

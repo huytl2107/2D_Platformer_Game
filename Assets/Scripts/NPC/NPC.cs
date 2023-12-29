@@ -26,7 +26,7 @@ public class NPC : MonoBehaviour
 
     protected void Update()
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.Y))
+        if (isPlayerInRange && (Input.GetButtonDown("Jump")))
         {
             // Người chơi nhấn Y, thực hiện hành động nói chuyện hoặc mở hộp thoại
             StartConversation();

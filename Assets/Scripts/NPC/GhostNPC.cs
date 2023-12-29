@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class GhostNPC : NPC
 {
@@ -30,7 +29,7 @@ public class GhostNPC : NPC
             canContunies = false;
             notification.SetActive(false);
             chatBox.SetActive(true);
-            TextMeshPro chatText = chatBox.GetComponentInChildren<TextMeshPro>();
+            Text chatText = chatBox.GetComponentInChildren<Text>();
             chatText.text = text[currentIndex];
             currentIndex++;
             Debug.Log("Ghost: Hello Bro!!!");
@@ -46,7 +45,7 @@ public class GhostNPC : NPC
             chatBox.SetActive(false);
             notification.SetActive(false);
         }
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.Y))
+        if (isPlayerInRange && (Input.GetButtonDown("Jump")))
         {
             // Người chơi nhấn Y, thực hiện hành động nói chuyện hoặc mở hộp thoại
             if (currentIndex >= text.Length)
@@ -70,6 +69,7 @@ public class GhostNPC : NPC
     {
         if (other.CompareTag("Player"))
         {
+            notification.SetActive(true);
             Color currentColor = sprite.color;
             currentColor.a = 1f;
             sprite.color = currentColor;
@@ -77,11 +77,15 @@ public class GhostNPC : NPC
             anim.SetInteger("State", (int)state.appear);
         }
     }
+
     private new void OnTriggerExit2D(Collider2D other)
     {
         Color currentColor = sprite.color;
-            currentColor.a = 0f;
-            sprite.color = currentColor;
+        currentColor.a = 0f;
+        sprite.color = currentColor;
+
+        notification.SetActive(false);
+        chatBox.SetActive(false);
     }
 
     private void SetIdle()

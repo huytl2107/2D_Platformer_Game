@@ -14,6 +14,7 @@ TagManager:
   - FallingPlatform
   - Ground
   - LivesItem
+  - NPC
   layers:
   - Default
   - TransparentFX
