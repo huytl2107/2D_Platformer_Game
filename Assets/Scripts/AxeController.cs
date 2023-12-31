@@ -39,13 +39,6 @@ public class AxeController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("WeakEnemies") || col.CompareTag("StrongEnemies"))
-        {
-            StartCoroutine(DestroyAfterDelay(col.gameObject, 1f));
-        }
-    }
     private IEnumerator DestroyAfterDelay(GameObject objectToDestroy, float delay)
     {
         yield return new WaitForSeconds(delay);

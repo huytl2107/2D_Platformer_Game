@@ -6,12 +6,10 @@ public class PigMovement : StrongEnemiesMovement
 {
     [SerializeField] EnemiesRaycast leftRaycast;
     [SerializeField] EnemiesRaycast rightRaycast;
-    private SpriteRenderer sprite;
     
     protected override void Start()
     {
         base.Start();
-        sprite = GetComponent<SpriteRenderer>();
     }
     // Update is called once per frame
     private void Update()

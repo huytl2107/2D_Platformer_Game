@@ -8,7 +8,6 @@ public class TrunkMovement : StrongEnemiesMovement
     [SerializeField] private GameObject bullet;
     [SerializeField] private AudioSource shootSound;
     private enum state { idle, running, attack };
-    private SpriteRenderer sprite;
     state currentState;
     private bool canShoot = true;
     [SerializeField] private float plusYBullet = 0;
@@ -17,7 +16,6 @@ public class TrunkMovement : StrongEnemiesMovement
     protected override void Start()
     {
         base.Start();
-        sprite = GetComponent<SpriteRenderer>();
         currentState = state.running;
     }
 

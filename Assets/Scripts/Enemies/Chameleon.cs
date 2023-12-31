@@ -9,14 +9,11 @@ public class Chameleon : StrongEnemiesMovement
     [SerializeField] GameObject player;
     [SerializeField] EnemiesRaycast enemiesRaycast;
     private bool isRunning = false;
-    private bool canFlip = true;
-    private SpriteRenderer sprite;
     private float delayTime;
 
     protected override void Start()
     {
         base.Start();
-        sprite = GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
@@ -36,19 +33,8 @@ public class Chameleon : StrongEnemiesMovement
         }
         if (enemiesRaycast.seeGround && canFlip)
         {
-            sprite.flipX = !sprite.flipX;
-            move = -move;
-            enemiesRaycast.right = !enemiesRaycast.right;
-            // Điều chỉnh vị trí của đối tượng sau khi flip
-            float adjustment = sprite.flipX ? 3f : -3f;
-            transform.position = new Vector3(transform.position.x + adjustment, transform.position.y, transform.position.z);
-            canFlip = false;
-            Invoke("CanFlipTrue", 1f);
+            FlipObject();
         }
-    }
-    private void CanFlipTrue()
-    {
-        canFlip = true;
     }
     private void SetAnimIdle()
     {
@@ -77,6 +63,16 @@ public class Chameleon : StrongEnemiesMovement
                 playerLife.DeathOrAlive();
             }
         }
-
+    }
+    private void FlipObject()
+    {
+        sprite.flipX = !sprite.flipX;
+        move = -move;
+        enemiesRaycast.right = !enemiesRaycast.right;
+        // Điều chỉnh vị trí của đối tượng sau khi flip
+        float adjustment = sprite.flipX ? 3f : -3f;
+        transform.position = new Vector3(transform.position.x + adjustment, transform.position.y, transform.position.z);
+        canFlip = false;
+        Invoke("CanFlipTrue", 1f);
     }
 }

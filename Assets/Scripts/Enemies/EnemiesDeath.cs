@@ -9,6 +9,7 @@ public class EnemiesDeath : MonoBehaviour
     protected Rigidbody2D rb;
     protected BoxCollider2D col;
     protected SpriteRenderer sprite;
+    protected bool canKill = true;
 
     // Start is called before the first frame update
     protected void Start()
@@ -28,17 +29,21 @@ public class EnemiesDeath : MonoBehaviour
         if ((col.gameObject.name == "Player") || col.CompareTag("Weapon"))
         {
             Debug.Log("Va chạm");
-            anim.SetTrigger("Death");
             Death();
         }
     }
 
     protected void Death()
     {
-        death = true;
-        col.isTrigger = true;
-        rb.AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
-        Invoke("Destroy", 1f);
+        if (canKill)
+        {
+            anim.SetTrigger("Death");
+            death = true;
+            col.isTrigger = true;
+            rb.AddForce(Vector2.up * 3f, ForceMode2D.Impulse);
+            Invoke("Destroy", 1f);
+            Debug.Log("Death");
+        }
     }
     protected void Destroy()
     {
@@ -51,7 +56,7 @@ public class EnemiesDeath : MonoBehaviour
         {
             if (death)
             {
-                if(sprite.flipX)
+                if (sprite.flipX)
                 {
                     rb.velocity = new Vector2(-6, rb.velocity.y);
                 }
@@ -65,7 +70,7 @@ public class EnemiesDeath : MonoBehaviour
         {
             if (death)
             {
-                if(sprite.flipX)
+                if (sprite.flipX)
                 {
                     rb.velocity = new Vector2(-6, rb.velocity.y);
                 }

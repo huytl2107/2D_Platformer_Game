@@ -9,6 +9,7 @@ public class RaycastOnlyPlayer : MonoBehaviour
     [SerializeField] public float rayDirectionAngle = 0f;
     RaycastHit2D hit;
     public bool seePlayer;
+    public LayerMask ignoreLayer;
     // Start is called before the first frame update
     public void RaycastCheck()
     {
@@ -21,7 +22,7 @@ public class RaycastOnlyPlayer : MonoBehaviour
         {
         rayDirection = right ? Vector2.right : Vector2.left;
         }
-        hit = Physics2D.Raycast(transform.position, rayDirection, distance);
+        hit = Physics2D.Raycast(transform.position, rayDirection, distance, ~ignoreLayer);
         if (hit.collider != null)
         {
             if (hit.collider.CompareTag("Player"))
