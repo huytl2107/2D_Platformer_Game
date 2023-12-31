@@ -11,23 +11,28 @@ public class PlayerWeaponController : MonoBehaviour
     [SerializeField] private float plusXAxe;
     private float dirX = 0;
     private float direction = 1;
+    private PlayerMovement playerMovement;
     void Start()
     {
         anim = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Update()
     {
-        dirX = Input.GetAxisRaw("Horizontal");
-        if(dirX!=0){direction = dirX;}
-        if (Input.GetKeyDown(KeyCode.J))
+        if (playerMovement.CanMove())
         {
-            ThrowAxe();
+            dirX = Input.GetAxisRaw("Horizontal");
+            if (dirX != 0) { direction = dirX; }
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                ThrowAxe();
+            }
         }
     }
     void ThrowAxe()
     {
-        Vector3 axePoisition = new Vector3(transform.position.x + plusXAxe*direction, transform.position.y + plusYAxe, transform.position.z);
+        Vector3 axePoisition = new Vector3(transform.position.x + plusXAxe * direction, transform.position.y + plusYAxe, transform.position.z);
         GameObject thisAxe = Instantiate(axe, axePoisition, transform.rotation);
 
         AxeController axeController = thisAxe.GetComponent<AxeController>();

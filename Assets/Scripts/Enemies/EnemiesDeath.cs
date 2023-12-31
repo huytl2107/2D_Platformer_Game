@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemiesDeath : MonoBehaviour
 {
-    private Animator anim;
-    private bool death = false;
-    private Rigidbody2D rb;
-    private BoxCollider2D col;
-    private SpriteRenderer sprite;
+    protected Animator anim;
+    protected bool death = false;
+    protected Rigidbody2D rb;
+    protected BoxCollider2D col;
+    protected SpriteRenderer sprite;
 
     // Start is called before the first frame update
-    private void Start()
+    protected void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -19,6 +19,33 @@ public class EnemiesDeath : MonoBehaviour
         col = GetComponent<BoxCollider2D>();
     }
     private void Update()
+    {
+        GotHitEffect();
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if ((col.gameObject.name == "Player") || col.CompareTag("Weapon"))
+        {
+            Debug.Log("Va chạm");
+            anim.SetTrigger("Death");
+            Death();
+        }
+    }
+
+    protected void Death()
+    {
+        death = true;
+        col.isTrigger = true;
+        rb.AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
+        Invoke("Destroy", 1f);
+    }
+    protected void Destroy()
+    {
+        Destroy(gameObject);
+        death = false;
+    }
+    protected void GotHitEffect()
     {
         if (gameObject.tag == "WeakEnemies")
         {
@@ -48,28 +75,5 @@ public class EnemiesDeath : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if ((col.gameObject.name == "Player") || col.CompareTag("Weapon"))
-        {
-            Debug.Log("Va chạm");
-            anim.SetTrigger("Death");
-            Death();
-        }
-    }
-
-    private void Death()
-    {
-        death = true;
-        col.isTrigger = true;
-        rb.AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
-        Invoke("Destroy", 1f);
-    }
-    private void Destroy()
-    {
-        Destroy(gameObject);
-        death = false;
     }
 }

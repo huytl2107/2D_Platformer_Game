@@ -129,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state = movementState.wallJump;
         }
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J) && canMove)
         {
             state = movementState.throwAxe;
         }
@@ -154,5 +154,8 @@ public class PlayerMovement : MonoBehaviour
     {
         canMove = true;
     }
-
+    public bool CanMove()
+    {
+        return canMove;
+    }
 }
