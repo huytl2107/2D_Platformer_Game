@@ -52,6 +52,7 @@ public class StrongEnemiesMovement : MonoBehaviour
     protected void StopRunning()
     {
         isStartedRunning = false;
+        rb.velocity = new Vector2(0f, rb.velocity.y);
     }
     protected void Destroy()
     {

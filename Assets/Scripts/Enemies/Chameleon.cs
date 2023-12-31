@@ -5,49 +5,78 @@ using UnityEngine;
 public class Chameleon : StrongEnemiesMovement
 {
     private bool called = false;
-    private enum state{idle, running, attack};
+    private enum state { idle, running, attack };
     [SerializeField] GameObject player;
-    [SerializeField] GameObject attackZone;
-    private void Start()
+    [SerializeField] EnemiesRaycast enemiesRaycast;
+    private bool isRunning = false;
+    private bool canFlip = true;
+    private SpriteRenderer sprite;
+    private float delayTime;
+
+    protected override void Start()
     {
         base.Start();
-        attackZone.SetActive(false);
+        sprite = GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
-        if(!called)
+        enemiesRaycast.RaycastCheck();
+        if (!called)
         {
-            SetAnimIdle();
-            Invoke("SetAnimAttack", 6f);
+            Invoke("SetAnimIdle", delayTime);
             called = true;
         }
+        if (isRunning)
+        {
+            Running();
+        }
+        else
+        {
+            StopRunning();
+        }
+        if (enemiesRaycast.seeGround && canFlip)
+        {
+            sprite.flipX = !sprite.flipX;
+            move = -move;
+            enemiesRaycast.right = !enemiesRaycast.right;
+            // Điều chỉnh vị trí của đối tượng sau khi flip
+            float adjustment = sprite.flipX ? 3f : -3f;
+            transform.position = new Vector3(transform.position.x + adjustment, transform.position.y, transform.position.z);
+            canFlip = false;
+            Invoke("CanFlipTrue", 1f);
+        }
+    }
+    private void CanFlipTrue()
+    {
+        canFlip = true;
     }
     private void SetAnimIdle()
     {
-        anim.SetInteger("State",(int)state.idle);
-        Invoke("SetAnimRunning", 4f);
+        isRunning = false;
+        anim.SetInteger("State", (int)state.idle);
+        Invoke("SetAnimRunning", 3f);
     }
     private void SetAnimRunning()
     {
+        isRunning = true;
         anim.SetInteger("State", (int)state.running);
-        Invoke("SetAnimIdle", 4f);
-        Running();
+        Invoke("SetAnimAttack", 3f);
     }
     private void SetAnimAttack()
     {
+        isRunning = false;
         anim.SetInteger("State", (int)state.attack);
-        Invoke("SetAnimAttack", 6f);
     }
-    private void returnIdle()
+    private void Attack()
     {
-        anim.SetInteger("State", (int)state.idle);
-    }
-    private void EnableAttackZone()
-    {
-        attackZone.SetActive(true);
-    }
-    private void DisableAttackZone()
-    {
-        attackZone.SetActive(false);
+        if (enemiesRaycast.seePlayer)
+        {
+            PlayerLife playerLife = player.GetComponent<PlayerLife>();
+            if (playerLife != null)
+            {
+                playerLife.DeathOrAlive();
+            }
+        }
+
     }
 }

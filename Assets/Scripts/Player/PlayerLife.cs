@@ -74,7 +74,7 @@ public class PlayerLife : MonoBehaviour
         col.isTrigger = true;
         rb.bodyType = RigidbodyType2D.Static;
     }
-    private void DeathOrAlive()
+    public void DeathOrAlive()
     {
         if(lives>0)
         {
