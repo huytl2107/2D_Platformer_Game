@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4144958892073073189}
   m_Layer: 0
   m_Name: TrunkBullet
-  m_TagString: Trap
+  m_TagString: WeakEnemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   right: 0
+  down: 0
 --- !u!61 &4144958892073073189
 BoxCollider2D:
   m_ObjectHideFlags: 0

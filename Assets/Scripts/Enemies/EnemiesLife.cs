@@ -17,6 +17,13 @@ public class EnemiesLife : EnemiesDeath
             DeathorAlive();
         }
     }
+    private void OnCollisionEnter2D(Collision2D col) 
+    {
+        if (col.gameObject.CompareTag("Trap"))
+        {
+            DeathorAlive();
+        }
+    }
     private void DeathorAlive()
     {
         if(lives >0)

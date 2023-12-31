@@ -50,7 +50,6 @@ public class StrongEnemiesMovement : MonoBehaviour
     protected void DelayRunning()
     {
         rb.velocity = new Vector2(move* speed * 2, rb.velocity.y);
-        Debug.Log("Delay run");
         Invoke("StopRunning", delayRun);
     }
     protected void StopRunning()

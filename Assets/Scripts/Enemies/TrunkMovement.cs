@@ -67,7 +67,7 @@ public class TrunkMovement : StrongEnemiesMovement
         GameObject thisbullet = Instantiate(bullet, bulletPosition, transform.rotation);
         Bullet bulletController = thisbullet.GetComponent<Bullet>();
         bulletController.right = raycast.right ? true : false;
-
+        Debug.Log("Shoot");
         // Phát âm thanh bắn
         shootSound.Play();
     }

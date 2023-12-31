@@ -15,9 +15,8 @@ GameObject:
   - component: {fileID: 6099567495710823902}
   - component: {fileID: 6099567495710823890}
   - component: {fileID: 6099567495710823891}
-  - component: {fileID: 6099567495710823892}
   - component: {fileID: 6099567495710823893}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Trunk
   m_TagString: StrongEnemies
   m_Icon: {fileID: 0}
@@ -126,7 +125,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.035627842, y: -0.34114864}
+  m_Offset: {x: 0.035627842, y: -0.23566723}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -137,7 +136,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0497327, y: 1.2747631}
+  m_Size: {x: 1.0497327, y: 1.4857259}
   m_EdgeRadius: 0
 --- !u!114 &6099567495710823902
 MonoBehaviour:
@@ -184,10 +183,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  flyingSpeed: 5
   delayRun: 1
-  ground:
+  Wall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   dangerSound: {fileID: 0}
   raycast: {fileID: 6099567496723904359}
   bullet: {fileID: 3324371872058845817, guid: 9035938a3634d4d45bd2b1c45b31684f, type: 3}
@@ -195,32 +195,6 @@ MonoBehaviour:
   plusYBullet: -0.2
   plusXBullet: 0.3
   reloadBullet: 0.5
---- !u!61 &6099567495710823892
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6099567495710823900}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.032616377, y: 0.44126993}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0384159, y: 0.10115063}
-  m_EdgeRadius: 0
 --- !u!82 &6099567495710823893
 AudioSource:
   m_ObjectHideFlags: 0
@@ -327,7 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6099567496723904358}
   - component: {fileID: 6099567496723904359}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Raycast
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -366,3 +340,6 @@ MonoBehaviour:
   right: 0
   seePlayer: 0
   seeGround: 0
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 4
