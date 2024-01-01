@@ -39,6 +39,15 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         UpdateAnimationState();
+        if(playerLife.gotHit)
+        {
+            canMove = false;
+            rb.velocity = new Vector2(playerLife.pushDir * moveSpeed, rb.velocity.y);
+        }
+        else
+        {
+            canMove = true;
+        }
         if(!canMove)
         {
             return;
@@ -82,10 +91,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 jumpSoundEffect.Play();
             }
-        }
-        if(playerLife.gotHit)
-        {
-            rb.velocity = new Vector2(-horizontal * moveSpeed/2, rb.velocity.y);
         }
     }
 

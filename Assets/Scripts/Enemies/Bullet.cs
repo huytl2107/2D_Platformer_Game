@@ -49,6 +49,13 @@ public class Bullet : MonoBehaviour
             Destroy();
         }
     }
+    private void OnTriggerEnter2D(Collider2D col) 
+    {
+        if (col.gameObject.name == "Player")
+        {
+            Destroy();
+        }
+    }
     public float GetSpeed()
     {
         return speed;

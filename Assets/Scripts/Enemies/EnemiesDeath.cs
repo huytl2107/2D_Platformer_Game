@@ -6,10 +6,12 @@ public class EnemiesDeath : MonoBehaviour
 {
     protected Animator anim;
     protected bool death = false;
+    protected bool gotHit = false;
     protected Rigidbody2D rb;
     protected BoxCollider2D col;
     protected SpriteRenderer sprite;
-    protected bool canKill = true;
+    protected bool canAttack = true;
+    private int pushDir = -1;
 
     // Start is called before the first frame update
     protected void Start()
@@ -19,7 +21,7 @@ public class EnemiesDeath : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
     }
-    private void Update()
+    protected void Update()
     {
         GotHitEffect();
     }
@@ -28,6 +30,15 @@ public class EnemiesDeath : MonoBehaviour
     {
         if ((col.gameObject.name == "Player") || col.CompareTag("Weapon"))
         {
+            float distanceX = col.gameObject.transform.position.x - transform.position.x;
+            if(distanceX > 0)
+            {
+                pushDir = -1;
+            }
+            else
+            {
+                pushDir = 1;
+            }
             Debug.Log("Va chạm");
             Death();
         }
@@ -36,13 +47,22 @@ public class EnemiesDeath : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Trap"))
         {
+            float distanceX = col.gameObject.transform.position.x - transform.position.x;
+            if(distanceX > 0)
+            {
+                pushDir = -1;
+            }
+            else
+            {
+                pushDir = 1;
+            }
             Death();
         }
     }
 
     protected void Death()
     {
-        if (canKill)
+        if (canAttack)
         {
             anim.SetTrigger("Death");
             death = true;
@@ -59,33 +79,9 @@ public class EnemiesDeath : MonoBehaviour
     }
     protected void GotHitEffect()
     {
-        if (gameObject.tag == "WeakEnemies")
+        if(death || gotHit)
         {
-            if (death)
-            {
-                if (sprite.flipX)
-                {
-                    rb.velocity = new Vector2(-6, rb.velocity.y);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(6, rb.velocity.y);
-                }
-            }
-        }
-        else if (gameObject.tag == "StrongEnemies")
-        {
-            if (death)
-            {
-                if (sprite.flipX)
-                {
-                    rb.velocity = new Vector2(-6, rb.velocity.y);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(6, rb.velocity.y);
-                }
-            }
+            rb.velocity = new Vector2(pushDir*6, rb.velocity.y);
         }
     }
 }

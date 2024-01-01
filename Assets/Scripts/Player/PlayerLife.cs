@@ -11,6 +11,7 @@ public class PlayerLife : MonoBehaviour
     private BoxCollider2D col;
     public bool isHeadStomped = false;
     private int lives = 3;
+    public int pushDir = -1;
     public bool gotHit = false;
     [SerializeField] private AudioSource deathSoundEffect;
     [SerializeField] private AudioSource gotHitSound;
@@ -39,6 +40,15 @@ public class PlayerLife : MonoBehaviour
     {
         if(col.gameObject.CompareTag("Trap") || col.gameObject.CompareTag("WeakEnemies") || col.gameObject.CompareTag("StrongEnemies"))
         {
+            float distanceX = col.gameObject.transform.position.x - transform.position.x;
+            if(distanceX > 0)
+            {
+                pushDir = -1;
+            }
+            else
+            {
+                pushDir = 1;
+            }
             DeathOrAlive();
             Debug.Log("Lives: " + lives);
         }
@@ -51,6 +61,15 @@ public class PlayerLife : MonoBehaviour
         }
         if(col.gameObject.CompareTag("TriggerTrap"))
         {
+            float distanceX = col.gameObject.transform.position.x - transform.position.x;
+            if(distanceX > 0)
+            {
+                pushDir = -1;
+            }
+            else
+            {
+                pushDir = 1;
+            }
             DeathOrAlive();
             Debug.Log("Lives: " + lives);
         }

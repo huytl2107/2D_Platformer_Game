@@ -16,12 +16,14 @@ public class StrongEnemiesMovement : MonoBehaviour
     protected bool isStartedRunning = false;
     protected bool canFlip = true;
     protected SpriteRenderer sprite;
+    protected BoxCollider2D coll;
     
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        coll = GetComponent<BoxCollider2D>();
     }
 
     protected void ChangeAudioSound()

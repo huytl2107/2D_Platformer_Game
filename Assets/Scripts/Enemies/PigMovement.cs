@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PigMovement : StrongEnemiesMovement
 {
-    [SerializeField] EnemiesRaycast leftRaycast;
-    [SerializeField] EnemiesRaycast rightRaycast;
+    [SerializeField] protected EnemiesRaycast leftRaycast;
+    [SerializeField] protected EnemiesRaycast rightRaycast;
     
     protected override void Start()
     {
         base.Start();
     }
     // Update is called once per frame
-    private void Update()
+    protected void Update()
     {
         leftRaycast.RaycastCheck();
         rightRaycast.RaycastCheck();
