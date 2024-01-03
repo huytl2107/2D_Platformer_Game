@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AxeRotationController : MonoBehaviour
 {
-    [SerializeField] private float speed = 3f;
+    [SerializeField] private float speed = 6f;
     void Update()
     {
         transform.Rotate(0,0,-36* speed * Time.deltaTime);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class AxeController : MonoBehaviour
 {
 
-    [SerializeField] private float speed = 30f;
+    [SerializeField] private float speed = 2f;
     private float x = 0;
     private float y = 0;
     private float dirX = 0;
@@ -24,8 +24,8 @@ public class AxeController : MonoBehaviour
         else {sprite.flipX = true;}
         
         dirX = Input.GetAxisRaw("Horizontal");
-        x += Time.deltaTime * speed;
-        y = -(1f / 49f) * (x * x);
+        x += speed;
+        y = -(1f / 100f) * (x * x);
         if (dirX != 0)
         {
             transform.position += new Vector3(direction * x + dirX * 7, y, 0) * Time.deltaTime;

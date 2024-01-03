@@ -11,12 +11,13 @@ public class PlayerMovement : MonoBehaviour
     private float dirX = 0;
     public float DirX { get => dirX; set => dirX = value; }
     private float horizontal = 1;
+    public float Horizontal { get => horizontal; set => horizontal = value; }
     private bool isDoubleJump = false;
     [SerializeField] private float moveSpeed = 7;
     public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     [SerializeField] private float jumpForce = 8;
     [SerializeField] private LayerMask jumpableGround;
-    private enum movementState { idle, running, jumping, falling, doubleJump, wallJump, throwAxe };
+    private enum movementState { idle, running, jumping, falling, doubleJump, wallJump, throwAxe, dash };
     movementState state;
     [SerializeField] private AudioSource jumpSoundEffect;
     private StickyWall stickyWall;
@@ -24,6 +25,13 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpOnStickyWall = false;
     private bool canMove = true;
     [SerializeField] private ParticleSystem moveEffect;
+
+    private bool canDash = true;
+    private bool isDashing = false;
+    private float dashPower = 30f;
+    private float dashTime = .2f;
+    private float dashCooldown = 1f;
+    [SerializeField] private TrailRenderer tr;
 
     // Start is called before the first frame update
     private void Start()
@@ -34,21 +42,25 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         stickyWall = GetComponent<StickyWall>();
         playerLife = GetComponent<PlayerLife>();
+
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if(isDashing)
+        {
+            anim.SetInteger("state", (int)movementState.dash);
+            rb.velocity = new Vector2(Horizontal * transform.localScale.x * dashPower, 0f);
+            return;
+        }
+        if((Input.GetKeyDown(KeyCode.K) && canDash))
+        {
+            Debug.Log("Dash");
+            StartCoroutine(Dash());
+        }
         UpdateAnimationState();
-        if (playerLife.gotHit)
-        {
-            canMove = false;
-            rb.velocity = new Vector2(playerLife.pushDir * moveSpeed, rb.velocity.y);
-        }
-        else
-        {
-            canMove = true;
-        }
+        GotHitEffect();
         if (!canMove)
         {
             return;
@@ -60,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
             if (IsGrounded())
             {
                 moveEffect.Play();
-                float angle = (DirX >0) ? -25: -155;
+                float angle = (DirX > 0) ? -25 : -155;
                 Transform effectTrans = moveEffect.transform;
                 effectTrans.rotation = Quaternion.Euler(angle, -90, -90);
             }
@@ -85,28 +97,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump"))
         {
-            if (IsGrounded())
-            {
-                isDoubleJump = false;
-                //Jump
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                jumpSoundEffect.Play();
-            }
-            else if (stickyWall.isWallJump)
-            {
-                isDoubleJump = false;
-                jumpOnStickyWall = true;
-                //Jump
-                rb.velocity = new Vector2(-DirX * 6f, jumpForce);
-                jumpSoundEffect.Play();
-            }
-            else if (!isDoubleJump)
-            {
-                isDoubleJump = true;
-                jumpOnStickyWall = false;
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                jumpSoundEffect.Play();
-            }
+            Jump();
         }
     }
 
@@ -178,5 +169,56 @@ public class PlayerMovement : MonoBehaviour
     public bool CanMove()
     {
         return canMove;
+    }
+    private void Jump()
+    {
+        if (IsGrounded())
+        {
+            isDoubleJump = false;
+            //Jump
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpSoundEffect.Play();
+        }
+        else if (stickyWall.isWallJump)
+        {
+            isDoubleJump = false;
+            jumpOnStickyWall = true;
+            //Jump
+            rb.velocity = new Vector2(-DirX * 6f, jumpForce);
+            jumpSoundEffect.Play();
+        }
+        else if (!isDoubleJump)
+        {
+            isDoubleJump = true;
+            jumpOnStickyWall = false;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpSoundEffect.Play();
+        }
+    }
+    private void GotHitEffect()
+    {
+        if (playerLife.gotHit)
+        {
+            canMove = false;
+            rb.velocity = new Vector2(playerLife.pushDir * moveSpeed, rb.velocity.y);
+        }
+        else
+        {
+            canMove = true;
+        }
+    }
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originialGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashTime);
+        isDashing = false;
+        tr.emitting = false;
+        rb.gravityScale = originialGravity;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 }
