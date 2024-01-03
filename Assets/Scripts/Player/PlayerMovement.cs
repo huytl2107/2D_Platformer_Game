@@ -20,11 +20,12 @@ public class PlayerMovement : MonoBehaviour
     private enum movementState { idle, running, jumping, falling, doubleJump, wallJump, throwAxe, dash };
     movementState state;
     [SerializeField] private AudioSource jumpSoundEffect;
-    private StickyWall stickyWall;
     private PlayerLife playerLife;
     private bool jumpOnStickyWall = false;
+    public bool isWallJump = false;
     private bool canMove = true;
     [SerializeField] private ParticleSystem moveEffect;
+    [SerializeField] private PlayerRaycast playerRaycast;
 
     private bool canDash = true;
     private bool isDashing = false;
@@ -40,21 +41,25 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         coll = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-        stickyWall = GetComponent<StickyWall>();
         playerLife = GetComponent<PlayerLife>();
-
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(isDashing)
+        RayCastUpdate();
+        if (isWallJump)
+        {
+            SlideWall();
+            return;
+        }
+        if (isDashing)
         {
             anim.SetInteger("state", (int)movementState.dash);
             rb.velocity = new Vector2(Horizontal * transform.localScale.x * dashPower, 0f);
             return;
         }
-        if((Input.GetKeyDown(KeyCode.K) && canDash))
+        if ((Input.GetKeyDown(KeyCode.LeftShift) && canDash))
         {
             Debug.Log("Dash");
             StartCoroutine(Dash());
@@ -137,10 +142,6 @@ public class PlayerMovement : MonoBehaviour
         {
             state = movementState.falling;
         }
-        if (stickyWall.isWallJump)
-        {
-            state = movementState.wallJump;
-        }
         if (Input.GetKeyDown(KeyCode.J) && canMove)
         {
             state = movementState.throwAxe;
@@ -179,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpSoundEffect.Play();
         }
-        else if (stickyWall.isWallJump)
+        else if (isWallJump)
         {
             isDoubleJump = false;
             jumpOnStickyWall = true;
@@ -220,5 +221,27 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = originialGravity;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+    private void RayCastUpdate()
+    {
+        playerRaycast.right = (horizontal > 0) ? true : false;
+        playerRaycast.RaycastCheck();
+        if(playerRaycast.seeGround)
+        {
+            isWallJump = true;
+        }
+        else
+        {
+            isWallJump = false;
+        }
+    }
+    private void SlideWall()
+    {
+        anim.SetInteger("state", (int)movementState.wallJump);
+        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y/1.5f);
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
     }
 }

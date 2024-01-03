@@ -33,7 +33,6 @@ public class PlayerLife : MonoBehaviour
     {
         if(lives > 3){lives = 3;}
         UpdatePlayerLivesUI();
-
     }
 
     private void OnCollisionEnter2D(Collision2D col)
