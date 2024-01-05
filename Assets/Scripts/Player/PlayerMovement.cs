@@ -94,9 +94,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(DirX * moveSpeed, rb.velocity.y);
         }
-        if (playerLife.isHeadStomped)
+        if (playerLife.IsHeadStomped)
         {
-            playerLife.isHeadStomped = false;
+            playerLife.IsHeadStomped = false;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpSoundEffect.Play();
         }

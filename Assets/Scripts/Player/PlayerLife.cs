@@ -9,7 +9,7 @@ public class PlayerLife : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private BoxCollider2D col;
-    public bool isHeadStomped = false;
+    private bool isHeadStomped = false;
     private int lives = 3;
     public int pushDir = -1;
     public bool gotHit = false;
@@ -20,8 +20,10 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] private Image head3Image;
     [SerializeField] private Sprite head;
     [SerializeField] private Sprite nullHead;
-
-    public global::System.Boolean IsHeadStomped { get => isHeadStomped; set => isHeadStomped = value; }
+    
+    
+    public int Lives { get => lives; set => lives = value; }
+    public bool IsHeadStomped { get => isHeadStomped; set => isHeadStomped = value; }
 
     private void Start()
     {
@@ -31,7 +33,7 @@ public class PlayerLife : MonoBehaviour
     }
     private void Update() 
     {
-        if(lives > 3){lives = 3;}
+        if(Lives > 3){Lives = 3;}
         UpdatePlayerLivesUI();
     }
 
@@ -49,7 +51,7 @@ public class PlayerLife : MonoBehaviour
                 pushDir = 1;
             }
             DeathOrAlive();
-            Debug.Log("Lives: " + lives);
+            Debug.Log("Lives: " + Lives);
         }
     }
     private void OnTriggerEnter2D(Collider2D col)
@@ -70,11 +72,11 @@ public class PlayerLife : MonoBehaviour
                 pushDir = 1;
             }
             DeathOrAlive();
-            Debug.Log("Lives: " + lives);
+            Debug.Log("Lives: " + Lives);
         }
         if(col.gameObject.CompareTag("LivesItem"))
         {
-            lives += 1;
+            Lives += 1;
         }
     }
     private void GotHit()
@@ -83,7 +85,7 @@ public class PlayerLife : MonoBehaviour
         Invoke("setFalseGotHit", .5f);
         gotHitSound.Play();
         rb.AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
-        lives -= 1;
+        Lives -= 1;
         anim.SetBool("Hit", true);
     }
     private void Die(){
@@ -94,7 +96,7 @@ public class PlayerLife : MonoBehaviour
     }
     public void DeathOrAlive()
     {
-        if(lives>0)
+        if(Lives>0)
         {
             GotHit();
         }
@@ -117,7 +119,7 @@ public class PlayerLife : MonoBehaviour
     }
     public void UpdatePlayerLivesUI()
     {
-        switch (lives)
+        switch (Lives)
         {
             case 3:
                 head1Image.sprite = head;

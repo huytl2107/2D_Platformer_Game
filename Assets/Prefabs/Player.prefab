@@ -167,8 +167,8 @@ MonoBehaviour:
   jumpSoundEffect: {fileID: 147029185374098176}
   isWallJump: 0
   moveEffect: {fileID: 2336153536528586762}
-  playerRaycast: {fileID: 0}
-  tr: {fileID: 0}
+  playerRaycast: {fileID: 3048971798186063274}
+  tr: {fileID: 1791982381992078300}
 --- !u!95 &147029185374098187
 Animator:
   serializedVersion: 4
@@ -215,16 +215,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07df4fc8f506254d95e65fcfaea75d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHeadStomped: 0
   pushDir: -1
   gotHit: 0
   deathSoundEffect: {fileID: 147029185374098190}
-  gotHitSound: {fileID: 0}
+  gotHitSound: {fileID: 2784524477123470421}
   head1Image: {fileID: 0}
   head2Image: {fileID: 0}
   head3Image: {fileID: 0}
-  head: {fileID: 0}
-  nullHead: {fileID: 0}
+  head: {fileID: 21300000, guid: 38ce41604c457464c8ea782e24c82036, type: 3}
+  nullHead: {fileID: 21300000, guid: b513937e039d7bb48a8def0ab0829d3d, type: 3}
 --- !u!82 &147029185374098176
 AudioSource:
   m_ObjectHideFlags: 0
@@ -635,7 +634,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b66a214fa480c85469efda2623daad1f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 25b3e076eec7caa4492959b2979f90a1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

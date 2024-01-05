@@ -20,9 +20,9 @@ public class AxeController : MonoBehaviour
 
     private void Update()
     {
-        if(direction > 0){sprite.flipX = false;}
-        else {sprite.flipX = true;}
-        
+        if (direction > 0) { sprite.flipX = false; }
+        else { sprite.flipX = true; }
+
         dirX = Input.GetAxisRaw("Horizontal");
         x += speed;
         y = -(1f / 100f) * (x * x);
