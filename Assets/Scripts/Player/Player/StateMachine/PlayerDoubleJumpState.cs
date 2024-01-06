@@ -18,7 +18,11 @@ public class PlayerDoubleJumpState : PlayerBaseState
     {
         player.DirX = Input.GetAxisRaw("Horizontal");
         player.Rb.velocity = new Vector2(player.DirX * player.Speed , player.Rb.velocity.y);
-        if(player.IsSeeingGround)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && player.CanDash)
+        {
+            player.SwitchState(player.DashState);
+        }
+        else if(player.IsSeeingGround)
         {
             player.SwitchState(player.WallSlideState);
         }

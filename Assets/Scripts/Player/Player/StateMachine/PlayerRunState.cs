@@ -22,6 +22,9 @@ public class PlayerRunState : PlayerBaseState
             if (Input.GetButtonDown("Jump"))
             {
                 player.SwitchState(player.JumpState);
+            } else if(Input.GetKeyDown(KeyCode.LeftShift) && player.CanDash)
+            {
+                player.SwitchState(player.DashState);
             }
             else if (player.DirX == 0)
             {
@@ -35,10 +38,6 @@ public class PlayerRunState : PlayerBaseState
         else if(player.Rb.velocity.y < .1f)
         {
             player.SwitchState(player.FallState);
-        }
-        else
-        {
-            player.SwitchState(player.JumpState);
         }
         PlayerStateManager.UpdateObjectDirX(player);
     }

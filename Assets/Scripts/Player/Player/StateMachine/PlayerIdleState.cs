@@ -23,6 +23,10 @@ public class PlayerIdleState : PlayerBaseState
             {
                 player.SwitchState(player.JumpState);
             }
+            else if(Input.GetKeyDown(KeyCode.LeftShift) && player.CanDash)
+            {
+                player.SwitchState(player.DashState);
+            }
             else if(player.DirX !=0)
             {
                 player.SwitchState(player.RunState);
@@ -31,10 +35,6 @@ public class PlayerIdleState : PlayerBaseState
         else if(player.Rb.velocity.y <.1f)
         {
             player.SwitchState(player.FallState);
-        }
-        else
-        {
-            player.SwitchState(player.JumpState);
         }
     }
 }

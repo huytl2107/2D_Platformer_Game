@@ -16,15 +16,19 @@ public class PlayerFallState : PlayerBaseState
     public override void UpdateState(PlayerStateManager player)
     {
         player.DirX = Input.GetAxisRaw("Horizontal");
-        player.Rb.velocity = new Vector2(player.DirX * player.Speed , player.Rb.velocity.y);
-        if(player.IsSeeingGround)
+        player.Rb.velocity = new Vector2(player.DirX * player.Speed, player.Rb.velocity.y);
+        if (player.IsSeeingGround)
         {
             player.SwitchState(player.WallSlideState);
         }
-        else if(player.IsGrounded())
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && player.CanDash)
+        {
+            player.SwitchState(player.DashState);
+        }
+        else if (player.IsGrounded())
         {
             player.IsDoubleJump = false;
-            if(player.DirX == 0)
+            if (player.DirX == 0)
             {
                 player.SwitchState(player.IdleState);
             }
@@ -33,7 +37,7 @@ public class PlayerFallState : PlayerBaseState
                 player.SwitchState(player.RunState);
             }
         }
-        else if(Input.GetButtonDown("Jump") && !player.IsDoubleJump)
+        else if (Input.GetButtonDown("Jump") && !player.IsDoubleJump)
         {
             player.IsDoubleJump = true;
             player.SwitchState(player.DoubleJumpState);

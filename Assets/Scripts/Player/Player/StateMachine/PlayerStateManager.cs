@@ -24,6 +24,14 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Move and Jump")]
     [SerializeField] private float _speed = 7f;
     [SerializeField] private float _jumpForce = 7f;
+
+    [Header("Dash")]
+    [SerializeField] private float _dashForce = 20f;
+    [SerializeField] private float _dashTime = .2f;
+    [SerializeField] private float _dashCooldown = 1f;
+    [SerializeField] private TrailRenderer tr;
+    private bool _canDash = true;
+    private bool _isDashing = false;
    
     [Header("Raycast")]
     [SerializeField] private float _distanceWallCheck = 2f;
@@ -51,6 +59,9 @@ public class PlayerStateManager : MonoBehaviour
     public float DistanceWallCheck { get => _distanceWallCheck; set => _distanceWallCheck = value; }
     public bool IsSeeingGround { get => _isSeeingGround; set => _isSeeingGround = value; }
     public float RaycastDirX { get => _raycastDirX; set => _raycastDirX = value; }
+    public bool CanDash { get => _canDash; set => _canDash = value; }
+    public bool IsDashing { get => _isDashing; set => _isDashing = value; }
+    public float DashForce { get => _dashForce; set => _dashForce = value; }
 
     // Start is called before the first frame update
     private void Awake() 
@@ -77,6 +88,7 @@ public class PlayerStateManager : MonoBehaviour
         _currentState = state;
         state.EnterState(this);
     }
+
     public bool IsGrounded()
     {
         return Physics2D.BoxCast(Col.bounds.center, Col.bounds.size, 0f, Vector2.down, .1f, Ground);
@@ -93,6 +105,18 @@ public class PlayerStateManager : MonoBehaviour
                 break;
         }
     }
+    public IEnumerator Dash(PlayerStateManager player)
+    {
+        IsDashing = true;
+        CanDash = false;
+        tr.emitting = true;
+        yield return new WaitForSeconds(_dashTime);
+        IsDashing = false;
+        tr.emitting = false;
+        yield return new WaitForSeconds(_dashCooldown);
+        CanDash = true;
+    }
+
     public void WallCheck()
     {
         if(DirX != 0) {RaycastDirX = DirX;}
