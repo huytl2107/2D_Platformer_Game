@@ -4,7 +4,9 @@ public class PlayerIdleState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
-        Debug.Log("Hello from current state");
+        Debug.Log("Hello from Idle State");
+        player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.idle);
+        player.Rb.velocity = new Vector2(0f, player.Rb.velocity.y);
     }
 
     public override void OnCollisionEnter2D(PlayerStateManager player)
@@ -14,10 +16,25 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        float dirX = Input.GetAxisRaw("Horizontal");
-        if(dirX != 0)
+        player.DirX = Input.GetAxisRaw("Horizontal");
+        if(player.IsGrounded())
         {
-            player.SwitchState(player.RunState);
+            if(Input.GetButtonDown("Jump"))
+            {
+                player.SwitchState(player.JumpState);
+            }
+            else if(player.DirX !=0)
+            {
+                player.SwitchState(player.RunState);
+            }
+        }
+        else if(player.Rb.velocity.y <.1f)
+        {
+            player.SwitchState(player.FallState);
+        }
+        else
+        {
+            player.SwitchState(player.JumpState);
         }
     }
 }
