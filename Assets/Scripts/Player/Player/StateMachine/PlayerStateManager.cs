@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
+//Sử dụng State Manager để quản lý các State của Player giúp tách biệt các hành vi
+//giúp làm cho hệ thống linh hoạt và dễ bảo trì hơn
 public class PlayerStateManager : MonoBehaviour
 {
     //Khởi tạo các state
@@ -15,6 +18,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerWallSlideState WallSlideState = new PlayerWallSlideState();
     public PlayerWallJumpState WallJumpState = new PlayerWallJumpState();
     public PlayerDashState DashState = new PlayerDashState();
+    public PlayerGotHitState GotHitState = new PlayerGotHitState();
 
     private SpriteRenderer _sprite;
     private Rigidbody2D _rb;
@@ -32,17 +36,28 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
     private bool _canDash = true;
     private bool _isDashing = false;
-   
+
     [Header("Raycast")]
     [SerializeField] private float _distanceWallCheck = 2f;
     [SerializeField] private LayerMask _ground;
     [SerializeField] private LayerMask _ignoreLayer;
 
+    [Header("Sound Effect")]
+    [SerializeField] private AudioSource _gotHitSound;
+
+    [Header("UI Player Health")]
+    [SerializeField] private Image _head1;
+    [SerializeField] private Image _head2;
+    [SerializeField] private Image _head3;
+    [SerializeField] private Sprite _head;
+    [SerializeField] private Sprite _nullHead;
+    
     private float _dirX;
     private float _raycastDirX = 1;
     private bool _isDoubleJump;
     private RaycastHit2D _raycast;
     private bool _isSeeingGround = false;
+    private int _playerHealth = 3;
 
     public SpriteRenderer Sprite { get => _sprite; set => _sprite = value; }
     public Rigidbody2D Rb { get => _rb; set => _rb = value; }
@@ -51,6 +66,8 @@ public class PlayerStateManager : MonoBehaviour
     public RaycastHit2D Raycast { get => _raycast; set => _raycast = value; }
     public Collider2D Col { get => _col; set => _col = value; }
     public Animator Anim { get => _anim; set => _anim = value; }
+
+    public AudioSource GotHitSound { get => _gotHitSound; set => _gotHitSound = value; }
 
     public float Speed { get => _speed; set => _speed = value; }
     public float DirX { get => _dirX; set => _dirX = value; }
@@ -62,15 +79,32 @@ public class PlayerStateManager : MonoBehaviour
     public bool CanDash { get => _canDash; set => _canDash = value; }
     public bool IsDashing { get => _isDashing; set => _isDashing = value; }
     public float DashForce { get => _dashForce; set => _dashForce = value; }
+    public int PlayerHealth { get => _playerHealth; set => _playerHealth = value; }
+    
+    public Image Head1 { get => _head1; set => _head1 = value; }
+    public Image Head2 { get => _head2; set => _head2 = value; }
+    public Image Head3 { get => _head3; set => _head3 = value; }
+    public Sprite Head { get => _head; set => _head = value; }
+    public Sprite NullHead { get => _nullHead; set => _nullHead = value; }
 
     // Start is called before the first frame update
-    private void Awake() 
+    private void Awake()
     {
+        tr.emitting = false;
         Rb = GetComponent<Rigidbody2D>();
         Sprite = GetComponent<SpriteRenderer>();
         Col = GetComponent<BoxCollider2D>();
         Anim = GetComponent<Animator>();
+
+        AwakePlayerHealthUI();
     }
+    private void AwakePlayerHealthUI()
+    {
+        Head1.sprite = Head;
+        Head2.sprite = Head;
+        Head3.sprite = Head;
+    }
+
     void Start()
     {
         _currentState = IdleState;
@@ -87,6 +121,16 @@ public class PlayerStateManager : MonoBehaviour
     {
         _currentState = state;
         state.EnterState(this);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.gameObject.CompareTag("Trap"))
+        {
+            PlayerHealth -=1;
+            _currentState = GotHitState;
+            GotHitState.EnterState(this);
+        }    
     }
 
     public bool IsGrounded()
@@ -119,28 +163,28 @@ public class PlayerStateManager : MonoBehaviour
 
     public void WallCheck()
     {
-        if(DirX != 0) {RaycastDirX = DirX;}
-        if(RaycastDirX > 0)
+        if (DirX != 0) { RaycastDirX = DirX; }
+        if (RaycastDirX > 0)
         {
             Raycast = Physics2D.Raycast(Col.bounds.center, Vector2.right, DistanceWallCheck, Ground, ~IgnoreLayer);
             RaycastCheck();
         }
-        else if(RaycastDirX < 0)
+        else if (RaycastDirX < 0)
         {
             Raycast = Physics2D.Raycast(Col.bounds.center, Vector2.left, DistanceWallCheck, Ground, ~IgnoreLayer);
             RaycastCheck();
         }
     }
     public void RaycastCheck()
-{
-    if (Raycast.collider != null && Raycast.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
     {
-        Debug.DrawLine(transform.position, Raycast.point, Color.white);
-        IsSeeingGround = true;
+        if (Raycast.collider != null && Raycast.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Debug.DrawLine(transform.position, Raycast.point, Color.white);
+            IsSeeingGround = true;
+        }
+        else
+        {
+            IsSeeingGround = false;
+        }
     }
-    else
-    {
-        IsSeeingGround = false;
-    }
-}
 }

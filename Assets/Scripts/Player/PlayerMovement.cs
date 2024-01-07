@@ -198,10 +198,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private void GotHitEffect()
     {
-        if (playerLife.gotHit)
+        if (playerLife._gotHit)
         {
             canMove = false;
-            rb.velocity = new Vector2(playerLife.pushDir * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(playerLife._pushDir * moveSpeed, rb.velocity.y);
         }
         else
         {

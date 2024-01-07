@@ -6,6 +6,7 @@ public class PlayerFallState : PlayerBaseState
     {
         Debug.Log("Hello from Fall State");
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.fall);
+        player.Anim.SetBool("GotHit", false);
     }
 
     public override void OnCollisionEnter2D(PlayerStateManager player)
