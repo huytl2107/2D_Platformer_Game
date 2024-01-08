@@ -17,7 +17,12 @@ public class PlayerDashState : PlayerBaseState
     public override void UpdateState(PlayerStateManager player)
     {
         player.DirX = Input.GetAxisRaw("Horizontal");
-        if(player.IsDashing)
+        //Kiểm tra nếu thấy Tường thì ngay lập tức chuyển sang WallSlideState
+        if(player.IsSeeingGround && player.IsDashing)
+        {
+            player.SwitchState(player.WallSlideState);
+        }
+        else if(player.IsDashing)
         {
             player.Rb.velocity = new Vector2(player.RaycastDirX * player.DashForce, 0);
         }
