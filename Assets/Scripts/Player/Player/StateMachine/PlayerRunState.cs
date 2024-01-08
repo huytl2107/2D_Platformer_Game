@@ -2,43 +2,57 @@ using UnityEngine;
 
 public class PlayerRunState : PlayerBaseState
 {
+    public PlayerRunState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
+    {
+    }
 
-    public override void EnterState(PlayerStateManager player)
+    public override void EnterState()
     {
         Debug.Log("Hello from Run State");
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.run);
     }
 
-    public override void OnCollisionEnter2D(PlayerStateManager player)
+    public override void UpdateState()
     {
-
+        CheckSwitchState();
+        PlayerStateManager.UpdateObjectDirX(player);
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public override void CheckSwitchState()
     {
         player.DirX = Input.GetAxisRaw("Horizontal");
         if (player.IsGrounded())
         {
             if (Input.GetButtonDown("Jump"))
             {
-                player.SwitchState(player.JumpState);
-            } else if(Input.GetKeyDown(KeyCode.LeftShift) && player.CanDash)
+                SwitchState(factory.Jump());
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftShift) && player.CanDash)
             {
-                player.SwitchState(player.DashState);
+                SwitchState(factory.Dash());
             }
             else if (player.DirX == 0)
             {
-                player.SwitchState(player.IdleState);
+                SwitchState(factory.Idle());
             }
             else
             {
                 player.Rb.velocity = new Vector2(player.DirX * player.Speed, player.Rb.velocity.y);
             }
         }
-        else if(player.Rb.velocity.y < .1f)
+        else if (player.Rb.velocity.y < .1f)
         {
-            player.SwitchState(player.FallState);
+            SwitchState(factory.Fall());
         }
-        PlayerStateManager.UpdateObjectDirX(player);
+    }
+
+    public override void ExitState()
+    {
+
+    }
+
+    public override void InitializeSubState()
+    {
+
     }
 }

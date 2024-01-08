@@ -9,9 +9,13 @@ public class PlayerGotHitState : PlayerBaseState
     [SerializeField] private float _gotHitTime = .5f;
     private bool _isGottingHit = false;
 
+    public PlayerGotHitState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
+    {
+    }
+
     public bool IsGottingHit { get => _isGottingHit; set => _isGottingHit = value; }
 
-    public override void EnterState(PlayerStateManager player)
+    public override void EnterState()
     {
         Debug.Log("Hello from GotHit State");
         if (player.PlayerHealth > -1)
@@ -21,22 +25,23 @@ public class PlayerGotHitState : PlayerBaseState
             player.Anim.SetBool("GotHit", true);
             player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
             player.StartCoroutine(GotHit());
-            UpdatePlayerHealthUI(player);
+            UpdatePlayerHealthUI();
         }
         else
         {
             player.Anim.SetTrigger("Death");
-            player.Rb.bodyType = RigidbodyType2D .Static;
+            player.Rb.bodyType = RigidbodyType2D.Static;
             player.StartCoroutine(Death());
         }
     }
 
-    public override void OnCollisionEnter2D(PlayerStateManager player)
+    public override void UpdateState()
     {
-
+        CheckSwitchState();
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    
+    public override void CheckSwitchState()
     {
         if (IsGottingHit)
         {
@@ -44,7 +49,7 @@ public class PlayerGotHitState : PlayerBaseState
         }
         else
         {
-            player.SwitchState(player.FallState);
+            SwitchState(factory.Fall());
         }
     }
 
@@ -63,7 +68,7 @@ public class PlayerGotHitState : PlayerBaseState
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void UpdatePlayerHealthUI(PlayerStateManager player)
+    public void UpdatePlayerHealthUI()
     {
         switch (player.PlayerHealth)
         {
@@ -88,5 +93,15 @@ public class PlayerGotHitState : PlayerBaseState
                 player.Head3.sprite = player.NullHead;
                 break;
         }
+    }
+
+    public override void ExitState()
+    {
+
+    }
+
+    public override void InitializeSubState()
+    {
+
     }
 }

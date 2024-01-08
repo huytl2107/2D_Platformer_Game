@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class PlayerWallJumpState : PlayerBaseState
 {
-    public override void EnterState(PlayerStateManager player)
+    public PlayerWallJumpState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
+    {
+    }
+
+    public override void EnterState()
     {
         Debug.Log("Hello from Wall Jump State");
         player.IsDoubleJump = false;
@@ -11,24 +15,34 @@ public class PlayerWallJumpState : PlayerBaseState
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.wallJump);
     }
 
-    public override void OnCollisionEnter2D(PlayerStateManager player)
+    public override void UpdateState()
+    {
+        CheckSwitchState();
+    }
+
+    public override void CheckSwitchState()
+    {
+        if (player.Rb.velocity.y < player.JumpForce / 2)
+        {
+            SwitchState(factory.Jump());
+        }
+        else if (player.RaycastDirX > 0)
+        {
+            player.Rb.velocity = new Vector2(-player.Speed, player.Rb.velocity.y);
+        }
+        else
+        {
+            player.Rb.velocity = new Vector2(player.Speed, player.Rb.velocity.y);
+        }
+    }
+
+    public override void ExitState()
     {
 
     }
 
-    public override void UpdateState(PlayerStateManager player)
+    public override void InitializeSubState()
     {
-        if(player.Rb.velocity.y < player.JumpForce/2)
-        {
-            player.SwitchState(player.JumpState);
-        }
-        else if(player.RaycastDirX > 0)
-        {
-            player.Rb.velocity = new Vector2(-player.Speed , player.Rb.velocity.y);
-        }
-        else
-        {
-            player.Rb.velocity = new Vector2(player.Speed , player.Rb.velocity.y);
-        }
+
     }
 }

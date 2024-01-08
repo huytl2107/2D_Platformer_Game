@@ -2,9 +2,26 @@ using UnityEngine;
 
 public abstract class PlayerBaseState
 {
-    [SerializeField] protected float Speed;
+    protected PlayerStateManager player;
+    protected PlayerStateFactory factory;
 
-    public abstract void EnterState(PlayerStateManager player);
-    public abstract void UpdateState(PlayerStateManager player);
-    public abstract void OnCollisionEnter2D(PlayerStateManager player);
+    public PlayerBaseState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory)
+    {
+        player = currentContext;
+        factory = playerStateFactory;
+    }
+
+    public abstract void EnterState();
+    public abstract void UpdateState();
+    public abstract void ExitState();
+    public abstract void CheckSwitchState();
+    public abstract void InitializeSubState();
+    //protected void SetSuperState();
+    //protected void SetSubState();
+    protected void SwitchState(PlayerBaseState newState)
+    {
+        ExitState();
+        newState.EnterState();
+        player.CurrentState = newState;
+    }
 }

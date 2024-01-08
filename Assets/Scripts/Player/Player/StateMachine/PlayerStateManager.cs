@@ -10,7 +10,8 @@ public class PlayerStateManager : MonoBehaviour
 {
     //Khởi tạo các state
     PlayerBaseState _currentState;
-    public PlayerIdleState IdleState = new PlayerIdleState();
+    PlayerStateFactory _state;
+    /* public PlayerIdleState IdleState = new PlayerIdleState();
     public PlayerRunState RunState = new PlayerRunState();
     public PlayerJumpState JumpState = new PlayerJumpState();
     public PlayerFallState FallState = new PlayerFallState();
@@ -18,7 +19,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerWallSlideState WallSlideState = new PlayerWallSlideState();
     public PlayerWallJumpState WallJumpState = new PlayerWallJumpState();
     public PlayerDashState DashState = new PlayerDashState();
-    public PlayerGotHitState GotHitState = new PlayerGotHitState();
+    public PlayerGotHitState GotHitState = new PlayerGotHitState(); */
 
     private SpriteRenderer _sprite;
     private Rigidbody2D _rb;
@@ -86,10 +87,13 @@ public class PlayerStateManager : MonoBehaviour
     public Image Head3 { get => _head3; set => _head3 = value; }
     public Sprite Head { get => _head; set => _head = value; }
     public Sprite NullHead { get => _nullHead; set => _nullHead = value; }
+    public PlayerBaseState CurrentState { get => _currentState; set => _currentState = value; }
+    public PlayerStateFactory State { get => _state; set => _state = value; }
 
     // Start is called before the first frame update
     private void Awake()
     {
+        State = new PlayerStateFactory(this);
         tr.emitting = false;
         Rb = GetComponent<Rigidbody2D>();
         Sprite = GetComponent<SpriteRenderer>();
@@ -107,20 +111,15 @@ public class PlayerStateManager : MonoBehaviour
 
     void Start()
     {
-        _currentState = IdleState;
-        _currentState.EnterState(this);
+        CurrentState = State.Idle();
+        CurrentState.EnterState();
     }
 
     // Update is called once per frame
     void Update()
     {
         WallCheck();
-        _currentState.UpdateState(this);
-    }
-    public void SwitchState(PlayerBaseState state)
-    {
-        _currentState = state;
-        state.EnterState(this);
+        CurrentState.UpdateState();
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
@@ -128,8 +127,8 @@ public class PlayerStateManager : MonoBehaviour
         if(other.gameObject.CompareTag("Trap"))
         {
             PlayerHealth -=1;
-            _currentState = GotHitState;
-            GotHitState.EnterState(this);
+            CurrentState = State.GotHit();
+            CurrentState.EnterState();
         }    
     }
 
