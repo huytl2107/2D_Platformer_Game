@@ -8,7 +8,6 @@ public class PlayerDashState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Hello From Dash State");
         player.StartCoroutine(player.Dash(player));
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.dash);
     }

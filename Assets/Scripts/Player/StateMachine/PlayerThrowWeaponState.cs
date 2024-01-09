@@ -9,7 +9,6 @@ public class PlayerThrowWeaponState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from Throw Weapon State");
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.throwWeapon);
         player.ThrowAxe();
     }

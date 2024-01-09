@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 764478960679008018}
   - component: {fileID: 764478960679008046}
   - component: {fileID: 764478960679008047}
-  - component: {fileID: 764478960679008045}
-  - component: {fileID: 7202252005107959693}
   - component: {fileID: 7509743622630831350}
+  - component: {fileID: 3340161121780424520}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: WeakEnemies
@@ -162,35 +161,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &764478960679008045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764478960679008020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e06062c925adf444f8a8083f1175b9e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  speed: 3
-  enemiesDeath: {fileID: 0}
---- !u!114 &7202252005107959693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764478960679008020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcda279bbfb45340b7693c2c9a305d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &7509743622630831350
 Rigidbody2D:
   serializedVersion: 4
@@ -212,3 +182,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3340161121780424520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764478960679008020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19d700d3b00c48a61935b001ca3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceWallCheck: 2
+  _ground:
+    serializedVersion: 2
+    m_Bits: 64
+  _ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 1

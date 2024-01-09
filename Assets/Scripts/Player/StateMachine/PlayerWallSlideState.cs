@@ -9,8 +9,6 @@ public class PlayerWallSlideState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from Wall Slide State");
-
         //Đặt velocity.x = 0 để hạn chế bug Dash xuyên tường
         player.Rb.velocity = new Vector2(0f, player.Rb.velocity.y);
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.wallSlide);

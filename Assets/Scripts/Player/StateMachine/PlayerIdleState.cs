@@ -8,7 +8,6 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from Idle State");
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.idle);
         player.Rb.velocity = new Vector2(0f, player.Rb.velocity.y);
     }

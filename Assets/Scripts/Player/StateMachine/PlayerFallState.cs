@@ -8,7 +8,6 @@ public class PlayerFallState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from Fall State");
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.fall);
         player.Anim.SetBool("GotHit", false);
     }

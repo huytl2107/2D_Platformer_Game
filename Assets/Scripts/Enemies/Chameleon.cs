@@ -57,11 +57,11 @@ public class Chameleon : StrongEnemiesMovement
     {
         if (enemiesRaycast.seePlayer)
         {
-            PlayerLife playerLife = player.GetComponent<PlayerLife>();
-            if (playerLife != null)
-            {
-                playerLife.DeathOrAlive();
-            }
+            //PlayerLife playerLife = player.GetComponent<PlayerLife>();
+            //if (playerLife != null)
+            //{
+            //    playerLife.DeathOrAlive();
+            //}
         }
     }
     private void FlipObject()

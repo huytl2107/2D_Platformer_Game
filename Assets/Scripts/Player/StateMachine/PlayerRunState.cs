@@ -8,7 +8,6 @@ public class PlayerRunState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from Run State");
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.run);
     }
 

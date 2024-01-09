@@ -17,7 +17,6 @@ public class PlayerGotHitState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from GotHit State");
         if (player.PlayerHealth > -1)
         {
             player.GotHitSound.Play();
@@ -47,7 +46,7 @@ public class PlayerGotHitState : PlayerBaseState
         {
             player.Rb.velocity = new Vector2(-player.RaycastDirX * player.Speed, player.Rb.velocity.y);
         }
-        else
+        else if (player.PlayerHealth > -1)
         {
             SwitchState(factory.Fall());
         }

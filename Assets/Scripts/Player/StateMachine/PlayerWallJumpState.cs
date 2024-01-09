@@ -9,7 +9,6 @@ public class PlayerWallJumpState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from Wall Jump State");
         player.IsDoubleJump = false;
         player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.wallJump);
