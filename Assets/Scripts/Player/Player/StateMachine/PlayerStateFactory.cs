@@ -42,4 +42,8 @@ public class PlayerStateFactory
     {
         return new PlayerGotHitState(_context, this);
     }
+    public PlayerBaseState ThrowWeapon()
+    {
+        return new PlayerThrowWeaponState(_context, this);
+    }
 }

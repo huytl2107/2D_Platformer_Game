@@ -42,9 +42,4 @@ public class PlayerWallSlideState : PlayerBaseState
     {
 
     }
-
-    public override void InitializeSubState()
-    {
-
-    }
 }

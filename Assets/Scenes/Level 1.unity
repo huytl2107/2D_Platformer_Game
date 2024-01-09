@@ -37526,6 +37526,9 @@ MonoBehaviour:
   _dashTime: 0.2
   _dashCooldown: 1
   tr: {fileID: 401526164}
+  _weapon: {fileID: 3577452733506636025, guid: df377591303a7134bbed25c97f99cc54, type: 3}
+  _plusXWeapon: 1
+  _plusYWeapon: 0
   _distanceWallCheck: 0.7
   _ground:
     serializedVersion: 2
@@ -37539,6 +37542,8 @@ MonoBehaviour:
   _head3: {fileID: 1415290802}
   _head: {fileID: 21300000, guid: 38ce41604c457464c8ea782e24c82036, type: 3}
   _nullHead: {fileID: 21300000, guid: b513937e039d7bb48a8def0ab0829d3d, type: 3}
+  _throwWeaponKey: 106
+  _dashKey: 304
 --- !u!212 &401526159
 SpriteRenderer:
   m_ObjectHideFlags: 0

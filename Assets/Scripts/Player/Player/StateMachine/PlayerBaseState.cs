@@ -15,7 +15,7 @@ public abstract class PlayerBaseState
     public abstract void UpdateState();
     public abstract void ExitState();
     public abstract void CheckSwitchState();
-    public abstract void InitializeSubState();
+    //public abstract void InitializeSubState();
     //protected void SetSuperState();
     //protected void SetSubState();
     protected void SwitchState(PlayerBaseState newState)

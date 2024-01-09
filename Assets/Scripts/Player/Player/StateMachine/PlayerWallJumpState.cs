@@ -40,9 +40,4 @@ public class PlayerWallJumpState : PlayerBaseState
     {
 
     }
-
-    public override void InitializeSubState()
-    {
-
-    }
 }

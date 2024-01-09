@@ -38,6 +38,12 @@ public class PlayerStateManager : MonoBehaviour
     private bool _canDash = true;
     private bool _isDashing = false;
 
+    [Header("Weapon")]
+    [SerializeField] private GameObject _weapon;
+    [SerializeField] private float _plusXWeapon;
+    [SerializeField] private float _plusYWeapon;
+    private bool _canThrowWeapon = true;
+
     [Header("Raycast")]
     [SerializeField] private float _distanceWallCheck = 2f;
     [SerializeField] private LayerMask _ground;
@@ -53,6 +59,10 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private Sprite _head;
     [SerializeField] private Sprite _nullHead;
     
+    [Header("Button")]
+    [SerializeField] private KeyCode _throwWeaponKey = KeyCode.J;
+    [SerializeField] private KeyCode _dashKey = KeyCode.LeftShift;
+
     private float _dirX;
     private float _raycastDirX = 1;
     private bool _isDoubleJump;
@@ -87,8 +97,13 @@ public class PlayerStateManager : MonoBehaviour
     public Image Head3 { get => _head3; set => _head3 = value; }
     public Sprite Head { get => _head; set => _head = value; }
     public Sprite NullHead { get => _nullHead; set => _nullHead = value; }
+
     public PlayerBaseState CurrentState { get => _currentState; set => _currentState = value; }
     public PlayerStateFactory State { get => _state; set => _state = value; }
+    
+    public KeyCode ThrowWeaponKey { get => _throwWeaponKey; set => _throwWeaponKey = value; }
+    public KeyCode DashKey { get => _dashKey; set => _dashKey = value; }
+    public bool CanThrowWeapon { get => _canThrowWeapon; set => _canThrowWeapon = value; }
 
     // Start is called before the first frame update
     private void Awake()
@@ -185,5 +200,28 @@ public class PlayerStateManager : MonoBehaviour
         {
             IsSeeingGround = false;
         }
+    }
+
+    public void ThrowAxe()
+    {
+        StartCoroutine(CoolDownThrowWeapon());
+        Vector3 weaponPosition = new Vector3(transform.position.x + _plusXWeapon * RaycastDirX, transform.position.y + _plusYWeapon , transform.position.z);
+        GameObject thisWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
+
+        AxeController axeController = thisWeapon.GetComponent<AxeController>();
+        axeController.SetDirection(RaycastDirX);
+    }
+
+    public IEnumerator CoolDownThrowWeapon()
+    {
+        CanThrowWeapon = false;
+        yield return new WaitForSeconds(1f);
+        CanThrowWeapon = true;
+    }
+
+    public void CanMove()
+    {
+        DirX = Input.GetAxisRaw("Horizontal");
+        Rb.velocity = new Vector2(DirX * Speed, Rb.velocity.y);
     }
 }

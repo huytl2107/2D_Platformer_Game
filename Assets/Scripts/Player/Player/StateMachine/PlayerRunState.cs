@@ -14,30 +14,30 @@ public class PlayerRunState : PlayerBaseState
 
     public override void UpdateState()
     {
+        player.CanMove();
         CheckSwitchState();
         PlayerStateManager.UpdateObjectDirX(player);
     }
 
     public override void CheckSwitchState()
     {
-        player.DirX = Input.GetAxisRaw("Horizontal");
         if (player.IsGrounded())
         {
             if (Input.GetButtonDown("Jump"))
             {
                 SwitchState(factory.Jump());
             }
-            else if (Input.GetKeyDown(KeyCode.LeftShift) && player.CanDash)
+            else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
+            {
+                SwitchState(factory.ThrowWeapon());
+            }
+            else if (Input.GetKeyDown(player.DashKey) && player.CanDash)
             {
                 SwitchState(factory.Dash());
             }
             else if (player.DirX == 0)
             {
                 SwitchState(factory.Idle());
-            }
-            else
-            {
-                player.Rb.velocity = new Vector2(player.DirX * player.Speed, player.Rb.velocity.y);
             }
         }
         else if (player.Rb.velocity.y < .1f)
@@ -47,11 +47,6 @@ public class PlayerRunState : PlayerBaseState
     }
 
     public override void ExitState()
-    {
-
-    }
-
-    public override void InitializeSubState()
     {
 
     }

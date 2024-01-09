@@ -12,12 +12,12 @@ public class PlayerDashState : PlayerBaseState
         player.StartCoroutine(player.Dash(player));
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.dash);
     }
-    
+
     public override void UpdateState()
     {
         CheckSwitchState();
     }
-    
+
     public override void CheckSwitchState()
     {
         player.DirX = Input.GetAxisRaw("Horizontal");
@@ -44,11 +44,6 @@ public class PlayerDashState : PlayerBaseState
         }
     }
     public override void ExitState()
-    {
-
-    }
-
-    public override void InitializeSubState()
     {
 
     }

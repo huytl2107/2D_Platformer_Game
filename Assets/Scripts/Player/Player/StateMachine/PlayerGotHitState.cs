@@ -99,9 +99,4 @@ public class PlayerGotHitState : PlayerBaseState
     {
 
     }
-
-    public override void InitializeSubState()
-    {
-
-    }
 }

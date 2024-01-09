@@ -15,17 +15,20 @@ public class PlayerJumpState : PlayerBaseState
     
     public override void UpdateState()
     {
+        player.CanMove();
         CheckSwitchState();
         PlayerStateManager.UpdateObjectDirX(player);
     }
 
     public override void CheckSwitchState()
     {
-        player.DirX = Input.GetAxisRaw("Horizontal");
-        player.Rb.velocity = new Vector2(player.DirX * player.Speed, player.Rb.velocity.y);
-        if (Input.GetKeyDown(KeyCode.LeftShift) && player.CanDash)
+        if (Input.GetKeyDown(player.DashKey) && player.CanDash)
         {
             SwitchState(factory.Dash());
+        }
+        else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
+        {
+            SwitchState(factory.ThrowWeapon());
         }
         else if (player.IsSeeingGround)
         {
@@ -47,11 +50,6 @@ public class PlayerJumpState : PlayerBaseState
     }
 
     public override void ExitState()
-    {
-
-    }
-
-    public override void InitializeSubState()
     {
 
     }
