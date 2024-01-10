@@ -25,9 +25,4 @@ public class MushroomStateManager : EnemiesStateManager
         base.Update();
         CurrentState.UpdateState();
     }
-
-    public override void SwitchState(EnemiesBaseState enemyState)
-    {
-
-    }
 }

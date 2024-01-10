@@ -6,4 +6,5 @@ public class StateEnum
 
     public enum EPlayerState {idle, run, jump, fall, doubleJump, wallSlide, wallJump, dash, throwWeapon};
 
+    public enum EPlantState {idle, attack};
 }

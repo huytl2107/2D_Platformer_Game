@@ -58,6 +58,10 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private Image _head3;
     [SerializeField] private Sprite _head;
     [SerializeField] private Sprite _nullHead;
+
+    [Header("ItemCollector")]
+    [SerializeField] private Text _fruitText;
+    private int _fruitNumb = 0;
     
     [Header("Button")]
     [SerializeField] private KeyCode _throwWeaponKey = KeyCode.J;
@@ -114,7 +118,7 @@ public class PlayerStateManager : MonoBehaviour
         Sprite = GetComponent<SpriteRenderer>();
         Col = GetComponent<BoxCollider2D>();
         Anim = GetComponent<Animator>();
-
+        
         AwakePlayerHealthUI();
     }
     private void AwakePlayerHealthUI()
@@ -145,6 +149,16 @@ public class PlayerStateManager : MonoBehaviour
             CurrentState = State.GotHit();
             CurrentState.EnterState();
         }    
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.gameObject.CompareTag("Apple"))
+        {
+            _fruitNumb += 1;
+            _fruitText.text = "Fruit: " + _fruitNumb;
+            Destroy(other.gameObject);
+        }
     }
 
     public bool IsGrounded()
