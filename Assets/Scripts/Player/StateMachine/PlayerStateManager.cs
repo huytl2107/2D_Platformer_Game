@@ -11,15 +11,6 @@ public class PlayerStateManager : MonoBehaviour
     //Khởi tạo các state
     PlayerBaseState _currentState;
     PlayerStateFactory _state;
-    /* public PlayerIdleState IdleState = new PlayerIdleState();
-    public PlayerRunState RunState = new PlayerRunState();
-    public PlayerJumpState JumpState = new PlayerJumpState();
-    public PlayerFallState FallState = new PlayerFallState();
-    public PlayerDoubleJumpState DoubleJumpState = new PlayerDoubleJumpState();
-    public PlayerWallSlideState WallSlideState = new PlayerWallSlideState();
-    public PlayerWallJumpState WallJumpState = new PlayerWallJumpState();
-    public PlayerDashState DashState = new PlayerDashState();
-    public PlayerGotHitState GotHitState = new PlayerGotHitState(); */
 
     private SpriteRenderer _sprite;
     private Rigidbody2D _rb;
@@ -158,6 +149,11 @@ public class PlayerStateManager : MonoBehaviour
             _fruitNumb += 1;
             _fruitText.text = "Fruit: " + _fruitNumb;
             Destroy(other.gameObject);
+        }
+        if(other.gameObject.CompareTag("Enemies"))
+        {
+            CurrentState = State.Jump();
+            CurrentState.EnterState();
         }
     }
 

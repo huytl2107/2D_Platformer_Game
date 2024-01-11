@@ -15,6 +15,7 @@ TagManager:
   - Ground
   - LivesItem
   - NPC
+  - Enemies
   layers:
   - Default
   - TransparentFX

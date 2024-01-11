@@ -18,6 +18,7 @@ public class PlantAttackState : EnemiesAttackState
     public override void UpdateState()
     {
         base.UpdateState();
+        CheckSwitchState();
     }
     public override void CheckSwitchState()
     {

@@ -11,7 +11,8 @@ public abstract class EnemiesStateManager : MonoBehaviour
     private SpriteRenderer _sprite;
     private Rigidbody2D _rb;
     private Animator _anim;
-    [Header("FlipXObject")]
+
+    [SerializeField] private GameObject _player;
     [SerializeField] private bool _flipObject = false;
 
     [Header("Speed")]
@@ -56,6 +57,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
     public bool SeeGround { get => _seeGround; set => _seeGround = value; }
     public int Health { get => _health; set => _health = value; }
     public bool FlipObject { get => _flipObject; set => _flipObject = value; }
+    public GameObject Player { get => _player; set => _player = value; }
 
     public virtual void Awake()
     {

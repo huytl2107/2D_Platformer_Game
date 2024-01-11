@@ -8,6 +8,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void EnterState()
     {
+        player.IsDoubleJump = false;
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.jump);
         player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
     }

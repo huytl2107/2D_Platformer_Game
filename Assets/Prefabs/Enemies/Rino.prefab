@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4966167554751948209}
   m_Layer: 2
   m_Name: Rino
-  m_TagString: StrongEnemies
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,7 +291,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff486c017546b34480e82f3d7925f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 7293869960212836654, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+  _flipObject: 1
   _walkSpeed: 3
+  _health: 0
   _distance: 5
   _ignoreLayerSelf:
     serializedVersion: 2

@@ -74,4 +74,14 @@ public class EnemiesStateFactory
     {
         return new RadishWalkState(_context, this);
     }
+
+    //BlueBird
+    public EnemiesBaseState BirdIdle()
+    {
+        return new BirdIdleState(_context, this);
+    }
+    public EnemiesBaseState BirdAttack()
+    {
+        return new BirdAttackState(_context, this);
+    }
 }
