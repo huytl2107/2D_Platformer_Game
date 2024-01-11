@@ -16,8 +16,7 @@ GameObject:
   - component: {fileID: 5430710129473237222}
   - component: {fileID: 6272593129218969689}
   - component: {fileID: 7909741187700601654}
-  - component: {fileID: 6251571912783105007}
-  - component: {fileID: 4377837653908226785}
+  - component: {fileID: 2087321376707468259}
   m_Layer: 0
   m_Name: AngryPig
   m_TagString: StrongEnemies
@@ -36,9 +35,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0.07018584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1644751470384472371}
-  - {fileID: 6534772681687292201}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -302,7 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 0
   m_AspectRatio: 1.2
---- !u!114 &6251571912783105007
+--- !u!114 &2087321376707468259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,124 +308,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 299698372435513436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcda279bbfb45340b7693c2c9a305d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 835f7a8965f28eb49ba8aadbf9d56560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4377837653908226785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 299698372435513436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 195f533740230f7488ec191b909fedce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  delayRun: 1
-  ground:
+  _walkSpeed: 4
+  _distance: 10
+  _ignoreLayerSelf:
+    serializedVersion: 2
+    m_Bits: 4
+  _distanceWallCheck: 2
+  _ground:
     serializedVersion: 2
     m_Bits: 64
-  dangerSound: {fileID: 299698372435513419}
-  leftRaycast: {fileID: 3897322652896425026}
-  rightRaycast: {fileID: 6333895280193288483}
---- !u!1 &1415435052178257336
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1644751470384472371}
-  - component: {fileID: 3897322652896425026}
-  m_Layer: 0
-  m_Name: LeftRaycast
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1644751470384472371
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415435052178257336}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.07, y: -0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 914382704328336579}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3897322652896425026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415435052178257336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870820592c7cb7c46b67a9fd4afa085b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 8
-  distanceGround: 0.5
-  right: 0
-  seePlayer: 0
-  seeGround: 0
---- !u!1 &5278414365323930614
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6534772681687292201}
-  - component: {fileID: 6333895280193288483}
-  m_Layer: 0
-  m_Name: RightRaycast
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6534772681687292201
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5278414365323930614}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.79, y: -0.1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 914382704328336579}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6333895280193288483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5278414365323930614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870820592c7cb7c46b67a9fd4afa085b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 8
-  distanceGround: 0.5
-  right: 1
-  seePlayer: 0
-  seeGround: 0
+  _ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 4

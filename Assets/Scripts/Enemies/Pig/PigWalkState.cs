@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
-public class PlantIdleState : EnemiesIdleState
+public class PigWalkState : EnemiesWalkState
 {
-    public PlantIdleState(EnemiesStateManager currentContext, EnemiesStateFactory currentState) : base(currentContext, currentState)
+    public PigWalkState(EnemiesStateManager currentContext, EnemiesStateFactory currentState) : base(currentContext, currentState)
     {
     }
 
     public override void EnterState()
     {
         base.EnterState();
-        enemy.Anim.SetInteger("State", (int)StateEnum.EPlantState.idle);
+        enemy.Anim.SetInteger("State", (int)StateEnum.EPigState.walk);
     }
 
     public override void UpdateState()
@@ -26,7 +25,9 @@ public class PlantIdleState : EnemiesIdleState
         base.CheckSwitchState();
         if(enemy.SeePlayer)
         {
-            SwitchState(factory.PlantAttack());
+            SwitchState(factory.PigAttack());
         }
     }
+
+
 }

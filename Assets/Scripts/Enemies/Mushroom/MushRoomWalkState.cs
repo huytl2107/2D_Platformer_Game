@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class MushRoomWalkState : EnemiesWalkState
 {
-
-    public MushRoomWalkState(EnemiesStateManager currentContext) : base(currentContext)
+    public MushRoomWalkState(EnemiesStateManager currentContext, EnemiesStateFactory currentState) : base(currentContext, currentState)
     {
     }
 

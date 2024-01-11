@@ -5,17 +5,15 @@ using UnityEngine;
 
 public class MushroomStateManager : EnemiesStateManager
 {
-    public MushRoomWalkState MushroomWalk;
     // Start is called before the first frame update
     public override void Awake()
     {
         base.Awake();
-        MushroomWalk = new MushRoomWalkState(this);
     }
 
-    void Start()
+    public override void Start()
     {
-        CurrentState = MushroomWalk;
+        CurrentState = State.MushroomWalk();
         CurrentState.EnterState();
     }
 
@@ -23,6 +21,7 @@ public class MushroomStateManager : EnemiesStateManager
     public override void Update()
     {
         base.Update();
+        FlipXObjectIfSeeGround();
         CurrentState.UpdateState();
     }
 }

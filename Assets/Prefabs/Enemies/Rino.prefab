@@ -11,13 +11,12 @@ GameObject:
   - component: {fileID: 5844814350196744405}
   - component: {fileID: 5844814350196744406}
   - component: {fileID: 5844814350196744407}
-  - component: {fileID: 5844814350196744404}
   - component: {fileID: 5844814350196744400}
   - component: {fileID: 5844814350196744403}
-  - component: {fileID: 5844814350196744402}
   - component: {fileID: 3878724744189920808}
   - component: {fileID: 2812611192760218258}
-  m_Layer: 0
+  - component: {fileID: 4966167554751948209}
+  m_Layer: 2
   m_Name: Rino
   m_TagString: StrongEnemies
   m_Icon: {fileID: 0}
@@ -35,8 +34,7 @@ Transform:
   m_LocalPosition: {x: 4.78, y: 1.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5844814350721545562}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -83,7 +81,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1075854790282143660, guid: e3531be27cb827743bac8ea66dae5bfd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -112,18 +110,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5844814350196744404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5844814350196744394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcda279bbfb45340b7693c2c9a305d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &5844814350196744400
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,25 +157,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5844814350196744402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5844814350196744394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3fd3f326b79c0f4eb1c9e35ef4cf2f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesRaycast: {fileID: 5844814350721545509}
-  speed: 3
-  ground:
-    serializedVersion: 2
-    m_Bits: 64
-  enemiesDeath: {fileID: 5844814350196744404}
-  dangerSound: {fileID: 2812611192760218258}
 --- !u!61 &3878724744189920808
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -312,52 +279,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &5844814350721545563
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5844814350721545562}
-  - component: {fileID: 5844814350721545509}
-  m_Layer: 0
-  m_Name: Raycast
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5844814350721545562
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5844814350721545563}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.25, y: -0.13, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5844814350196744405}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5844814350721545509
+--- !u!114 &4966167554751948209
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5844814350721545563}
+  m_GameObject: {fileID: 5844814350196744394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870820592c7cb7c46b67a9fd4afa085b, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ff486c017546b34480e82f3d7925f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 15
-  distanceGround: 0.5
-  right: 0
-  seePlayer: 0
-  seeGround: 0
+  _walkSpeed: 3
+  _distance: 5
+  _ignoreLayerSelf:
+    serializedVersion: 2
+    m_Bits: 4
+  _distanceWallCheck: 2
+  _ground:
+    serializedVersion: 2
+    m_Bits: 64
+  _ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 4

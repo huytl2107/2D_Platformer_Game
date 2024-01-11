@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantStateManager : EnemiesStateManager
+public class RinoStateManager : EnemiesStateManager
 {
     public override void Awake()
     {
         base.Awake();
         FlipXObject();
     }
-
     public override void Start()
     {
-        CurrentState = State.PlantIdle();
+        CurrentState = State.RinoIdle();
         CurrentState.EnterState();
     }
 

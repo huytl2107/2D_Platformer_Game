@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemiesIdleState : EnemiesBaseState
 {
-    public EnemiesIdleState(EnemiesStateManager currentContext) : base(currentContext)
+    public EnemiesIdleState(EnemiesStateManager currentContext, EnemiesStateFactory currentState) : base(currentContext, currentState)
     {
     }
 
@@ -25,6 +25,6 @@ public class EnemiesIdleState : EnemiesBaseState
 
     public override void UpdateState()
     {
-
+        CheckSwitchState();
     }
 }

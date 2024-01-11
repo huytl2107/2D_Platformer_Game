@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantStateManager : EnemiesStateManager
+public class PigStateManager : EnemiesStateManager
 {
     public override void Awake()
     {
         base.Awake();
-        FlipXObject();
     }
 
     public override void Start()
     {
-        CurrentState = State.PlantIdle();
+        CurrentState = State.PigWalk();
         CurrentState.EnterState();
     }
 
     public override void Update()
     {
         base.Update();
+        FlipXObjectIfSeeGround();
         PlayerCheck();
     }
 }

@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7166236263522030466, guid: 4de760c38ab41314bbdcfb6943023452, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -194,6 +194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a19d700d3b00c48a61935b001ca3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _walkSpeed: 3
+  _distance: 5
+  _ignoreLayerSelf:
+    serializedVersion: 2
+    m_Bits: 0
   _distanceWallCheck: 2
   _ground:
     serializedVersion: 2

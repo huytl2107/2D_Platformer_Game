@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemiesAttackState : EnemiesBaseState
 {
-    public EnemiesAttackState(EnemiesStateManager currentContext) : base(currentContext)
+    public EnemiesAttackState(EnemiesStateManager currentContext, EnemiesStateFactory currentState) : base(currentContext, currentState)
     {
     }
 
@@ -23,6 +23,6 @@ public class EnemiesAttackState : EnemiesBaseState
 
     public override void UpdateState()
     {
-
+        CheckSwitchState();
     }
 }

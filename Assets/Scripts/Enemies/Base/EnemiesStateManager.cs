@@ -5,11 +5,7 @@ using UnityEngine;
 public abstract class EnemiesStateManager : MonoBehaviour
 {
     private EnemiesBaseState _currentState;
-    
-    //Chưa tìm ra cách tối ưu chỗ này nên tạm thời để thế
-    //PlantState
-    public PlantIdleState PlantIdle;
-    public PlantAttackState PlantAttack;
+    private EnemiesStateFactory _state;
 
     private BoxCollider2D _col;
     private SpriteRenderer _sprite;
@@ -17,7 +13,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
     private Animator _anim;
 
     [Header("Speed")]
-    private float _walkSpeed = 3f;
+    [SerializeField] private float _walkSpeed = 3f;
 
     [Header("Raycast")]
     private RaycastHit2D _raycast;
@@ -31,6 +27,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
     [SerializeField] private float _distanceWallCheck = 2f;
     [SerializeField] private LayerMask _ground;
     [SerializeField] private LayerMask _ignoreLayer;
+    private bool _seeGround = false;
 
     public EnemiesBaseState CurrentState { get => _currentState; set => _currentState = value; }
 
@@ -50,20 +47,19 @@ public abstract class EnemiesStateManager : MonoBehaviour
     public SpriteRenderer Sprite { get => _sprite; set => _sprite = value; }
     public Rigidbody2D Rb { get => _rb; set => _rb = value; }
     public Animator Anim { get => _anim; set => _anim = value; }
-
-    public void SwitchState(EnemiesBaseState enemyState)
-    {
-        CurrentState = enemyState;
-        CurrentState.EnterState();
-    }
+    public EnemiesStateFactory State { get => _state; set => _state = value; }
+    public bool SeeGround { get => _seeGround; set => _seeGround = value; }
 
     public virtual void Awake()
     {
+        State = new EnemiesStateFactory(this);
         Col = GetComponent<BoxCollider2D>();
         Sprite = GetComponent<SpriteRenderer>();
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
     }
+
+    public abstract void Start();
 
     public virtual void Update()
     {
@@ -106,7 +102,11 @@ public abstract class EnemiesStateManager : MonoBehaviour
         {
             Debug.Log("SeeGround");
             Debug.DrawLine(transform.position, RaycastGround.point, Color.white);
-            FlipXObject();
+            SeeGround = true;
+        }
+        else
+        {
+            SeeGround = false;
         }
     }
 
@@ -122,10 +122,22 @@ public abstract class EnemiesStateManager : MonoBehaviour
         }
     }
 
+    public void FlipXObjectIfSeeGround()
+    {
+        if (SeeGround)
+        {
+            FlipXObject();
+        }
+    }
     public void FlipXObject()
     {
         Sprite.flipX = !Sprite.flipX;
         RaycastDirX = -RaycastDirX;
+    }
+
+    public bool IsGrounded()
+    {
+        return Physics2D.BoxCast(Col.bounds.center, Col.bounds.size, 0f, Vector2.down, .1f, Ground);
     }
 
 }

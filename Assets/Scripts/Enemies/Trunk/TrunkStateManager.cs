@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantStateManager : EnemiesStateManager
+public class TrunkStateManager : EnemiesStateManager
 {
     public override void Awake()
     {
         base.Awake();
         FlipXObject();
     }
-
     public override void Start()
     {
-        CurrentState = State.PlantIdle();
+        CurrentState = State.TrunkWalk();
         CurrentState.EnterState();
     }
 
@@ -20,5 +19,7 @@ public class PlantStateManager : EnemiesStateManager
     {
         base.Update();
         PlayerCheck();
+        FlipXObjectIfSeeGround();
     }
+
 }

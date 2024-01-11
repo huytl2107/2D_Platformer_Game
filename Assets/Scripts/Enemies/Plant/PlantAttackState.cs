@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlantAttackState : EnemiesAttackState
 {
-    public PlantAttackState(EnemiesStateManager currentContext) : base(currentContext)
+    public PlantAttackState(EnemiesStateManager currentContext, EnemiesStateFactory currentState) : base(currentContext, currentState)
     {
     }
 
@@ -18,13 +18,12 @@ public class PlantAttackState : EnemiesAttackState
     public override void UpdateState()
     {
         base.UpdateState();
-        CheckSwitchState();
     }
     public override void CheckSwitchState()
     {
         if(!enemy.SeePlayer)
         {
-            enemy.SwitchState(enemy.PlantIdle);
+            SwitchState(factory.PlantIdle());
         }
     }
 }
