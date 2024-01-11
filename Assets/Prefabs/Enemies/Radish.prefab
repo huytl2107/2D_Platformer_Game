@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 8521447039414164582}
   - component: {fileID: 8521447039414164583}
   - component: {fileID: 8521447039414164580}
-  - component: {fileID: 8521447039414164579}
   - component: {fileID: 8521447039414164576}
   - component: {fileID: 8521447039414164578}
-  - component: {fileID: 8521447039414164573}
+  - component: {fileID: 5546875713778211696}
   m_Layer: 2
   m_Name: Radish
   m_TagString: StrongEnemies
@@ -34,8 +33,7 @@ Transform:
   m_LocalPosition: {x: -9.43, y: 4.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8521447040687177913}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,7 +80,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -3239594328036583930, guid: c078262cfe23e5f45b0fdf215c6fa100, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -143,19 +141,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.821084, y: 0.22951317}
   m_EdgeRadius: 0
---- !u!114 &8521447039414164579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8521447039414164581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a477aafb7a726648bc1fdf9758b1893, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lives: 1
 --- !u!95 &8521447039414164576
 Animator:
   serializedVersion: 4
@@ -197,7 +182,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8521447039414164573
+--- !u!114 &5546875713778211696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,69 +191,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8521447039414164581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3fae29e81e9f7642bf718898985fe33, type: 3}
+  m_Script: {fileID: 11500000, guid: 20d882e01a70a6244932217cb5934480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  flyingSpeed: 2
-  delayRun: 3
-  Wall:
+  _flipObject: 0
+  _walkSpeed: 3
+  _health: 0
+  _distance: 5
+  _ignoreLayerSelf:
+    serializedVersion: 2
+    m_Bits: 4
+  _distanceWallCheck: 2
+  _ground:
     serializedVersion: 2
     m_Bits: 64
-  dangerSound: {fileID: 0}
-  ground:
-    serializedVersion: 2
-    m_Bits: 64
-  raycast: {fileID: 8521447040687177912}
---- !u!1 &8521447040687177918
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8521447040687177913}
-  - component: {fileID: 8521447040687177912}
-  m_Layer: 2
-  m_Name: Raycast
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8521447040687177913
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8521447040687177918}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.242, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8521447039414164577}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8521447040687177912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8521447040687177918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870820592c7cb7c46b67a9fd4afa085b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 5
-  distanceGround: 1.5
-  right: 0
-  seePlayer: 0
-  seeGround: 0
-  ignoreLayer:
+  _ignoreLayer:
     serializedVersion: 2
     m_Bits: 4

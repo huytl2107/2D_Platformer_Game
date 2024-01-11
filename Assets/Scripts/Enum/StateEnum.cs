@@ -13,4 +13,6 @@ public class StateEnum
     public enum ERinoState {idle, attack};
 
     public enum ETrunkState {walk, attack, coolDownAttack};
+
+    public enum ERadishState {flying, gotHit, idle, run};
 }

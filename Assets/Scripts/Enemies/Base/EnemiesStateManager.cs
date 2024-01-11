@@ -11,22 +11,27 @@ public abstract class EnemiesStateManager : MonoBehaviour
     private SpriteRenderer _sprite;
     private Rigidbody2D _rb;
     private Animator _anim;
+    [Header("FlipXObject")]
+    [SerializeField] private bool _flipObject = false;
 
     [Header("Speed")]
     [SerializeField] private float _walkSpeed = 3f;
 
+    [Header("Health")]
+    [SerializeField] private int _health = 0;
+
     [Header("Raycast")]
-    private RaycastHit2D _raycast;
-    private float _raycastDirX = 1;
     [SerializeField] private float _distance = 5f;
     [SerializeField] private LayerMask _ignoreLayerSelf;
+    private RaycastHit2D _raycast;
+    private float _raycastDirX = 1;
     private bool _seePlayer = false;
 
     [Header("Raycast Ground")]
-    private RaycastHit2D _raycastGround;
     [SerializeField] private float _distanceWallCheck = 2f;
     [SerializeField] private LayerMask _ground;
     [SerializeField] private LayerMask _ignoreLayer;
+    private RaycastHit2D _raycastGround;
     private bool _seeGround = false;
 
     public EnemiesBaseState CurrentState { get => _currentState; set => _currentState = value; }
@@ -49,6 +54,8 @@ public abstract class EnemiesStateManager : MonoBehaviour
     public Animator Anim { get => _anim; set => _anim = value; }
     public EnemiesStateFactory State { get => _state; set => _state = value; }
     public bool SeeGround { get => _seeGround; set => _seeGround = value; }
+    public int Health { get => _health; set => _health = value; }
+    public bool FlipObject { get => _flipObject; set => _flipObject = value; }
 
     public virtual void Awake()
     {
@@ -57,6 +64,10 @@ public abstract class EnemiesStateManager : MonoBehaviour
         Sprite = GetComponent<SpriteRenderer>();
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
+        if(FlipObject)
+        {
+            FlipXObject();
+        }
     }
 
     public abstract void Start();

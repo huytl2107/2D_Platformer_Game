@@ -56,4 +56,22 @@ public class EnemiesStateFactory
     {
         return new TrunkAttackState(_context, this);
     }
+
+    //Radish
+    public EnemiesBaseState RadishFly()
+    {
+        return new RadishFlyingState(_context, this);
+    }
+    public EnemiesBaseState RadishGotHit()
+    {
+        return new RadishGotHitState(_context, this);
+    }
+    public EnemiesBaseState RadishIdle()
+    {
+        return new RadishIdleState(_context, this);
+    }
+    public EnemiesBaseState RadishWalk()
+    {
+        return new RadishWalkState(_context, this);
+    }
 }

@@ -7,7 +7,6 @@ public class PlantStateManager : EnemiesStateManager
     public override void Awake()
     {
         base.Awake();
-        FlipXObject();
     }
 
     public override void Start()
