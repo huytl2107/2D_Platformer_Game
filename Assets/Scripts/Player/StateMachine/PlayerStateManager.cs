@@ -18,8 +18,8 @@ public class PlayerStateManager : MonoBehaviour
     private Animator _anim;
 
     [Header("Move and Jump")]
-    [SerializeField] private float _speed = 7f;
-    [SerializeField] private float _jumpForce = 7f;
+    [SerializeField] private float _speed = 8f;
+    [SerializeField] private float _jumpForce = 8f;
 
     [Header("Dash")]
     [SerializeField] private float _dashForce = 20f;

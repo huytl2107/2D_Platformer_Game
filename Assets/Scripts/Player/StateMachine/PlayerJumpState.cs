@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Diagnostics;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class PlayerJumpState : PlayerBaseState
@@ -32,7 +35,6 @@ public class PlayerJumpState : PlayerBaseState
         }
         else if (player.IsSeeingGround)
         {
-            Debug.Log(player.IsSeeingGround);
             SwitchState(factory.WallSlide());
         }
         else
