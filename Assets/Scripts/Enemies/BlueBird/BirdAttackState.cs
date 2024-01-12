@@ -16,6 +16,7 @@ public class BirdAttackState : EnemiesAttackState
     public override void UpdateState()
     {
         base.UpdateState();
+        enemy.LookAtPlayer();
         enemy.transform.position = Vector2.MoveTowards(enemy.transform.position, enemy.Player.transform.position, Time.deltaTime * enemy.WalkSpeed);
     }
 

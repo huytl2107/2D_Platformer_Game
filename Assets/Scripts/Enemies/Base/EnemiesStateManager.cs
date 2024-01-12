@@ -66,7 +66,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
         Sprite = GetComponent<SpriteRenderer>();
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
-        if(FlipObject)
+        if (FlipObject)
         {
             FlipXObject();
         }
@@ -153,4 +153,43 @@ public abstract class EnemiesStateManager : MonoBehaviour
         return Physics2D.BoxCast(Col.bounds.center, Col.bounds.size, 0f, Vector2.down, .1f, Ground);
     }
 
+    public bool IsRightPlayer()
+    {
+        if (Player != null)
+        {
+            float distancetoPlayer = transform.position.x - Player.transform.position.x;
+            if (distancetoPlayer > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public void LookAtPlayer()
+    {
+        if (FlipObject)
+        {
+            if (IsRightPlayer())
+            {
+                Sprite.flipX = false;
+            }
+            else
+            {
+                Sprite.flipX = true;
+            }
+        }
+        else
+        {
+            if (IsRightPlayer())
+            {
+                Sprite.flipX = true;
+            }
+            else
+            {
+                Sprite.flipX = false;
+            }
+        }
+    }
 }

@@ -171,7 +171,7 @@ MonoBehaviour:
   _flipObject: 1
   _walkSpeed: 3
   _health: 0
-  _distance: 5
+  _distance: 8
   _ignoreLayerSelf:
     serializedVersion: 2
     m_Bits: 4

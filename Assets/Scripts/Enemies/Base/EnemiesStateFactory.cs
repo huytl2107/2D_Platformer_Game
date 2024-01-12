@@ -84,4 +84,19 @@ public class EnemiesStateFactory
     {
         return new BirdAttackState(_context, this);
     }
+
+    //Bee
+    public EnemiesBaseState BeeIdle()
+    {
+        return new BeeIdleState(_context, this);
+    }
+    public EnemiesBaseState BeeAttack()
+    {
+        return new BeeAttackState(_context, this);
+    }
+    public EnemiesBaseState BeeWalk()
+    {
+        return new BeeWalkState(_context, this);
+    }
+    
 }
