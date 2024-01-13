@@ -9,6 +9,7 @@ public class PlayerDashState : PlayerBaseState
     public override void EnterState()
     {
         player.StartCoroutine(player.Dash(player));
+        player.Rb.gravityScale = 0f;
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.dash);
     }
 
@@ -44,6 +45,6 @@ public class PlayerDashState : PlayerBaseState
     }
     public override void ExitState()
     {
-
+        player.Rb.gravityScale = 9f;
     }
 }

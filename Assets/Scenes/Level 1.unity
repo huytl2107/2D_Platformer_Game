@@ -47129,7 +47129,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.946293
+  orthographic size: 7.4035406
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -57163,12 +57163,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1415290802}
     - target: {fileID: 7293869960212836653, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+      propertyPath: _speed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293869960212836653, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
       propertyPath: _fruitText
       value: 
       objectReference: {fileID: 65159959}
+    - target: {fileID: 7293869960212836653, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+      propertyPath: _jumpForce
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 7293869960212836654, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293869960212836657, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+      propertyPath: m_GravityScale
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293869960212836657, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7293869960212836659, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
       propertyPath: m_RootOrder
@@ -57213,6 +57229,18 @@ PrefabInstance:
     - target: {fileID: 7293869960212836659, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293869960212836663, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+      propertyPath: m_Time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293869960212836663, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293869960212836663, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}

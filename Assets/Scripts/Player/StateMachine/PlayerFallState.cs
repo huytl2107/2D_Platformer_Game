@@ -8,6 +8,7 @@ public class PlayerFallState : PlayerBaseState
 
     public override void EnterState()
     {
+        player.Rb.gravityScale = 12f;
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.fall);
         player.Anim.SetBool("GotHit", false);
     }
@@ -54,6 +55,6 @@ public class PlayerFallState : PlayerBaseState
 
     public override void ExitState()
     {
-
+        player.Rb.gravityScale = 9f;
     }
 }

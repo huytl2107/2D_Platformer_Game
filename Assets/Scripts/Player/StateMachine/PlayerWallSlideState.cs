@@ -32,7 +32,7 @@ public class PlayerWallSlideState : PlayerBaseState
         }
         else
         {
-            player.Rb.velocity = new Vector2(0f, player.Rb.velocity.y / 1.5f);
+            player.Rb.velocity = new Vector2(0f, player.Rb.velocity.y / 2.5f);
         }
     }
 
