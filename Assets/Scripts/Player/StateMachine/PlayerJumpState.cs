@@ -38,6 +38,7 @@ public class PlayerJumpState : PlayerBaseState
             player.transform.position = player.CurrentWeapon.transform.position;
             player.DestroyObject(player.CurrentWeapon);
             player.CurrentWeapon = null;
+            player.Rb.velocity = new Vector2(player.Rb.velocity.x, 0f);
             SwitchState(factory.Fall());
         }
         else if (player.IsSeeingGround)

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5546875713778211696}
   m_Layer: 2
   m_Name: Radish
-  m_TagString: StrongEnemies
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

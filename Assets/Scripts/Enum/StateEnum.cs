@@ -17,4 +17,8 @@ public class StateEnum
     public enum ERadishState {flying, gotHit, idle, run};
 
     public enum EBeeState {idle, attack};
+
+    public enum ENhismState {nonSpikes, spikesIn, spikes, spikesOut};
+
+    public enum EChameleonState {idle, walk, attack};    
 }

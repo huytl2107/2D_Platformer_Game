@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+
 public class EnemiesStateFactory
 {
     //Sử dụng StateFactory để quản lý State của Enemies
@@ -98,5 +100,37 @@ public class EnemiesStateFactory
     {
         return new BeeWalkState(_context, this);
     }
+
+    //Nhism
+    public EnemiesBaseState NhismNonSpikes()
+    {
+        return new NhismNonSpikesState(_context, this);
+    }
+    public EnemiesBaseState NhismSpikesIn()
+    {
+        return new NhimsSpikesInState(_context, this);
+    }
+    public EnemiesBaseState NhismSpikes()
+    {
+        return new NhimSpikesState(_context, this);
+    }
+    public EnemiesBaseState NhismSpikeOut()
+    {
+        return new NhimsSpikesOutState(_context, this);
+    }
     
+    //Chameleon
+    public EnemiesBaseState ChameleonIdle()
+    {
+        return new ChameleonIdleState(_context, this);
+    }
+    public EnemiesBaseState ChameleonWalk()
+    {
+        return new ChameleonWalkState(_context, this);
+    }
+    public EnemiesBaseState ChameleonAttack()
+    {
+        return new ChameleonAttackState(_context, this);
+    }
+
 }

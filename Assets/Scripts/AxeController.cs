@@ -6,7 +6,7 @@ public class AxeController : MonoBehaviour
 {
 
     [SerializeField] private float speed = 1f;
-    private float x = 5;
+    private float x = 7;
     private float y = 0;
     private float dirX = 0;
     private SpriteRenderer sprite;
@@ -49,5 +49,12 @@ public class AxeController : MonoBehaviour
     {
         yield return new WaitForSeconds(.75f);
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

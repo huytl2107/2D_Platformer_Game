@@ -16,6 +16,7 @@ public class EnemiesIdleState : EnemiesBaseState
     public override void EnterState()
     {
         Debug.Log("Hello from Idle State");
+        enemy.Rb.velocity = new Vector2(0f,0f);
     }
 
     public override void ExitState()

@@ -13,11 +13,10 @@ GameObject:
   - component: {fileID: 8858094540989153710}
   - component: {fileID: 8858094540989153711}
   - component: {fileID: 8858094540989153708}
-  - component: {fileID: 8858094540989153699}
-  - component: {fileID: 8858094540989153698}
-  m_Layer: 0
+  - component: {fileID: 4685968068486830509}
+  m_Layer: 2
   m_Name: Nhism
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +79,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 6190290184256176644, guid: a9c658600a401f347888cfd916603aa4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -156,7 +155,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8858094540989153699
+--- !u!114 &4685968068486830509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,22 +164,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 8858094540989153709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fefc3332ca4bf74b8e90bd354d615cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 517fcebe32a376745a834093877728e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  speed: 2
---- !u!114 &8858094540989153698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8858094540989153709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcda279bbfb45340b7693c2c9a305d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _player: {fileID: 7293869960212836654, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+  _flipObject: 0
+  _walkSpeed: 3
+  _health: 0
+  _distance: 5
+  _ignoreLayerSelf:
+    serializedVersion: 2
+    m_Bits: 68
+  _distanceWallCheck: 2
+  _ground:
+    serializedVersion: 2
+    m_Bits: 64
+  _ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 4
