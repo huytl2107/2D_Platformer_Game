@@ -12,14 +12,14 @@ public class PlayerFallState : PlayerBaseState
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.fall);
         player.Anim.SetBool("GotHit", false);
     }
-    
+
     public override void UpdateState()
     {
         player.CanMove();
         CheckSwitchState();
         PlayerStateManager.UpdateObjectDirX(player);
     }
-    
+
     public override void CheckSwitchState()
     {
         if (player.IsSeeingGround)
@@ -33,6 +33,12 @@ public class PlayerFallState : PlayerBaseState
         else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
         {
             SwitchState(factory.ThrowWeapon());
+        }
+        else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CurrentWeapon != null)
+        {
+            player.transform.position = player.CurrentWeapon.transform.position;
+            player.DestroyObject(player.CurrentWeapon);
+            player.CurrentWeapon = null;
         }
         else if (player.IsGrounded())
         {

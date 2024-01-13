@@ -16,6 +16,7 @@ public class PlayerWallSlideState : PlayerBaseState
     
     public override void UpdateState()
     {
+        player.Rb.velocity = new Vector2(0f, player.Rb.velocity.y / 2.5f);
         CheckSwitchState();
     }
 
@@ -30,9 +31,9 @@ public class PlayerWallSlideState : PlayerBaseState
         {
             SwitchState(factory.WallJump());
         }
-        else
+        else if(!player.IsSeeingGround)
         {
-            player.Rb.velocity = new Vector2(0f, player.Rb.velocity.y / 2.5f);
+            SwitchState(factory.Fall());
         }
     }
 

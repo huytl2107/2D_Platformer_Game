@@ -33,6 +33,13 @@ public class PlayerDoubleJumpState : PlayerBaseState
         {
             SwitchState(factory.ThrowWeapon());
         }
+        else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CurrentWeapon != null)
+        {
+            player.transform.position = player.CurrentWeapon.transform.position;
+            player.DestroyObject(player.CurrentWeapon);
+            player.CurrentWeapon = null;
+            SwitchState(factory.Fall());
+        }
         else if (player.Rb.velocity.y < .1f)
         {
             SwitchState(factory.Fall());

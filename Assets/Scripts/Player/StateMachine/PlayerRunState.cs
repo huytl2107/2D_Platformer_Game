@@ -30,6 +30,12 @@ public class PlayerRunState : PlayerBaseState
             {
                 SwitchState(factory.ThrowWeapon());
             }
+            else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CurrentWeapon != null)
+            {
+                player.transform.position = player.CurrentWeapon.transform.position;
+                player.DestroyObject(player.CurrentWeapon);
+                player.CurrentWeapon = null;
+            }
             else if (Input.GetKeyDown(player.DashKey) && player.CanDash)
             {
                 SwitchState(factory.Dash());

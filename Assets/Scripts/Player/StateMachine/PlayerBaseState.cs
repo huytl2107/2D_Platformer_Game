@@ -9,6 +9,7 @@ public abstract class PlayerBaseState
     {
         player = currentContext;
         factory = playerStateFactory;
+        player.MyTransform = player.transform;
     }
 
     public abstract void EnterState();

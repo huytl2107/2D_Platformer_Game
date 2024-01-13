@@ -15,7 +15,7 @@ public class PlayerJumpState : PlayerBaseState
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.jump);
         player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
     }
-    
+
     public override void UpdateState()
     {
         player.CanMove();
@@ -32,6 +32,13 @@ public class PlayerJumpState : PlayerBaseState
         else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
         {
             SwitchState(factory.ThrowWeapon());
+        }
+        else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CurrentWeapon != null)
+        {
+            player.transform.position = player.CurrentWeapon.transform.position;
+            player.DestroyObject(player.CurrentWeapon);
+            player.CurrentWeapon = null;
+            SwitchState(factory.Fall());
         }
         else if (player.IsSeeingGround)
         {

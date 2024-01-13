@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ public class PlayerStateManager : MonoBehaviour
     private Rigidbody2D _rb;
     private Collider2D _col;
     private Animator _anim;
+    private Transform _myTransform;
 
     [Header("Move and Jump")]
     [SerializeField] private float _speed = 8f;
@@ -34,6 +36,7 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private float _plusXWeapon;
     [SerializeField] private float _plusYWeapon;
     private bool _canThrowWeapon = true;
+    private GameObject _currentWeapon;
 
     [Header("Raycast")]
     [SerializeField] private float _distanceWallCheck = 2f;
@@ -72,6 +75,7 @@ public class PlayerStateManager : MonoBehaviour
     public RaycastHit2D Raycast { get => _raycast; set => _raycast = value; }
     public Collider2D Col { get => _col; set => _col = value; }
     public Animator Anim { get => _anim; set => _anim = value; }
+    public Transform MyTransform { get => _myTransform; set => _myTransform = value; }
 
     public AudioSource GotHitSound { get => _gotHitSound; set => _gotHitSound = value; }
 
@@ -99,6 +103,7 @@ public class PlayerStateManager : MonoBehaviour
     public KeyCode ThrowWeaponKey { get => _throwWeaponKey; set => _throwWeaponKey = value; }
     public KeyCode DashKey { get => _dashKey; set => _dashKey = value; }
     public bool CanThrowWeapon { get => _canThrowWeapon; set => _canThrowWeapon = value; }
+    public GameObject CurrentWeapon { get => _currentWeapon; set => _currentWeapon = value; }
 
     // Start is called before the first frame update
     private void Awake()
@@ -216,9 +221,9 @@ public class PlayerStateManager : MonoBehaviour
     {
         StartCoroutine(CoolDownThrowWeapon());
         Vector3 weaponPosition = new Vector3(transform.position.x + _plusXWeapon * RaycastDirX, transform.position.y + _plusYWeapon , transform.position.z);
-        GameObject thisWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
+        CurrentWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
 
-        AxeController axeController = thisWeapon.GetComponent<AxeController>();
+        AxeController axeController = CurrentWeapon.GetComponent<AxeController>();
         axeController.SetDirection(RaycastDirX);
     }
 
@@ -233,5 +238,10 @@ public class PlayerStateManager : MonoBehaviour
     {
         DirX = Input.GetAxisRaw("Horizontal");
         Rb.velocity = new Vector2(DirX * Speed, Rb.velocity.y);
+    }
+
+    public void DestroyObject (GameObject objectToDestroy)
+    {
+        Destroy(objectToDestroy);
     }
 }
