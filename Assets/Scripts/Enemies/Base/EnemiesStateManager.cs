@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class EnemiesStateManager : MonoBehaviour
@@ -11,6 +12,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
     private SpriteRenderer _sprite;
     private Rigidbody2D _rb;
     private Animator _anim;
+    private Vector2 _firstPosition;
 
     [SerializeField] private GameObject _player;
     [SerializeField] private bool _flipObject = false;
@@ -23,6 +25,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
 
     [Header("Raycast")]
     [SerializeField] private float _distance = 5f;
+    [SerializeField] private float _angleRaycast = 0f;
     [SerializeField] private LayerMask _ignoreLayerSelf;
     private RaycastHit2D _raycast;
     private float _raycastDirX = 1;
@@ -41,6 +44,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
 
     public RaycastHit2D RaycastGround { get => _raycastGround; set => _raycastGround = value; }
     public float DistanceWallCheck { get => _distanceWallCheck; set => _distanceWallCheck = value; }
+    public float AngleRaycast { get => _angleRaycast; set => _angleRaycast = value; }
     public LayerMask Ground { get => _ground; set => _ground = value; }
     public LayerMask IgnoreLayer { get => _ignoreLayer; set => _ignoreLayer = value; }
     public RaycastHit2D Raycast { get => _raycast; set => _raycast = value; }
@@ -58,6 +62,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
     public int Health { get => _health; set => _health = value; }
     public bool FlipObject { get => _flipObject; set => _flipObject = value; }
     public GameObject Player { get => _player; set => _player = value; }
+    public Vector2 FirstPosition { get => _firstPosition; set => _firstPosition = value; }
 
     public virtual void Awake()
     {
@@ -66,6 +71,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
         Sprite = GetComponent<SpriteRenderer>();
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
+        FirstPosition = transform.position;
         if (FlipObject)
         {
             FlipXObject();
@@ -82,32 +88,25 @@ public abstract class EnemiesStateManager : MonoBehaviour
 
     public void WallCheck()
     {
-        if (RaycastDirX > 0)
-        {
-            RaycastGround = Physics2D.Raycast(Col.bounds.center, Vector2.right, DistanceWallCheck, Ground, ~IgnoreLayer);
-            Raycast = Physics2D.Raycast(Col.bounds.center, Vector2.right, Distance, ~IgnoreLayerSelf);
-            RaycastCheckGround();
-        }
-        else if (RaycastDirX < 0)
-        {
-            RaycastGround = Physics2D.Raycast(Col.bounds.center, Vector2.left, DistanceWallCheck, Ground, ~IgnoreLayer);
-            Raycast = Physics2D.Raycast(Col.bounds.center, Vector2.left, Distance, ~IgnoreLayerSelf);
-            RaycastCheckGround();
-        }
+        Vector2 rayDirection;
+        rayDirection = (RaycastDirX > 0) ? Vector2.right : Vector2.left;
+        RaycastGround = Physics2D.Raycast(Col.bounds.center, rayDirection, DistanceWallCheck, ~IgnoreLayer);
+        RaycastCheckGround();
     }
-
     public void PlayerCheck()
     {
-        if (RaycastDirX > 0)
+        Vector2 rayDirection;
+        if (AngleRaycast == 0)
         {
-            Raycast = Physics2D.Raycast(Col.bounds.center, Vector2.right, Distance, ~IgnoreLayerSelf);
-            RaycastCheckPlayer();
+            rayDirection = (RaycastDirX > 0) ? Vector2.right : Vector2.left;
         }
-        else if (RaycastDirX < 0)
+        else
         {
-            Raycast = Physics2D.Raycast(Col.bounds.center, Vector2.left, Distance, ~IgnoreLayerSelf);
-            RaycastCheckPlayer();
+            rayDirection = Quaternion.Euler(0, 0, AngleRaycast) * Vector2.right;
         }
+        Raycast = Physics2D.Raycast(Col.bounds.center, rayDirection, Distance, ~IgnoreLayer);
+        RaycastCheckPlayer();
+        Debug.DrawLine(Col.bounds.center, Raycast.point, Color.white);
     }
     public void RaycastCheckGround()
     {
@@ -165,6 +164,22 @@ public abstract class EnemiesStateManager : MonoBehaviour
             return false;
         }
         return false;
+    }
+
+    public void LookAtFirstPosition()
+    {
+        if (FirstPosition != null)
+        {
+            float distanceToFirstPosition = transform.position.x - FirstPosition.x;
+            if(distanceToFirstPosition > 0)
+            {
+                Sprite.flipX = false;
+            }
+            else
+            {
+                Sprite.flipX = true;
+            }
+        }
     }
 
     public void LookAtPlayer()

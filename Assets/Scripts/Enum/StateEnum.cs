@@ -20,5 +20,7 @@ public class StateEnum
 
     public enum ENhismState {nonSpikes, spikesIn, spikes, spikesOut};
 
-    public enum EChameleonState {idle, walk, attack};    
+    public enum EChameleonState {idle, walk, attack};
+
+    public enum EBatState {idle, cellingOut, attack, cellingIn};
 }

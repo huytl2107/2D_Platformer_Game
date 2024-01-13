@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7834106718092780730}
   - component: {fileID: 7834106718092780731}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LeftRaycast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,9 @@ MonoBehaviour:
   right: 0
   rayDirectionAngle: -135
   seePlayer: 0
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7834106718852912893
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,12 +63,11 @@ GameObject:
   - component: {fileID: 7834106718852912889}
   - component: {fileID: 7834106718852912888}
   - component: {fileID: 7834106718852912891}
-  - component: {fileID: 7834106718852912890}
   - component: {fileID: 7834106718852912884}
-  - component: {fileID: 7834106718852912887}
-  m_Layer: 0
+  - component: {fileID: 7103175341987691042}
+  m_Layer: 2
   m_Name: Bat
-  m_TagString: StrongEnemies
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,7 +132,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 8538975791002790759, guid: 17f1500d499e1e546814f4f32624b47e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -186,28 +188,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7834106718852912890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7834106718852912893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e902dc19556fcee4aac11609f12f21ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootRaycast: {fileID: 0}
-  leftRaycast: {fileID: 7834106718092780731}
-  rightRaycast: {fileID: 7834106719368408341}
-  player: {fileID: 0}
-  shootSound: {fileID: 0}
-  speed: 3
-  bullet: {fileID: 0}
-  plusXBullet: 0
-  plusYBullet: 0
-  nest: {fileID: 0}
 --- !u!95 &7834106718852912884
 Animator:
   serializedVersion: 4
@@ -228,7 +208,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7834106718852912887
+--- !u!114 &7103175341987691042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,9 +217,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 7834106718852912893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afcda279bbfb45340b7693c2c9a305d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 070d93d95dc512a478ec267a1bf1b853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 7293869960212836654, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
+  _flipObject: 0
+  _walkSpeed: 3
+  _health: 0
+  _distance: 10
+  _angleRaycast: -135
+  _ignoreLayerSelf:
+    serializedVersion: 2
+    m_Bits: 4
+  _distanceWallCheck: 2
+  _ground:
+    serializedVersion: 2
+    m_Bits: 64
+  _ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 4
 --- !u!1 &7834106719368408343
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7834106719368408340}
   - component: {fileID: 7834106719368408341}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RightRaycast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,3 +284,6 @@ MonoBehaviour:
   right: 0
   rayDirectionAngle: -45
   seePlayer: 0
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0

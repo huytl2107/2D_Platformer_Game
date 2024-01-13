@@ -133,4 +133,26 @@ public class EnemiesStateFactory
         return new ChameleonAttackState(_context, this);
     }
 
+    //Bat
+    public EnemiesBaseState BatIdle()
+    {
+        return new BatIdleState(_context, this);
+    }
+    public EnemiesBaseState BatCellingOut()
+    {
+        return new BatCellingOutState(_context, this);
+    }
+    public EnemiesBaseState BatAttack()
+    {
+        return new BatAttackState(_context, this);
+    }
+    public EnemiesBaseState BatCellingIn()
+    {
+        return new BatCellingInState(_context, this);
+    }
+    public EnemiesBaseState BatReturn()
+    {
+        return new BatReturnState(_context, this);
+    }
+
 }
