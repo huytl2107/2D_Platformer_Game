@@ -23,6 +23,7 @@ public class PlayerWallJumpState : PlayerBaseState
     {
         if (player.Rb.velocity.y < player.JumpForce / 2)
         {
+            player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce /2 );
             SwitchState(factory.Jump());
         }
         else if (player.RaycastDirX > 0)

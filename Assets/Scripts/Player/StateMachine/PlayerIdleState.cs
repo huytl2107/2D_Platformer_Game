@@ -24,6 +24,7 @@ public class PlayerIdleState : PlayerBaseState
         {
             if (Input.GetButtonDown("Jump"))
             {
+                player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
                 SwitchState(factory.Jump());
             }
             else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)

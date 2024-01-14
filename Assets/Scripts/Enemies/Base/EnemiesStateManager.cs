@@ -14,7 +14,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
     private Animator _anim;
     private Vector2 _firstPosition;
 
-    [SerializeField] private GameObject _player;
+    private  PlayerStateManager _player;
     [SerializeField] private bool _flipObject = false;
 
     [Header("Speed")]
@@ -61,7 +61,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
     public bool SeeGround { get => _seeGround; set => _seeGround = value; }
     public int Health { get => _health; set => _health = value; }
     public bool FlipObject { get => _flipObject; set => _flipObject = value; }
-    public GameObject Player { get => _player; set => _player = value; }
+    public PlayerStateManager Player { get => _player; set => _player = value; }
     public Vector2 FirstPosition { get => _firstPosition; set => _firstPosition = value; }
 
     public virtual void Awake()
@@ -72,6 +72,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
         FirstPosition = transform.position;
+        Player = FindObjectOfType<PlayerStateManager>();
         if (FlipObject)
         {
             FlipXObject();

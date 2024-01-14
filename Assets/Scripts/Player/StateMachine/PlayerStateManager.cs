@@ -100,6 +100,7 @@ public class PlayerStateManager : MonoBehaviour
         Col = GetComponent<BoxCollider2D>();
         Anim = GetComponent<Animator>();
         
+        PlayerHealthController.Instane.UpdatePlayerHealthUI();
     }
 
     void Start()
