@@ -217,11 +217,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cf1c340d121f34881d7e7e84ab32ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7293869960212836654, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
   _flipObject: 1
   _walkSpeed: 3
   _health: 0
-  _distance: 5
+  _distance: 10
+  _angleRaycast: 0
   _ignoreLayerSelf:
     serializedVersion: 2
     m_Bits: 4

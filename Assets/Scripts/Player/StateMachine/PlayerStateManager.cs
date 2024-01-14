@@ -49,7 +49,7 @@ public class PlayerStateManager : MonoBehaviour
     [Header("ItemCollector")]
     [SerializeField] private Text _fruitText;
     private int _fruitNumb = 0;
-    
+
     [Header("Button")]
     [SerializeField] private KeyCode _throwWeaponKey = KeyCode.J;
     [SerializeField] private KeyCode _dashKey = KeyCode.LeftShift;
@@ -81,10 +81,10 @@ public class PlayerStateManager : MonoBehaviour
     public bool CanDash { get => _canDash; set => _canDash = value; }
     public bool IsDashing { get => _isDashing; set => _isDashing = value; }
     public float DashForce { get => _dashForce; set => _dashForce = value; }
-    
+
     public PlayerBaseState CurrentState { get => _currentState; set => _currentState = value; }
     public PlayerStateFactory State { get => _state; set => _state = value; }
-    
+
     public KeyCode ThrowWeaponKey { get => _throwWeaponKey; set => _throwWeaponKey = value; }
     public KeyCode DashKey { get => _dashKey; set => _dashKey = value; }
     public bool CanThrowWeapon { get => _canThrowWeapon; set => _canThrowWeapon = value; }
@@ -99,14 +99,14 @@ public class PlayerStateManager : MonoBehaviour
         Sprite = GetComponent<SpriteRenderer>();
         Col = GetComponent<BoxCollider2D>();
         Anim = GetComponent<Animator>();
-        
-        PlayerHealthController.Instane.UpdatePlayerHealthUI();
+
     }
 
     void Start()
     {
         CurrentState = State.Idle();
         CurrentState.EnterState();
+        PlayerHealthController.Instane.UpdatePlayerHealthUI();
     }
 
     // Update is called once per frame
@@ -116,25 +116,26 @@ public class PlayerStateManager : MonoBehaviour
         CurrentState.UpdateState();
     }
 
-    private void OnCollisionEnter2D(Collision2D other) 
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Trap"))
+        if (other.gameObject.CompareTag("Trap"))
         {
             CurrentState = State.GotHit();
             CurrentState.EnterState();
-        }    
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Apple"))
+        if (other.gameObject.CompareTag("Apple"))
         {
             _fruitNumb += 1;
             _fruitText.text = "Fruit: " + _fruitNumb;
             Destroy(other.gameObject);
         }
-        if(other.gameObject.CompareTag("Enemies"))
+        if (other.gameObject.CompareTag("Enemies"))
         {
+            Rb.velocity = new Vector2(Rb.velocity.x, JumpForce);
             CurrentState = State.Jump();
             CurrentState.EnterState();
         }
@@ -198,11 +199,17 @@ public class PlayerStateManager : MonoBehaviour
     public void ThrowAxe()
     {
         StartCoroutine(CoolDownThrowWeapon());
-        Vector3 weaponPosition = new Vector3(transform.position.x + _plusXWeapon * RaycastDirX, transform.position.y + _plusYWeapon , transform.position.z);
-        CurrentWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
+        Vector3 weaponPosition = new Vector3(transform.position.x + _plusXWeapon * RaycastDirX, transform.position.y + _plusYWeapon, transform.position.z);
+        //CurrentWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
 
-        AxeController axeController = CurrentWeapon.GetComponent<AxeController>();
-        axeController.SetDirection(RaycastDirX);
+        GameObject bullet = ObjectPool.Instance.GetPoolObject();
+        if (bullet != null)
+        {
+            AxeController axeController = bullet.GetComponent<AxeController>();
+            axeController.SetDirection(RaycastDirX);
+            bullet.transform.position = weaponPosition;
+            bullet.SetActive(true);
+        }
     }
 
     public IEnumerator CoolDownThrowWeapon()
@@ -218,7 +225,7 @@ public class PlayerStateManager : MonoBehaviour
         Rb.velocity = new Vector2(DirX * Speed, Rb.velocity.y);
     }
 
-    public void DestroyObject (GameObject objectToDestroy)
+    public void DestroyObject(GameObject objectToDestroy)
     {
         Destroy(objectToDestroy);
     }

@@ -24,6 +24,9 @@ public class PlayerGotHitState : PlayerBaseState
             player.GotHitSound.Play();
             //Transition từ AnyState, tắt Can transition to self để không treo ở frame đàu.
             player.Anim.SetBool("GotHit", true);
+
+            player.Rb.velocity = new Vector2(0f,0f);
+            player.Rb.gravityScale = 12f;
             player.Rb.AddForce(Vector2.up * player.JumpForce/1.5f, ForceMode2D.Impulse);
             player.StartCoroutine(GotHit());
             PlayerHealthController.Instane.UpdatePlayerHealthUI();
@@ -70,6 +73,6 @@ public class PlayerGotHitState : PlayerBaseState
 
     public override void ExitState()
     {
-
+        player.Rb.gravityScale = 9f;
     }
 }

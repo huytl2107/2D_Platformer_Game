@@ -24,6 +24,7 @@ public class PlayerHealthController : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Awake of PlayerHealthController");
         //Đảm bảo chỉ có Duy nhất 1 Singleton cho gameObject;
         if (Instane == null)
         {

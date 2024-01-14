@@ -13,6 +13,7 @@ public class PlantAttackState : EnemiesAttackState
     {
         base.EnterState();
         enemy.Anim.SetInteger("State", (int)StateEnum.EPlantState.attack);
+        enemy.StartCoroutine(SwitchToIdleState());
     }
 
     public override void UpdateState()
@@ -22,9 +23,13 @@ public class PlantAttackState : EnemiesAttackState
     }
     public override void CheckSwitchState()
     {
-        if(!enemy.SeePlayer)
-        {
-            SwitchState(factory.PlantIdle());
-        }
+
     }
+
+    private IEnumerator SwitchToIdleState()
+    {
+        yield return new WaitForSeconds(1f);
+        SwitchState(factory.PlantIdle());
+    }
+
 }
