@@ -46,13 +46,6 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Sound Effect")]
     [SerializeField] private AudioSource _gotHitSound;
 
-    [Header("UI Player Health")]
-    [SerializeField] private Image _head1;
-    [SerializeField] private Image _head2;
-    [SerializeField] private Image _head3;
-    [SerializeField] private Sprite _head;
-    [SerializeField] private Sprite _nullHead;
-
     [Header("ItemCollector")]
     [SerializeField] private Text _fruitText;
     private int _fruitNumb = 0;
@@ -66,7 +59,6 @@ public class PlayerStateManager : MonoBehaviour
     private bool _isDoubleJump;
     private RaycastHit2D _raycast;
     private bool _isSeeingGround = false;
-    private int _playerHealth = 3;
 
     public SpriteRenderer Sprite { get => _sprite; set => _sprite = value; }
     public Rigidbody2D Rb { get => _rb; set => _rb = value; }
@@ -89,14 +81,7 @@ public class PlayerStateManager : MonoBehaviour
     public bool CanDash { get => _canDash; set => _canDash = value; }
     public bool IsDashing { get => _isDashing; set => _isDashing = value; }
     public float DashForce { get => _dashForce; set => _dashForce = value; }
-    public int PlayerHealth { get => _playerHealth; set => _playerHealth = value; }
     
-    public Image Head1 { get => _head1; set => _head1 = value; }
-    public Image Head2 { get => _head2; set => _head2 = value; }
-    public Image Head3 { get => _head3; set => _head3 = value; }
-    public Sprite Head { get => _head; set => _head = value; }
-    public Sprite NullHead { get => _nullHead; set => _nullHead = value; }
-
     public PlayerBaseState CurrentState { get => _currentState; set => _currentState = value; }
     public PlayerStateFactory State { get => _state; set => _state = value; }
     
@@ -115,13 +100,6 @@ public class PlayerStateManager : MonoBehaviour
         Col = GetComponent<BoxCollider2D>();
         Anim = GetComponent<Animator>();
         
-        AwakePlayerHealthUI();
-    }
-    private void AwakePlayerHealthUI()
-    {
-        Head1.sprite = Head;
-        Head2.sprite = Head;
-        Head3.sprite = Head;
     }
 
     void Start()
@@ -141,7 +119,6 @@ public class PlayerStateManager : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Trap"))
         {
-            PlayerHealth -=1;
             CurrentState = State.GotHit();
             CurrentState.EnterState();
         }    

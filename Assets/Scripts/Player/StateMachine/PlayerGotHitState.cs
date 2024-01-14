@@ -17,14 +17,16 @@ public class PlayerGotHitState : PlayerBaseState
 
     public override void EnterState()
     {
-        if (player.PlayerHealth > -1)
+        //Trừ máu Player ngay khi vào GotHitState rồi mới check If Else
+        PlayerHealthController.Instane.GotHit();
+        if (PlayerHealthController.Instane.PlayerHealth >= 0)
         {
             player.GotHitSound.Play();
             //Transition từ AnyState, tắt Can transition to self để không treo ở frame đàu.
             player.Anim.SetBool("GotHit", true);
             player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
             player.StartCoroutine(GotHit());
-            UpdatePlayerHealthUI();
+            PlayerHealthController.Instane.UpdatePlayerHealthUI();
         }
         else
         {
@@ -37,16 +39,13 @@ public class PlayerGotHitState : PlayerBaseState
     public override void UpdateState()
     {
         CheckSwitchState();
+        player.Rb.velocity = new Vector2(-player.RaycastDirX * player.Speed, player.Rb.velocity.y);
     }
 
-    
+
     public override void CheckSwitchState()
     {
-        if (IsGottingHit)
-        {
-            player.Rb.velocity = new Vector2(-player.RaycastDirX * player.Speed, player.Rb.velocity.y);
-        }
-        else if (player.PlayerHealth > -1)
+        if (!IsGottingHit && PlayerHealthController.Instane.PlayerHealth >= 0)
         {
             SwitchState(factory.Fall());
         }
@@ -64,34 +63,9 @@ public class PlayerGotHitState : PlayerBaseState
         Debug.Log("Hello from IEnumerator");
         //Chờ 1s rồi restart level
         yield return new WaitForSeconds(1f);
+        //Vì singleton không load lại nên cần trả máu Player về 3 trước khi restart level;
+        PlayerHealthController.Instane.PlayerHealth = 3;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void UpdatePlayerHealthUI()
-    {
-        switch (player.PlayerHealth)
-        {
-            case 3:
-                player.Head1.sprite = player.Head;
-                player.Head2.sprite = player.Head;
-                player.Head3.sprite = player.Head;
-                break;
-            case 2:
-                player.Head1.sprite = player.Head;
-                player.Head2.sprite = player.Head;
-                player.Head3.sprite = player.NullHead;
-                break;
-            case 1:
-                player.Head1.sprite = player.Head;
-                player.Head2.sprite = player.NullHead;
-                player.Head3.sprite = player.NullHead;
-                break;
-            case 0:
-                player.Head1.sprite = player.NullHead;
-                player.Head2.sprite = player.NullHead;
-                player.Head3.sprite = player.NullHead;
-                break;
-        }
     }
 
     public override void ExitState()
