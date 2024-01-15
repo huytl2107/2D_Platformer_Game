@@ -232,6 +232,8 @@ MonoBehaviour:
   _ignoreLayer:
     serializedVersion: 2
     m_Bits: 4
+  _plusXBullet: 1.7
+  _plusYBullet: 0.18
 --- !u!61 &6113451523886611534
 BoxCollider2D:
   m_ObjectHideFlags: 0

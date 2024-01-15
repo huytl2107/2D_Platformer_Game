@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public static ObjectPool Instance;
-    private List<GameObject> _poolObjects = new List<GameObject>();
-    [SerializeField] private int _amountToBool = 1;
-    [SerializeField] private GameObject _bullet;
-    private void Awake() 
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
+    protected List<GameObject> _poolObjects = new List<GameObject>();
+    [SerializeField] protected int _amountToBool = 1;
+    [SerializeField] protected GameObject _bullet;
 
-    void Start()
+
+    protected void Start()
     {
         for (int i = 0; i<_amountToBool; i++)
         {

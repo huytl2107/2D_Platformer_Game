@@ -38,6 +38,10 @@ public abstract class EnemiesStateManager : MonoBehaviour
     private RaycastHit2D _raycastGround;
     private bool _seeGround = false;
 
+    [Header("Bullet")]
+    [SerializeField] private float _plusXBullet;
+    [SerializeField] private float _plusYBullet;
+
     public EnemiesBaseState CurrentState { get => _currentState; set => _currentState = value; }
 
     public float WalkSpeed { get => _walkSpeed; set => _walkSpeed = value; }
@@ -63,6 +67,8 @@ public abstract class EnemiesStateManager : MonoBehaviour
     public bool FlipObject { get => _flipObject; set => _flipObject = value; }
     public PlayerStateManager Player { get => _player; set => _player = value; }
     public Vector2 FirstPosition { get => _firstPosition; set => _firstPosition = value; }
+    public float PlusXBullet { get => _plusXBullet; set => _plusXBullet = value; }
+    public float PlusYBullet { get => _plusYBullet; set => _plusYBullet = value; }
 
     public virtual void Awake()
     {
@@ -208,4 +214,5 @@ public abstract class EnemiesStateManager : MonoBehaviour
             }
         }
     }
+
 }

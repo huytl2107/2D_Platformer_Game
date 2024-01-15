@@ -6,6 +6,8 @@ public class AxeController : MonoBehaviour
 {
 
     [SerializeField] private float speed = 1f;
+    [SerializeField] private float _rightAngle = -45;
+    [SerializeField] private float _leftAngle = 135;
     private SpriteRenderer sprite;
     private Rigidbody2D rb;
 
@@ -13,7 +15,7 @@ public class AxeController : MonoBehaviour
     public void SetDirection(float dir)
     {
         direction = dir;
-        transform.rotation = Quaternion.Euler(0, 0, (direction > 0) ? -45 : 135);
+        transform.rotation = Quaternion.Euler(0, 0, (direction > 0) ? _rightAngle : _leftAngle);
     }
 
     private void Awake()
@@ -29,7 +31,7 @@ public class AxeController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.name == "Player")
         {
             gameObject.SetActive(false);
         }

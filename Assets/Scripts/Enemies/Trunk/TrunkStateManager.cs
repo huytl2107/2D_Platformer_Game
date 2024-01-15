@@ -21,4 +21,18 @@ public class TrunkStateManager : EnemiesStateManager
         FlipXObjectIfSeeGround();
     }
 
+    public void Fire()
+    {
+        Vector3 weaponPosition = new Vector3(transform.position.x + PlusXBullet * RaycastDirX, transform.position.y + PlusYBullet, transform.position.z);
+        //CurrentWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
+
+        GameObject bullet = TrunkBulletPool.Instance.GetPoolObject();
+        if (bullet != null)
+        {
+            AxeController axeController = bullet.GetComponent<AxeController>();
+            axeController.SetDirection(RaycastDirX);
+            bullet.transform.position = weaponPosition;
+            bullet.SetActive(true);
+        }
+    }
 }

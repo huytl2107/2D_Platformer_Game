@@ -202,7 +202,7 @@ public class PlayerStateManager : MonoBehaviour
         Vector3 weaponPosition = new Vector3(transform.position.x + _plusXWeapon * RaycastDirX, transform.position.y + _plusYWeapon, transform.position.z);
         //CurrentWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
 
-        GameObject bullet = ObjectPool.Instance.GetPoolObject();
+        GameObject bullet = KunaiPool.Instance.GetPoolObject();
         if (bullet != null)
         {
             AxeController axeController = bullet.GetComponent<AxeController>();
