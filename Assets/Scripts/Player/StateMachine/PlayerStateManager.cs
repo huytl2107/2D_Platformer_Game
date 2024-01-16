@@ -59,6 +59,7 @@ public class PlayerStateManager : MonoBehaviour
     private bool _isDoubleJump;
     private RaycastHit2D _raycast;
     private bool _isSeeingGround = false;
+    private bool _cangotHit = true;
 
     public SpriteRenderer Sprite { get => _sprite; set => _sprite = value; }
     public Rigidbody2D Rb { get => _rb; set => _rb = value; }
@@ -118,7 +119,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Trap") || other.gameObject.CompareTag("Enemies"))
+        if (other.gameObject.CompareTag("Trap") || (other.gameObject.CompareTag("Enemies") && _cangotHit))
         {
             CurrentState = State.GotHit();
             CurrentState.EnterState();
@@ -127,19 +128,23 @@ public class PlayerStateManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        _cangotHit = false;
         if (other.gameObject.CompareTag("Apple"))
         {
             _fruitNumb += 1;
             _fruitText.text = "Fruit: " + _fruitNumb;
             Destroy(other.gameObject);
         }
-        if (other.gameObject.CompareTag("Enemies"))
+        else if (other.gameObject.CompareTag("Enemies"))
         {
             Rb.velocity = new Vector2 (Rb.velocity.x, 0f);
             Rb.velocity = new Vector2 (Rb.velocity.x, JumpForce);
             CurrentState = State.Jump();
             CurrentState.EnterState();
         }
+    }
+    private void OnTriggerExit2D(Collider2D other) {
+        _cangotHit = true;
     }
 
     public bool IsGrounded()
