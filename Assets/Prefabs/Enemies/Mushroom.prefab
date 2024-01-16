@@ -102,7 +102,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012545705, y: -0.4899848}
+  m_Offset: {x: -0.012545705, y: -0.56851315}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -113,7 +113,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3403137, y: 1.0200304}
+  m_Size: {x: 1.3403137, y: 0.8629737}
   m_EdgeRadius: 0
 --- !u!61 &764478960679008046
 BoxCollider2D:
@@ -128,7 +128,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009414434, y: 0.13686627}
+  m_Offset: {x: -0.001532793, y: -0.013424814}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -139,7 +139,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0342336, y: 0.16530716}
+  m_Size: {x: 1.2575583, y: 0.18563807}
   m_EdgeRadius: 0
 --- !u!95 &764478960679008047
 Animator:
@@ -194,11 +194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a19d700d3b00c48a61935b001ca3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 7293869960212836654, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
   _flipObject: 1
   _walkSpeed: 3
   _health: 0
   _distance: 5
+  _angleRaycast: 0
   _ignoreLayerSelf:
     serializedVersion: 2
     m_Bits: 0
@@ -209,3 +209,5 @@ MonoBehaviour:
   _ignoreLayer:
     serializedVersion: 2
     m_Bits: 1
+  _plusXBullet: 0
+  _plusYBullet: 0

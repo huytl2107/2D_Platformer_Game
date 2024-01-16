@@ -8,7 +8,7 @@ public class PlayerFallState : PlayerBaseState
 
     public override void EnterState()
     {
-        player.Rb.gravityScale = 12f;
+        player.Rb.gravityScale = 11f;
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.fall);
         player.Anim.SetBool("GotHit", false);
     }
@@ -18,6 +18,10 @@ public class PlayerFallState : PlayerBaseState
         player.CanMove();
         CheckSwitchState();
         PlayerStateManager.UpdateObjectDirX(player);
+        if(player.Rb.velocity.y <= -25f)
+        {
+            player.Rb.velocity = new Vector2(player.Rb.velocity.x, -25f);
+        }
     }
 
     public override void CheckSwitchState()

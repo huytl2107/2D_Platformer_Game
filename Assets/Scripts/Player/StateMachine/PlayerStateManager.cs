@@ -118,7 +118,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Trap"))
+        if (other.gameObject.CompareTag("Trap") || other.gameObject.CompareTag("Enemies"))
         {
             CurrentState = State.GotHit();
             CurrentState.EnterState();
@@ -135,7 +135,8 @@ public class PlayerStateManager : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Enemies"))
         {
-            Rb.velocity = new Vector2(Rb.velocity.x, JumpForce);
+            Rb.velocity = new Vector2 (Rb.velocity.x, 0f);
+            Rb.velocity = new Vector2 (Rb.velocity.x, JumpForce);
             CurrentState = State.Jump();
             CurrentState.EnterState();
         }
