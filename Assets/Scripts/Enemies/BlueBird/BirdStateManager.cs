@@ -16,4 +16,13 @@ public class BirdStateManager : EnemiesStateManager
         PlayerCheck();
         FlipXObjectIfSeeGround();
     }
+
+        private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "Player")
+        {
+            CurrentState = State.BirdGotHit();
+            CurrentState.EnterState();
+        }
+    }
 }

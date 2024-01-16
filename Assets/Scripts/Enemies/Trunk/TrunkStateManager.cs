@@ -35,4 +35,13 @@ public class TrunkStateManager : EnemiesStateManager
             bullet.SetActive(true);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "Player")
+        {
+            CurrentState = State.TrunkGotHit();
+            CurrentState.EnterState();
+        }
+    }
 }

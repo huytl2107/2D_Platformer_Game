@@ -10,20 +10,18 @@ public class RadishGotHitState : EnemiesGotHitState
 
     public override void EnterState()
     {
-        base.EnterState();
-        enemy.Anim.SetInteger("State", (int)StateEnum.ERadishState.gotHit);
-        enemy.Rb.bodyType = RigidbodyType2D.Dynamic;
-        enemy.StartCoroutine(SwitchToIdleState());
-    }
-
-    public override void CheckSwitchState()
-    {
-        base.CheckSwitchState();
-    }
-
-    private IEnumerator SwitchToIdleState()
-    {
-        yield return new WaitForSeconds(1f);
-        SwitchState(factory.RadishIdle());
+        enemy.Health -=1;
+        if (enemy.Health < 0)
+        {
+            enemy.Anim.SetTrigger("Death");
+            enemy.Rb.AddForce(Vector2.up * 4f, ForceMode2D.Impulse);
+            enemy.EnemiesDeath();
+        }
+        else
+        {
+            enemy.Anim.SetInteger("State", (int)StateEnum.ERadishState.gotHit);
+            enemy.Rb.bodyType = RigidbodyType2D.Dynamic;
+            enemy.StartCoroutine(SwitchToIdleState());
+        }
     }
 }

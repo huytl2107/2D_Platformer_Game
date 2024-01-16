@@ -19,6 +19,11 @@ public class EnemiesStateFactory
         return new MushRoomWalkState(_context, this);
     }
 
+    public EnemiesBaseState MushRoomGotHit()
+    {
+        return new MushroomGotHitState(_context, this);
+    }
+
     //Plant
     public EnemiesBaseState PlantIdle()
     {
@@ -38,6 +43,10 @@ public class EnemiesStateFactory
     {
         return new PigAttackState(_context, this);
     }
+    public EnemiesBaseState PigGotHit()
+    {
+        return new PigGotHitState(_context, this);
+    }
 
     //Rino
     public EnemiesBaseState RinoIdle()
@@ -48,6 +57,14 @@ public class EnemiesStateFactory
     {
         return new RinoAttackState(_context, this);
     }
+    public EnemiesBaseState RinoHitWall()
+    {
+        return new RinoHitWallState(_context, this);
+    }
+    public EnemiesBaseState RinoGotHit()
+    {
+        return new RinoGotHitState(_context, this);
+    }
 
     //Trunk
     public EnemiesBaseState TrunkWalk()
@@ -57,6 +74,10 @@ public class EnemiesStateFactory
     public EnemiesBaseState TrunkAttack()
     {
         return new TrunkAttackState(_context, this);
+    }
+    public EnemiesBaseState TrunkGotHit()
+    {
+        return new TrunkGotHitState(_context, this);
     }
 
     //Radish
@@ -86,6 +107,10 @@ public class EnemiesStateFactory
     {
         return new BirdAttackState(_context, this);
     }
+    public EnemiesBaseState BirdGotHit()
+    {
+        return new BirdGotHitState(_context, this);
+    }
 
     //Bee
     public EnemiesBaseState BeeIdle()
@@ -99,6 +124,10 @@ public class EnemiesStateFactory
     public EnemiesBaseState BeeWalk()
     {
         return new BeeWalkState(_context, this);
+    }
+    public EnemiesBaseState BeeGotHit()
+    {
+        return new BeeGotHitState(_context, this);
     }
 
     //Nhism
@@ -117,6 +146,10 @@ public class EnemiesStateFactory
     public EnemiesBaseState NhismSpikeOut()
     {
         return new NhimsSpikesOutState(_context, this);
+    }
+    public EnemiesBaseState NhismGotHit()
+    {
+        return new NhismGotHitState(_context, this);
     }
     
     //Chameleon
@@ -153,6 +186,10 @@ public class EnemiesStateFactory
     public EnemiesBaseState BatReturn()
     {
         return new BatReturnState(_context, this);
+    }
+    public EnemiesBaseState BatGotHit()
+    {
+        return new BatGotHitState(_context, this);
     }
 
 }

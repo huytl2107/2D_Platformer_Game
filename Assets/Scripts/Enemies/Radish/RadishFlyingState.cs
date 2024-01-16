@@ -35,10 +35,6 @@ public class RadishFlyingState : EnemiesIdleState
     public override void CheckSwitchState()
     {
         base.CheckSwitchState();
-        if(enemy.Health == 0)
-        {
-            SwitchState(factory.RadishGotHit());
-        }
     }
 
     private IEnumerator Flying()

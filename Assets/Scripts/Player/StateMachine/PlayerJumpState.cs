@@ -8,7 +8,8 @@ public class PlayerJumpState : PlayerBaseState
     public PlayerJumpState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
     }
-
+    //Jump force = 30f;
+    //OriginialGravity = 9f;
     public override void EnterState()
     {
         player.IsDoubleJump = false;

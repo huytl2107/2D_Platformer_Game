@@ -215,4 +215,14 @@ public abstract class EnemiesStateManager : MonoBehaviour
         }
     }
 
+    public void EnemiesDeath()
+    {
+        StartCoroutine(DestroyEnemies());
+    }
+
+    private IEnumerator DestroyEnemies()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+    }
 }

@@ -15,4 +15,13 @@ public class NhismStateManager : EnemiesStateManager
         base.Update();
         FlipXObjectIfSeeGround();
     }
+
+        private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "Player")
+        {
+            CurrentState = State.NhismGotHit();
+            CurrentState.EnterState();
+        }
+    }
 }

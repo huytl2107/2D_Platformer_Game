@@ -17,6 +17,7 @@ public class RinoAttackState : EnemiesAttackState
     public override void UpdateState()
     {
         base.UpdateState();
+        enemy.Rb.velocity = new Vector2(enemy.WalkSpeed * 2.5f * enemy.RaycastDirX, enemy.Rb.velocity.y);
     }
 
     public override void CheckSwitchState()
@@ -24,11 +25,7 @@ public class RinoAttackState : EnemiesAttackState
         base.CheckSwitchState();
         if(enemy.SeeGround)
         {
-
-        }
-        else
-        {
-            enemy.Rb.velocity = new Vector2(enemy.WalkSpeed * 2.5f * enemy.RaycastDirX, enemy.Rb.velocity.y);
+            SwitchState(factory.RinoHitWall());
         }
     }
 }

@@ -9,7 +9,23 @@ public class EnemiesGotHitState : EnemiesBaseState
     }
     public override void EnterState()
     {
-        Debug.Log("Hello from Got Hit State");
+        enemy.Health -=1;
+        if (enemy.Health < 0)
+        {
+            enemy.Anim.SetTrigger("Death");
+            enemy.Rb.AddForce(Vector2.up * 4f, ForceMode2D.Impulse);
+            enemy.EnemiesDeath();
+        }
+        else
+        {
+            
+        }
+    }
+
+    protected IEnumerator SwitchToIdleState()
+    {
+        yield return new WaitForSeconds(1f);
+        SwitchState(factory.RadishIdle());
     }
 
     public override void ExitState()

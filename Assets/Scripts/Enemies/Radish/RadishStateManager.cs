@@ -29,7 +29,8 @@ public class RadishStateManager : EnemiesStateManager
     {
         if(other.gameObject.name == "Player")
         {
-            Health -=1;
+            CurrentState = State.RadishGotHit();
+            CurrentState.EnterState();
         }
     }
 }

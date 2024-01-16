@@ -8,6 +8,12 @@ public class RinoIdleState : EnemiesIdleState
     {
     }
 
+    public override void EnterState()
+    {
+        base.EnterState();
+        enemy.Anim.SetInteger("State", (int)StateEnum.ERinoState.idle);
+    }
+
     public override void CheckSwitchState()
     {
         base.CheckSwitchState();

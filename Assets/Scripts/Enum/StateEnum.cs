@@ -10,7 +10,7 @@ public class StateEnum
 
     public enum EPigState {walk, attack};
 
-    public enum ERinoState {idle, attack};
+    public enum ERinoState {idle, attack, hitWall};
 
     public enum ETrunkState {walk, attack, coolDownAttack};
 
