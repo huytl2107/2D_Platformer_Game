@@ -149,7 +149,8 @@ public class PlayerStateManager : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics2D.BoxCast(Col.bounds.center, Col.bounds.size, 0f, Vector2.down, .1f, Ground);
+        // CheckGround sâu 1 tí để khi xuống dốc có thể nhảy
+        return Physics2D.BoxCast(Col.bounds.center, Col.bounds.size, 0f, Vector2.down, .4f, Ground);
     }
     public static void UpdateObjectDirX(PlayerStateManager player)
     {

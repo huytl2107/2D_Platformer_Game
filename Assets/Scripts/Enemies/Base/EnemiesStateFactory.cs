@@ -192,4 +192,18 @@ public class EnemiesStateFactory
         return new BatGotHitState(_context, this);
     }
 
+    //Chicken
+    public EnemiesBaseState ChickenIdle()
+    {
+        return new ChickenIdleState(_context, this);
+    }
+    public EnemiesBaseState ChickenRun()
+    {
+        return new ChickenRunState(_context, this);
+    }
+    public EnemiesBaseState ChickenGotHit()
+    {
+        return new ChickenGotHitState(_context, this);
+    }
+
 }

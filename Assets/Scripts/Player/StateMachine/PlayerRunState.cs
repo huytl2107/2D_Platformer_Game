@@ -46,7 +46,7 @@ public class PlayerRunState : PlayerBaseState
                 SwitchState(factory.Idle());
             }
         }
-        else if (player.Rb.velocity.y < .1f)
+        else if (player.Rb.velocity.y < -10f)
         {
             SwitchState(factory.Fall());
         }
