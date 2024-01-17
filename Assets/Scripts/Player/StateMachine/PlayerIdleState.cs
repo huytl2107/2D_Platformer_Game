@@ -24,7 +24,7 @@ public class PlayerIdleState : PlayerBaseState
         {
             if (Input.GetButtonDown("Jump"))
             {
-                player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
+                player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
                 SwitchState(factory.Jump());
             }
             else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
@@ -53,6 +53,11 @@ public class PlayerIdleState : PlayerBaseState
     }
 
     public override void ExitState()
+    {
+
+    }
+
+    public override void FixedUpdateState()
     {
 
     }

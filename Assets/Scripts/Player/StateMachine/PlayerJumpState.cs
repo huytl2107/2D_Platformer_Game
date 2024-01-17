@@ -24,6 +24,11 @@ public class PlayerJumpState : PlayerBaseState
         PlayerStateManager.UpdateObjectDirX(player);
     }
 
+    public override void FixedUpdateState()
+    {
+        player.CanMove();
+    }
+
     public override void CheckSwitchState()
     {
         if (Input.GetKeyDown(player.DashKey) && player.CanDash)

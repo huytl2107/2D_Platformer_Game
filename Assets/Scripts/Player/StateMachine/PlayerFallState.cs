@@ -18,10 +18,15 @@ public class PlayerFallState : PlayerBaseState
         player.CanMove();
         CheckSwitchState();
         PlayerStateManager.UpdateObjectDirX(player);
-        if(player.Rb.velocity.y <= -25f)
+        if (player.Rb.velocity.y <= -25f)
         {
             player.Rb.velocity = new Vector2(player.Rb.velocity.x, -25f);
         }
+    }
+    
+    public override void FixedUpdateState()
+    {
+        player.CanMove();
     }
 
     public override void CheckSwitchState()

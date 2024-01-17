@@ -18,6 +18,11 @@ public class PlayerDashState : PlayerBaseState
         CheckSwitchState();
     }
 
+    public override void FixedUpdateState()
+    {
+
+    }
+
     public override void CheckSwitchState()
     {
         player.DirX = Input.GetAxisRaw("Horizontal");

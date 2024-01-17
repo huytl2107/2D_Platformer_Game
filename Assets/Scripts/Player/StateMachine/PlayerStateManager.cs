@@ -103,7 +103,7 @@ public class PlayerStateManager : MonoBehaviour
 
     }
 
-    void Start()
+    private void Start()
     {
         CurrentState = State.Idle();
         CurrentState.EnterState();
@@ -111,10 +111,15 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         WallCheck();
         CurrentState.UpdateState();
+    }
+
+    private void FixedUpdate() 
+    {
+        CurrentState.FixedUpdateState();
     }
 
     private void OnCollisionEnter2D(Collision2D other)

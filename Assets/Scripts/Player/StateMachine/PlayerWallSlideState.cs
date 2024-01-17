@@ -16,8 +16,12 @@ public class PlayerWallSlideState : PlayerBaseState
     
     public override void UpdateState()
     {
-        player.Rb.velocity = new Vector2(0f, player.Rb.velocity.y / 2.5f);
         CheckSwitchState();
+    }
+
+    public override void FixedUpdateState()
+    {
+        player.Rb.velocity = new Vector2(0f, player.Rb.velocity.y / 2.5f);
     }
 
     public override void CheckSwitchState()

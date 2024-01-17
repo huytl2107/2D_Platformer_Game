@@ -10,7 +10,7 @@ public class PlayerWallJumpState : PlayerBaseState
     public override void EnterState()
     {
         player.IsDoubleJump = false;
-        player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
+        player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.wallJump);
     }
 
@@ -19,20 +19,17 @@ public class PlayerWallJumpState : PlayerBaseState
         CheckSwitchState();
     }
 
+    public override void FixedUpdateState()
+    {
+        player.Rb.velocity = new Vector2(player.Speed * -player.RaycastDirX, player.Rb.velocity.y);
+    }
+
     public override void CheckSwitchState()
     {
         if (player.Rb.velocity.y < player.JumpForce / 2)
         {
-            player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce /2 );
+            player.Rb.AddForce(Vector2.up * player.JumpForce/2, ForceMode2D.Impulse);
             SwitchState(factory.Jump());
-        }
-        else if (player.RaycastDirX > 0)
-        {
-            player.Rb.velocity = new Vector2(-player.Speed, player.Rb.velocity.y);
-        }
-        else
-        {
-            player.Rb.velocity = new Vector2(player.Speed, player.Rb.velocity.y);
         }
     }
 

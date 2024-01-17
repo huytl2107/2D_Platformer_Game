@@ -75,4 +75,9 @@ public class PlayerGotHitState : PlayerBaseState
     {
         player.Rb.gravityScale = 9f;
     }
+
+    public override void FixedUpdateState()
+    {
+
+    }
 }

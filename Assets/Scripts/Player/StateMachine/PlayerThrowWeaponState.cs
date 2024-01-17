@@ -48,4 +48,9 @@ public class PlayerThrowWeaponState : PlayerBaseState
             SwitchState(factory.Fall());
         }
     }
+
+    public override void FixedUpdateState()
+    {
+        throw new System.NotImplementedException();
+    }
 }

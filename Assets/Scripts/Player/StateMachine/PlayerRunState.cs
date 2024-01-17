@@ -13,9 +13,13 @@ public class PlayerRunState : PlayerBaseState
 
     public override void UpdateState()
     {
-        player.CanMove();
         CheckSwitchState();
         PlayerStateManager.UpdateObjectDirX(player);
+    }
+
+    public override void FixedUpdateState()
+    {
+        player.CanMove();
     }
 
     public override void CheckSwitchState()
@@ -24,7 +28,8 @@ public class PlayerRunState : PlayerBaseState
         {
             if (Input.GetButtonDown("Jump"))
             {
-                player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
+                //player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
+                player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
                 SwitchState(factory.Jump());
             }
             else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
