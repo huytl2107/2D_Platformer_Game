@@ -228,4 +228,21 @@ public class EnemiesStateFactory
         return new DuckGotHitState(_context, this);
     }
 
+    //Bunny
+    public EnemiesBaseState BunnyIdle()
+    {
+        return new BunnyIdleState(_context, this);
+    }
+    public EnemiesBaseState BunnyRun()
+    {
+        return new BunnyRunState(_context, this);
+    }
+    public EnemiesBaseState BunnyJump()
+    {
+        return new BunnyJumpState(_context, this);
+    }
+    public EnemiesBaseState BunnyFall()
+    {
+        return new BunnyFallState(_context, this);
+    }
 }

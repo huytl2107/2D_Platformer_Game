@@ -163,14 +163,19 @@ public abstract class EnemiesStateManager : MonoBehaviour
     {
         if (Player != null)
         {
-            float distancetoPlayer = transform.position.x - Player.transform.position.x;
-            if (distancetoPlayer > 0)
+            
+            if (DistanceToPlayer() > 0)
             {
                 return true;
             }
             return false;
         }
         return false;
+    }
+
+    public float DistanceToPlayer()
+    {
+        return transform.position.x - Player.transform.position.x;
     }
 
     public void LookAtFirstPosition()
