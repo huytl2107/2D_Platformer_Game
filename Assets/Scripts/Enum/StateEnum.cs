@@ -25,4 +25,6 @@ public class StateEnum
     public enum EBatState {idle, cellingOut, attack, cellingIn};
 
     public enum EChickenState {idle, run, gotHit};
+
+    public enum EDuckState {idle, run, jump, fall, gotHit};
 }

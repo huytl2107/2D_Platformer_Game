@@ -206,4 +206,26 @@ public class EnemiesStateFactory
         return new ChickenGotHitState(_context, this);
     }
 
+    //Duck
+    public EnemiesBaseState DuckIdle()
+    {
+        return new DuckIdleState(_context, this);
+    }
+    public EnemiesBaseState DuckRun()
+    {
+        return new DuckRunState(_context, this);
+    }
+    public EnemiesBaseState DuckJump()
+    {
+        return new DuckJumpState(_context, this);
+    }
+    public EnemiesBaseState DuckFall()
+    {
+        return new DuckFallState(_context, this);
+    }
+    public EnemiesBaseState DuckGotHit()
+    {
+        return new DuckGotHitState(_context, this);
+    }
+
 }
