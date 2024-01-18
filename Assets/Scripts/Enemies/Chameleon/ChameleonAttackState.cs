@@ -11,6 +11,7 @@ public class ChameleonAttackState : EnemiesAttackState
     public override void EnterState()
     {
         base.EnterState();
+        enemy.Rb.velocity = new Vector2(0f, enemy.Rb.velocity.y);
         enemy.Anim.SetInteger("State", (int)StateEnum.EChameleonState.attack);
         enemy.StartCoroutine(SwithToIdleState());
     }
