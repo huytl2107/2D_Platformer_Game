@@ -23,7 +23,7 @@ public class BunnyRunState : EnemiesWalkState
     public override void CheckSwitchState()
     {
         base.CheckSwitchState();
-        if(Math.Abs(enemy.DistanceToPlayer()) < 4f)
+        if(Math.Abs(enemy.DistanceToPlayer()) < 3f)
         {
             SwitchState(factory.BunnyJump());
         }

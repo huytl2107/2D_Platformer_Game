@@ -17,4 +17,12 @@ public class BunnyStateManager : EnemiesStateManager
         PlayerCheck();
         HandleGroundDetection();
     }
+
+    public override void HandleGroundDetection()
+    {
+        if (SeeGround)
+        {
+            FlipXObject();
+        }
+    }
 }

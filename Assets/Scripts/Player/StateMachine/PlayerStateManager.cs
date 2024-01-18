@@ -133,19 +133,19 @@ public class PlayerStateManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _cangotHit = false;
-        if (other.gameObject.CompareTag("Apple"))
+        if (other.gameObject.CompareTag("Enemies"))
         {
-            _fruitNumb += 1;
-            _fruitText.text = "Fruit: " + _fruitNumb;
-            Destroy(other.gameObject);
-        }
-        else if (other.gameObject.CompareTag("Enemies"))
-        {
+            _cangotHit = false;
             Rb.velocity = new Vector2 (Rb.velocity.x, 0f);
             Rb.velocity = new Vector2 (Rb.velocity.x, JumpForce);
             CurrentState = State.Jump();
             CurrentState.EnterState();
+        }
+        else if (other.gameObject.CompareTag("Apple"))
+        {
+            _fruitNumb += 1;
+            _fruitText.text = "Fruit: " + _fruitNumb;
+            Destroy(other.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D other) {

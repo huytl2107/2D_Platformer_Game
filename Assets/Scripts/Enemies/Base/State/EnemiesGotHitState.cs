@@ -12,8 +12,10 @@ public class EnemiesGotHitState : EnemiesBaseState
         enemy.Health -=1;
         if (enemy.Health < 0)
         {
+            enemy.Col.isTrigger = true;
             enemy.Anim.SetTrigger("Death");
-            enemy.Rb.AddForce(Vector2.up * 4f, ForceMode2D.Impulse);
+            enemy.Rb.gravityScale = 10f;
+            enemy.Rb.AddForce(Vector2.up * 20f, ForceMode2D.Impulse);
             enemy.EnemiesDeath();
         }
         else
@@ -36,6 +38,7 @@ public class EnemiesGotHitState : EnemiesBaseState
     public override void UpdateState()
     {
         CheckSwitchState();
+        enemy.Rb.velocity = new Vector2(enemy.WalkSpeed * enemy.RaycastDirX , enemy.Rb.velocity.y); 
     }
 
     public override void CheckSwitchState()

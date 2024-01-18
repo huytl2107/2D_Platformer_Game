@@ -10,14 +10,14 @@ public class RinoHitWallState : EnemiesIdleState
 
     public override void EnterState()
     {
-        base.EnterState();
         enemy.Anim.SetInteger("State", (int)StateEnum.ERinoState.hitWall);
+        enemy.Rb.AddForce(Vector2.up*8.5f, ForceMode2D.Impulse);
         enemy.StartCoroutine(SwitchToIdleState());
     }
 
     public override void UpdateState() 
     {
-        enemy.Rb.velocity = new Vector2(enemy.RaycastDirX * -2, enemy.Rb.velocity.y);    
+        //enemy.Rb.velocity = new Vector2(enemy.RaycastDirX * -1.5f, enemy.Rb.velocity.y);    
     }
 
     private IEnumerator SwitchToIdleState()

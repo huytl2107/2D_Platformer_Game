@@ -24,4 +24,9 @@ public class RadishGotHitState : EnemiesGotHitState
             enemy.StartCoroutine(SwitchToIdleState());
         }
     }
+
+    public override void UpdateState()
+    {
+
+    }
 }
