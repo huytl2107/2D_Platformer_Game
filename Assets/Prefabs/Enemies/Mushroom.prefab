@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 764478960679008047}
   - component: {fileID: 7509743622630831350}
   - component: {fileID: 3340161121780424520}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mushroom
   m_TagString: Enemies
   m_Icon: {fileID: 0}
@@ -202,14 +202,14 @@ MonoBehaviour:
   _angleRaycast: 0
   _ignoreLayerSelf:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   _distanceWallCheck: 2
   _ground:
     serializedVersion: 2
     m_Bits: 64
   _ignoreLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4
   _plusXBullet: 0
   _plusYBullet: 0
 --- !u!1 &1885943112552771119
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 5486615983537341335}
   - component: {fileID: 3634506678386116792}
   - component: {fileID: 7858055378777190806}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GroundAheadCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

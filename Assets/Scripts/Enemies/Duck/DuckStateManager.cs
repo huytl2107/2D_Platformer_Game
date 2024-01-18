@@ -16,4 +16,22 @@ public class DuckStateManager : EnemiesStateManager
         base.Update();
         PlayerCheck();
     }
+
+    public override void HandleGroundDetection()
+    {
+        if (SeeGround)
+        {
+            FlipXObject();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Trap"))
+        {
+            CurrentState = State.DuckGotHit();
+            CurrentState.EnterState();
+
+        }    
+    }
 }

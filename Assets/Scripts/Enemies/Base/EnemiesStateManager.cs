@@ -13,7 +13,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
     private Rigidbody2D _rb;
     private Animator _anim;
     private Vector2 _firstPosition;
-    protected GroundAheadCheck groundAheadCheck;
+    private GroundAheadCheck _groundAheadCheck;
 
     private PlayerStateManager _player;
     [SerializeField] private bool _flipObject = false;
@@ -70,6 +70,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
     public Vector2 FirstPosition { get => _firstPosition; set => _firstPosition = value; }
     public float PlusXBullet { get => _plusXBullet; set => _plusXBullet = value; }
     public float PlusYBullet { get => _plusYBullet; set => _plusYBullet = value; }
+    public GroundAheadCheck GroundAheadCheck { get => _groundAheadCheck; set => _groundAheadCheck = value; }
 
     public virtual void Awake()
     {
@@ -79,7 +80,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
         FirstPosition = transform.position;
-        groundAheadCheck = GetComponentInChildren<GroundAheadCheck>();
+        GroundAheadCheck = GetComponentInChildren<GroundAheadCheck>();
         Player = FindObjectOfType<PlayerStateManager>();
         if (FlipObject)
         {
@@ -143,9 +144,9 @@ public abstract class EnemiesStateManager : MonoBehaviour
         }
     }
 
-    public void HandleGroundDetection()
+    public virtual void HandleGroundDetection()
     {
-        if (SeeGround || !groundAheadCheck.IsOverlappingGround)
+        if (SeeGround || !GroundAheadCheck.IsOverlappingGround)
         {
             FlipXObject();
         }

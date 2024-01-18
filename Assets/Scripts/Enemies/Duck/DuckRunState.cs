@@ -23,7 +23,7 @@ public class DuckRunState : EnemiesWalkState
     public override void CheckSwitchState()
     {
         base.CheckSwitchState();
-        if(enemy.SeeGround)
+        if(!enemy.GroundAheadCheck.IsOverlappingGround)
         {
             SwitchState(factory.DuckJump());
         }
