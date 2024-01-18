@@ -51,6 +51,6 @@ public class PlayerThrowWeaponState : PlayerBaseState
 
     public override void FixedUpdateState()
     {
-        throw new System.NotImplementedException();
+
     }
 }

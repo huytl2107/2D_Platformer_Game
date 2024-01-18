@@ -13,7 +13,7 @@ public class NhismStateManager : EnemiesStateManager
     public override void Update()
     {
         base.Update();
-        FlipXObjectIfSeeGround();
+        HandleGroundDetection();
     }
 
         private void OnTriggerEnter2D(Collider2D other)

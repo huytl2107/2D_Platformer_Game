@@ -13,8 +13,9 @@ public abstract class EnemiesStateManager : MonoBehaviour
     private Rigidbody2D _rb;
     private Animator _anim;
     private Vector2 _firstPosition;
+    protected GroundAheadCheck groundAheadCheck;
 
-    private  PlayerStateManager _player;
+    private PlayerStateManager _player;
     [SerializeField] private bool _flipObject = false;
 
     [Header("Speed")]
@@ -78,6 +79,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
         FirstPosition = transform.position;
+        groundAheadCheck = GetComponentInChildren<GroundAheadCheck>();
         Player = FindObjectOfType<PlayerStateManager>();
         if (FlipObject)
         {
@@ -141,16 +143,16 @@ public abstract class EnemiesStateManager : MonoBehaviour
         }
     }
 
-    public void FlipXObjectIfSeeGround()
+    public void HandleGroundDetection()
     {
-        if (SeeGround)
+        if (SeeGround || !groundAheadCheck.IsOverlappingGround)
         {
             FlipXObject();
         }
     }
     public void FlipXObject()
     {
-        Sprite.flipX = !Sprite.flipX;
+        transform.Rotate(new Vector3(0, 180, 0));
         RaycastDirX = -RaycastDirX;
     }
 
@@ -163,7 +165,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
     {
         if (Player != null)
         {
-            
+
             if (DistanceToPlayer() > 0)
             {
                 return true;
@@ -183,7 +185,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
         if (FirstPosition != null)
         {
             float distanceToFirstPosition = transform.position.x - FirstPosition.x;
-            if(distanceToFirstPosition > 0)
+            if (distanceToFirstPosition > 0)
             {
                 Sprite.flipX = false;
             }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BunnyStateManager : EnemiesStateManager
 {
+
     public override void Start()
     {
         CurrentState = State.BunnyIdle();
@@ -14,6 +15,6 @@ public class BunnyStateManager : EnemiesStateManager
     {
         base.Update();
         PlayerCheck();
-        FlipXObjectIfSeeGround();
+        HandleGroundDetection();
     }
 }

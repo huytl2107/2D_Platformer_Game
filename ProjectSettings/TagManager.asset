@@ -7,8 +7,6 @@ TagManager:
   - Apple
   - Trap
   - StickyWall
-  - WeakEnemies
-  - StrongEnemies
   - Weapon
   - TriggerTrap
   - FallingPlatform

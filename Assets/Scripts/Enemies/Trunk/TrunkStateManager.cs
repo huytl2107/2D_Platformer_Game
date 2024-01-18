@@ -18,7 +18,7 @@ public class TrunkStateManager : EnemiesStateManager
     {
         base.Update();
         PlayerCheck();
-        FlipXObjectIfSeeGround();
+        HandleGroundDetection();
     }
 
     public void Fire()

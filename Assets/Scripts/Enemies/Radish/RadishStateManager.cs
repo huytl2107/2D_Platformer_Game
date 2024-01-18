@@ -22,12 +22,12 @@ public class RadishStateManager : EnemiesStateManager
     public override void Update()
     {
         base.Update();
-        FlipXObjectIfSeeGround();
+        HandleGroundDetection();
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.name == "Player")
+        if (other.CompareTag("Player"))
         {
             CurrentState = State.RadishGotHit();
             CurrentState.EnterState();

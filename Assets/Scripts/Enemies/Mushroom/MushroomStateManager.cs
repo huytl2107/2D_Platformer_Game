@@ -21,7 +21,7 @@ public class MushroomStateManager : EnemiesStateManager
     public override void Update()
     {
         base.Update();
-        FlipXObjectIfSeeGround();
+        HandleGroundDetection();
         CurrentState.UpdateState();
     }
 

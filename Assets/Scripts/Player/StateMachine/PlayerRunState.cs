@@ -28,7 +28,6 @@ public class PlayerRunState : PlayerBaseState
         {
             if (Input.GetButtonDown("Jump"))
             {
-                //player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
                 player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
                 SwitchState(factory.Jump());
             }

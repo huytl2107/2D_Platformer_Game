@@ -17,7 +17,7 @@ public class ChameleonStateManager : EnemiesStateManager
     public override void Update()
     {
         base.Update();
-        FlipXObjectIfSeeGround();
+        HandleGroundDetection();
         PlayerCheck();
     }
 }

@@ -18,7 +18,7 @@ public class PigStateManager : EnemiesStateManager
     public override void Update()
     {
         base.Update();
-        FlipXObjectIfSeeGround();
+        HandleGroundDetection();
         PlayerCheck();
     }
 

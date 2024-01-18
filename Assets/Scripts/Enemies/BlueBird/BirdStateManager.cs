@@ -14,7 +14,7 @@ public class BirdStateManager : EnemiesStateManager
     {
         base.Update();
         PlayerCheck();
-        FlipXObjectIfSeeGround();
+        HandleGroundDetection();
     }
 
         private void OnTriggerEnter2D(Collider2D other)
