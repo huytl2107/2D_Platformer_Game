@@ -245,4 +245,10 @@ public class EnemiesStateFactory
     {
         return new BunnyFallState(_context, this);
     }
+
+    //Snail
+    public EnemiesBaseState SnailWalk()
+    {
+        return new SnailWalkState(_context, this);
+    }
 }

@@ -128,6 +128,8 @@ public class PlayerStateManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Trap") || (other.gameObject.CompareTag("Enemies") && _cangotHit))
         {
+            GotHitDirX = ((transform.position.x - other.transform.position.x) > 0) ? 1 : -1;
+            
             CurrentState = State.GotHit();
             CurrentState.EnterState();
         }
@@ -138,9 +140,6 @@ public class PlayerStateManager : MonoBehaviour
         if (other.gameObject.CompareTag("Enemies"))
         {
             _cangotHit = false;
-            
-            GotHitDirX = ((transform.position.x - other.transform.position.x) > 0) ? 1 : -1;
-            
             Rb.velocity = new Vector2 (Rb.velocity.x, 0f);
             Rb.velocity = new Vector2 (Rb.velocity.x, JumpForce);
             CurrentState = State.Jump();

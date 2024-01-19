@@ -29,4 +29,6 @@ public class StateEnum
     public enum EDuckState {idle, run, jump, fall, gotHit};
 
     public enum EBunnyState {idle, run, jump, fall, gotHit};
+
+    public enum ESnailState {walk};
 }

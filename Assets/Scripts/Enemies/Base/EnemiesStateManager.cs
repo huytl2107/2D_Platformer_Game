@@ -96,7 +96,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
         WallCheck();
     }
 
-    public void WallCheck()
+    public virtual void WallCheck()
     {
         Vector2 rayDirection;
         rayDirection = (RaycastDirX > 0) ? Vector2.right : Vector2.left;
@@ -118,7 +118,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
         RaycastCheckPlayer();
         Debug.DrawLine(Col.bounds.center, Raycast.point, Color.white);
     }
-    public void RaycastCheckGround()
+    public virtual void RaycastCheckGround()
     {
         if (RaycastGround.collider != null && RaycastGround.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {

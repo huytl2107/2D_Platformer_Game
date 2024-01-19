@@ -28,4 +28,9 @@ public class RinoStateManager : EnemiesStateManager
             CurrentState.EnterState();
         }
     }
+
+    public override void HandleGroundDetection()
+    {
+
+    }
 }
