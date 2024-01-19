@@ -69,4 +69,13 @@ public class PlayerJumpState : PlayerBaseState
     {
 
     }
+
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.gameObject.CompareTag("Ground"))
+        {
+            player.Col.isTrigger = true;
+        }
+    }
+
 }
