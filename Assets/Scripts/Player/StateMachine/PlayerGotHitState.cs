@@ -42,7 +42,7 @@ public class PlayerGotHitState : PlayerBaseState
     public override void UpdateState()
     {
         CheckSwitchState();
-        player.Rb.velocity = new Vector2(-player.RaycastDirX * player.Speed, player.Rb.velocity.y);
+        player.Rb.velocity = new Vector2(player.GotHitDirX * player.Speed, player.Rb.velocity.y);
     }
 
 

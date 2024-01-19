@@ -56,6 +56,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private float _dirX;
     private float _raycastDirX = 1;
+    private float _gotHitDirX = 1;
     private bool _isDoubleJump;
     private RaycastHit2D _raycast;
     private bool _isSeeingGround = false;
@@ -90,6 +91,7 @@ public class PlayerStateManager : MonoBehaviour
     public KeyCode DashKey { get => _dashKey; set => _dashKey = value; }
     public bool CanThrowWeapon { get => _canThrowWeapon; set => _canThrowWeapon = value; }
     public GameObject CurrentWeapon { get => _currentWeapon; set => _currentWeapon = value; }
+    public float GotHitDirX { get => _gotHitDirX; set => _gotHitDirX = value; }
 
     // Start is called before the first frame update
     private void Awake()
@@ -136,6 +138,9 @@ public class PlayerStateManager : MonoBehaviour
         if (other.gameObject.CompareTag("Enemies"))
         {
             _cangotHit = false;
+            
+            GotHitDirX = ((transform.position.x - other.transform.position.x) > 0) ? 1 : -1;
+            
             Rb.velocity = new Vector2 (Rb.velocity.x, 0f);
             Rb.velocity = new Vector2 (Rb.velocity.x, JumpForce);
             CurrentState = State.Jump();
