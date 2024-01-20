@@ -1,3 +1,4 @@
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 
 public class EnemiesStateFactory
@@ -250,5 +251,21 @@ public class EnemiesStateFactory
     public EnemiesBaseState SnailWalk()
     {
         return new SnailWalkState(_context, this);
+    }
+    public EnemiesBaseState SnailGotHit()
+    {
+        return new SnailGotHitState(_context, this);
+    }
+    public EnemiesBaseState SnailShell()
+    {
+        return new SnailShellState(_context, this);
+    }
+    public EnemiesBaseState SnailShellJumpHit()
+    {
+        return new SnailShellJumpHitState(_context, this);
+    }
+    public EnemiesBaseState SnailShellAttack()
+    {
+        return new SnailShellAttackState(_context, this);
     }
 }

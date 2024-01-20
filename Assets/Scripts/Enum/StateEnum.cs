@@ -30,5 +30,5 @@ public class StateEnum
 
     public enum EBunnyState {idle, run, jump, fall, gotHit};
 
-    public enum ESnailState {walk};
+    public enum ESnailState {walk, gotHit, shell, jumpHit};
 }
