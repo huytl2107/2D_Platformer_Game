@@ -19,7 +19,6 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void UpdateState()
     {
-        player.CanMove();
         CheckSwitchState();
         PlayerStateManager.UpdateObjectDirX(player);
     }

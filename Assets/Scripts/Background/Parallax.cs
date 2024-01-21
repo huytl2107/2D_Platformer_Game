@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class Parallax : MonoBehaviour
 {
     private CameraController _cam;
     private float _startPosX;
     private float _startPosY;
-    private Tilemap _tilemap;
     private float _length;
     [SerializeField] private float _xParalaxEffect;
     [SerializeField] private float _yParalaxEffect;
@@ -17,8 +17,8 @@ public class Parallax : MonoBehaviour
     void Awake()
     {
         _cam = FindObjectOfType<CameraController>();
-        _tilemap = GetComponent<Tilemap>();
-        _length = _tilemap.cellSize.x * _tilemap.size.x;
+        //_length = GetComponent<TilemapRenderer>().bounds.size.x;
+        _length = 40;
     }
 
     private void Start()
@@ -29,10 +29,13 @@ public class Parallax : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float temp = _cam.transform.position.x * (1 - _xParalaxEffect);
         float distX = _cam.transform.position.x * _xParalaxEffect;
         float distY = _cam.transform.position.y * _yParalaxEffect;
 
         transform.position = new Vector2(_startPosX + distX, _startPosY + distY);
 
+        if(temp > _startPosX + _length) _startPosX += _length;
+        else if(temp < _startPosX - _length) _startPosX -= _length;
     }
 }
