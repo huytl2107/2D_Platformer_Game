@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 738225621021638555}
   - component: {fileID: 738225621021636708}
   - component: {fileID: 738225621021638559}
+  - component: {fileID: 9134490297272383827}
   m_Layer: 0
   m_Name: RockHead
   m_TagString: Trap
@@ -103,12 +104,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &738225621021638555
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -176,3 +177,23 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
+--- !u!95 &9134490297272383827
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738225621021636709}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d522c09ba65856c44b992d1b983fc5f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

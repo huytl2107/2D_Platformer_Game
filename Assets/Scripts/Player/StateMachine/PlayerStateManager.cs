@@ -18,6 +18,7 @@ public class PlayerStateManager : MonoBehaviour
     private Collider2D _col;
     private Animator _anim;
     private Transform _myTransform;
+    private ParticleSystem _dust;
 
     [Header("Move and Jump")]
     [SerializeField] private float _speed = 8f;
@@ -92,6 +93,7 @@ public class PlayerStateManager : MonoBehaviour
     public bool CanThrowWeapon { get => _canThrowWeapon; set => _canThrowWeapon = value; }
     public GameObject CurrentWeapon { get => _currentWeapon; set => _currentWeapon = value; }
     public float GotHitDirX { get => _gotHitDirX; set => _gotHitDirX = value; }
+    public ParticleSystem Dust { get => _dust; set => _dust = value; }
 
     // Start is called before the first frame update
     private void Awake()
@@ -102,7 +104,7 @@ public class PlayerStateManager : MonoBehaviour
         Sprite = GetComponent<SpriteRenderer>();
         Col = GetComponent<BoxCollider2D>();
         Anim = GetComponent<Animator>();
-
+        Dust = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Start()
@@ -119,7 +121,7 @@ public class PlayerStateManager : MonoBehaviour
         CurrentState.UpdateState();
     }
 
-    private void FixedUpdate() 
+    private void FixedUpdate()
     {
         CurrentState.FixedUpdateState();
     }
@@ -129,8 +131,15 @@ public class PlayerStateManager : MonoBehaviour
         if (other.gameObject.CompareTag("Trap") || (other.gameObject.CompareTag("Enemies") && _cangotHit))
         {
             GotHitDirX = ((transform.position.x - other.transform.position.x) > 0) ? 1 : -1;
-            
+
+            CurrentState.ExitState();
             CurrentState = State.GotHit();
+            CurrentState.EnterState();
+        }
+        else if (other.gameObject.name == "Trampoline")
+        {
+            CurrentState.ExitState();
+            CurrentState = State.Jump();
             CurrentState.EnterState();
         }
     }
@@ -140,8 +149,9 @@ public class PlayerStateManager : MonoBehaviour
         if (other.gameObject.CompareTag("Enemies"))
         {
             _cangotHit = false;
-            Rb.velocity = new Vector2 (Rb.velocity.x, 0f);
-            Rb.velocity = new Vector2 (Rb.velocity.x, JumpForce);
+            Rb.gravityScale = 9f;
+            Rb.velocity = new Vector2(Rb.velocity.x, 0f);
+            Rb.velocity = new Vector2(Rb.velocity.x, JumpForce);
             CurrentState = State.Jump();
             CurrentState.EnterState();
         }
@@ -152,7 +162,9 @@ public class PlayerStateManager : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-    private void OnTriggerExit2D(Collider2D other) {
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
         _cangotHit = true;
     }
 
@@ -161,18 +173,12 @@ public class PlayerStateManager : MonoBehaviour
         // CheckGround sâu 1 tí để khi xuống dốc có thể nhảy
         return Physics2D.BoxCast(Col.bounds.center, Col.bounds.size, 0f, Vector2.down, .4f, Ground);
     }
+
     public static void UpdateObjectDirX(PlayerStateManager player)
     {
-        switch (player.DirX)
-        {
-            case 1:
-                player.Sprite.flipX = false;
-                break;
-            case -1:
-                player.Sprite.flipX = true;
-                break;
-        }
+        player.transform.rotation = Quaternion.Euler(0,(player.RaycastDirX > 0) ? 0 : 180,0);
     }
+
     public IEnumerator Dash(PlayerStateManager player)
     {
         IsDashing = true;

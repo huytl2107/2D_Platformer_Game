@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 7993931954535910410}
   - component: {fileID: 7993931954535910411}
   - component: {fileID: 7993931954535910408}
+  - component: {fileID: 2383855010809550410}
   m_Layer: 2
   m_Name: Snail
   m_TagString: Enemies
@@ -280,3 +281,29 @@ MonoBehaviour:
   _plusYBullet: 0
   X: 1.5
   Y: 1.5
+--- !u!61 &2383855010809550410
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7993931954535910409}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.08178711, y: 0.28197193}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.375, y: 1.5}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.4299927, y: 0.19095421}
+  m_EdgeRadius: 0

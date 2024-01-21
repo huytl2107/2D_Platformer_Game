@@ -8,6 +8,7 @@ public class PlayerRunState : PlayerBaseState
 
     public override void EnterState()
     {
+        player.Dust.Play();
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.run);
     }
 
@@ -28,6 +29,7 @@ public class PlayerRunState : PlayerBaseState
         {
             if (Input.GetButtonDown("Jump"))
             {
+                player.Dust.Play();
                 player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
                 SwitchState(factory.Jump());
             }
