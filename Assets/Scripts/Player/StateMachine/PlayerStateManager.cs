@@ -111,7 +111,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         CurrentState = State.Idle();
         CurrentState.EnterState();
-        PlayerHealthController.Instane.UpdatePlayerHealthUI();
+        PlayerHealthController.Instant.UpdatePlayerHealthUI();
     }
 
     // Update is called once per frame

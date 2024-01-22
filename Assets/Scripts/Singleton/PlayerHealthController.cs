@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthController : MonoBehaviour
+public class PlayerHealthController : Singleton<PlayerHealthController>
 {
     //Sử dụng Singleton để quản lý PlayerHealth, lưu lại qua các scene;
-    public static PlayerHealthController Instane { get; private set; }
 
     [SerializeField] private int _playerHealth;
     [SerializeField] private Image _head1;
@@ -21,22 +20,6 @@ public class PlayerHealthController : MonoBehaviour
     public Image Head3 { get => _head3; set => _head3 = value; }
     public Sprite Head { get => _head; set => _head = value; }
     public Sprite NullHead { get => _nullHead; set => _nullHead = value; }
-
-    private void Awake()
-    {
-        Debug.Log("Awake of PlayerHealthController");
-        //Đảm bảo chỉ có Duy nhất 1 Singleton cho gameObject;
-        if (Instane == null)
-        {
-            Instane = this;
-            // Đảm  bảo game object không bị Destroy khi load lại hoặc chuyển scene;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public void GotHit()
     {

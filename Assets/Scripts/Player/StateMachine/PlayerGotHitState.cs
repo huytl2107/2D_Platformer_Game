@@ -18,8 +18,8 @@ public class PlayerGotHitState : PlayerBaseState
     public override void EnterState()
     {
         //Trừ máu Player ngay khi vào GotHitState rồi mới check If Else
-        PlayerHealthController.Instane.GotHit();
-        if (PlayerHealthController.Instane.PlayerHealth >= 0)
+        PlayerHealthController.Instant.GotHit();
+        if (PlayerHealthController.Instant.PlayerHealth >= 0)
         {
             player.GotHitSound.Play();
             //Transition từ AnyState, tắt Can transition to self để không treo ở frame đàu.
@@ -29,7 +29,7 @@ public class PlayerGotHitState : PlayerBaseState
             player.Rb.gravityScale = 12f;
             player.Rb.AddForce(Vector2.up * player.JumpForce/1.5f, ForceMode2D.Impulse);
             player.StartCoroutine(GotHit());
-            PlayerHealthController.Instane.UpdatePlayerHealthUI();
+            PlayerHealthController.Instant.UpdatePlayerHealthUI();
         }
         else
         {
@@ -48,7 +48,7 @@ public class PlayerGotHitState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        if (!IsGottingHit && PlayerHealthController.Instane.PlayerHealth >= 0)
+        if (!IsGottingHit && PlayerHealthController.Instant.PlayerHealth >= 0)
         {
             SwitchState(factory.Fall());
         }
@@ -67,7 +67,7 @@ public class PlayerGotHitState : PlayerBaseState
         //Chờ 1s rồi restart level
         yield return new WaitForSeconds(1f);
         //Vì singleton không load lại nên cần trả máu Player về 3 trước khi restart level;
-        PlayerHealthController.Instane.PlayerHealth = 3;
+        PlayerHealthController.Instant.PlayerHealth = 3;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
