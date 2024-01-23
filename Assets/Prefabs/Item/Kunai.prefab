@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3577452733506636020}
   - component: {fileID: 3577452733506636027}
-  - component: {fileID: 3577452733506636021}
   - component: {fileID: 7819971511058009419}
   - component: {fileID: 5427208263987490352}
+  - component: {fileID: 6565657741766054557}
   m_Layer: 0
   m_Name: Kunai
   m_TagString: Weapon
@@ -87,19 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3577452733506636021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3577452733506636025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b2bbd70c1d0e4640bc7e16a11cc2734, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 30
 --- !u!50 &7819971511058009419
 Rigidbody2D:
   serializedVersion: 4
@@ -147,3 +134,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6565657741766054557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577452733506636025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb5269270a994a4d87d2a8769230316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 30
+  _rightAngle: -45
+  _leftAngle: 135

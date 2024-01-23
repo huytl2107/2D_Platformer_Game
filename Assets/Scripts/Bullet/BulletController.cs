@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AxeController : MonoBehaviour
+public class BulletController : MonoBehaviour
 {
 
     [SerializeField] private float speed = 1f;
@@ -24,7 +24,7 @@ public class AxeController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         rb.velocity = Vector2.right * speed * direction;
     }

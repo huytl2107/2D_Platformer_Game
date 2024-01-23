@@ -23,16 +23,14 @@ public class PlantStateManager : EnemiesStateManager
 
     public void Fire()
     {
-        Vector3 weaponPosition = new Vector3(transform.position.x + PlusXBullet * RaycastDirX, transform.position.y + PlusYBullet, transform.position.z);
+        Vector3 bulletPosition = new Vector3(transform.position.x + PlusXBullet * RaycastDirX, transform.position.y + PlusYBullet, transform.position.z);
         //CurrentWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
 
-        GameObject bullet = BulletPool.Instance.GetPoolObject();
+        GameObject bullet = ObjectPooler.Instant.GetPoolObject("Bullet", bulletPosition, Quaternion.identity);
         if (bullet != null)
         {
-            AxeController axeController = bullet.GetComponent<AxeController>();
-            axeController.SetDirection(RaycastDirX);
-            bullet.transform.position = weaponPosition;
-            bullet.SetActive(true);
+            BulletController bulletController = bullet.GetComponent<BulletController>();
+            bulletController.SetDirection(RaycastDirX);
         }
     }
 }

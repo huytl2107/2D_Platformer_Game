@@ -21,6 +21,17 @@ public class PlayerHealthController : Singleton<PlayerHealthController>
     public Sprite Head { get => _head; set => _head = value; }
     public Sprite NullHead { get => _nullHead; set => _nullHead = value; }
 
+    public override void Awake()
+    {
+        base.Awake(); // Gọi Awake của lớp cha để thực hiện việc Singleton
+
+        if (_instant == this) // Đảm bảo chỉ thực hiện với instance mới được tạo ra
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+
     public void GotHit()
     {
         PlayerHealth -= 1;

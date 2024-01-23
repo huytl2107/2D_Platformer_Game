@@ -161,6 +161,14 @@ public class PlayerStateManager : MonoBehaviour
             _fruitText.text = "Fruit: " + _fruitNumb;
             Destroy(other.gameObject);
         }
+        else if (other.gameObject.CompareTag("Trap"))
+        {
+            GotHitDirX = ((transform.position.x - other.transform.position.x) > 0) ? 1 : -1;
+
+            CurrentState.ExitState();
+            CurrentState = State.GotHit();
+            CurrentState.EnterState();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -224,13 +232,11 @@ public class PlayerStateManager : MonoBehaviour
         Vector3 weaponPosition = new Vector3(transform.position.x + _plusXWeapon * RaycastDirX, transform.position.y + _plusYWeapon, transform.position.z);
         //CurrentWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
 
-        GameObject bullet = KunaiPool.Instance.GetPoolObject();
+        GameObject bullet = ObjectPooler.Instant.GetPoolObject("Kunai", weaponPosition, Quaternion.identity);
         if (bullet != null)
         {
-            AxeController axeController = bullet.GetComponent<AxeController>();
-            axeController.SetDirection(RaycastDirX);
-            bullet.transform.position = weaponPosition;
-            bullet.SetActive(true);
+            BulletController bulletController = bullet.GetComponent<BulletController>();
+            bulletController.SetDirection(RaycastDirX);
         }
     }
 

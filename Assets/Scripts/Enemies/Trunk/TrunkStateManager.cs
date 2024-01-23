@@ -23,16 +23,14 @@ public class TrunkStateManager : EnemiesStateManager
 
     public void Fire()
     {
-        Vector3 weaponPosition = new Vector3(transform.position.x + PlusXBullet * RaycastDirX, transform.position.y + PlusYBullet, transform.position.z);
+        Vector3 bulletPosition = new Vector3(transform.position.x + PlusXBullet * RaycastDirX, transform.position.y + PlusYBullet, transform.position.z);
         //CurrentWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
 
-        GameObject bullet = TrunkBulletPool.Instance.GetPoolObject();
+        GameObject bullet = ObjectPooler.Instant.GetPoolObject("TrunkBullet", bulletPosition, Quaternion.identity);
         if (bullet != null)
         {
-            AxeController axeController = bullet.GetComponent<AxeController>();
+            BulletController axeController = bullet.GetComponent<BulletController>();
             axeController.SetDirection(RaycastDirX);
-            bullet.transform.position = weaponPosition;
-            bullet.SetActive(true);
         }
     }
 

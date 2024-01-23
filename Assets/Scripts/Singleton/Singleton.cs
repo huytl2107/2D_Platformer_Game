@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static T _instant = null;
+    protected static T _instant = null;
     public static T Instant
     {
         get
@@ -22,7 +22,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    void Awake()    
+    public virtual void Awake()    
     {
         if(_instant != null && _instant.gameObject.GetInstanceID() != this.gameObject.GetInstanceID())
         {
@@ -31,7 +31,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         else
         {
             _instant = this.GetComponent<T>();
-            DontDestroyOnLoad(this.GetComponent<T>());
         }
     }
 }
