@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1389570020242394410}
   - component: {fileID: 5480292112759141121}
   - component: {fileID: 589898479655802772}
-  - component: {fileID: -22606244145685398}
+  - component: {fileID: 4268306156845945847}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Trap
@@ -134,7 +134,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-22606244145685398
+--- !u!114 &4268306156845945847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7170538318078249915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb5269270a994a4d87d2a8769230316, type: 3}
+  m_Script: {fileID: 11500000, guid: bb6c7472c7f43964694fe3f4b0bf87e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10

@@ -2,27 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeeBullet : MonoBehaviour
+public class BeeBullet : BulletController, IPieceBulletSpawn
 {
-    [SerializeField] private float speed = 10f;
-    private Rigidbody2D rb;
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    public new void FixedUpdate()
     {
         rb.velocity = Vector2.down * speed;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void SpawnPiece()
     {
-        if (other.gameObject.CompareTag("Ground") || other.gameObject.name == "Player")
-        {
-            gameObject.SetActive(false);
-        }
+        EffectPooler.Instant.GetPoolObject("BeePiece", transform.position, _isRight ? Quaternion.Euler(0,0,0) : Quaternion.Euler(0,-180,0));
     }
 }

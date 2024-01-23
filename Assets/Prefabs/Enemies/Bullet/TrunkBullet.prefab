@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3324371872058845815}
   - component: {fileID: 4144958892073073189}
   - component: {fileID: 3240597781647379084}
-  - component: {fileID: 7349844033626316815}
+  - component: {fileID: 6855643542726983158}
   m_Layer: 0
   m_Name: TrunkBullet
   m_TagString: Trap
@@ -134,7 +134,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7349844033626316815
+--- !u!114 &6855643542726983158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +143,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3324371872058845817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb5269270a994a4d87d2a8769230316, type: 3}
+  m_Script: {fileID: 11500000, guid: f1a213ced4d463047a9ebb94095e9631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 10
   _rightAngle: 0
   _leftAngle: 180
