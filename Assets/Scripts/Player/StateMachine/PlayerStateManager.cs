@@ -168,6 +168,13 @@ public class PlayerStateManager : MonoBehaviour
             CurrentState = State.GotHit();
             CurrentState.EnterState();
         }
+        else if(other.gameObject.CompareTag("DeathZone"))
+        {
+            PlayerHealthController.Instant.PlayerHealth -=10;
+            CurrentState.ExitState();
+            CurrentState = State.GotHit();
+            CurrentState.EnterState();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

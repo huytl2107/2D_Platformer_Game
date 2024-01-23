@@ -15,6 +15,7 @@ TagManager:
   - NPC
   - Enemies
   - StrongEnemies
+  - DeathZone
   layers:
   - Default
   - TransparentFX

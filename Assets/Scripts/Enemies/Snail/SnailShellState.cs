@@ -11,6 +11,7 @@ public class SnailShellState : EnemiesIdleState
     public override void EnterState()
     {
         base.EnterState();
+        enemy.Anim.SetInteger("State", (int)StateEnum.ESnailState.shell);
     }
 
     public override void UpdateState()

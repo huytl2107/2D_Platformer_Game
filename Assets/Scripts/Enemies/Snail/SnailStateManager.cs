@@ -20,6 +20,15 @@ public class SnailStateManager : EnemiesStateManager
         HandleGroundDetection();
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            CurrentState = State.SnailGotHit();
+            CurrentState.EnterState();
+        }
+    }
+
     public override void HandleGroundDetection()
     {
         if (_canFlip)

@@ -24,12 +24,6 @@ public class EnemiesGotHitState : EnemiesBaseState
         }
     }
 
-    protected IEnumerator SwitchToIdleState()
-    {
-        yield return new WaitForSeconds(1f);
-        SwitchState(factory.RadishIdle());
-    }
-
     public override void ExitState()
     {
 

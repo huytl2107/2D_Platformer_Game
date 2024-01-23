@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7993931953269514283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.11, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0.222, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flipObject: 0
   _walkSpeed: 1.7
-  _health: 0
+  _health: 2
   _distance: 5
   _angleRaycast: 0
   _ignoreLayerSelf:
@@ -279,8 +279,8 @@ MonoBehaviour:
     m_Bits: 4
   _plusXBullet: 0
   _plusYBullet: 0
-  X: 1.5
-  Y: 1.5
+  X: 0.6
+  Y: 1
 --- !u!61 &2383855010809550410
 BoxCollider2D:
   m_ObjectHideFlags: 0

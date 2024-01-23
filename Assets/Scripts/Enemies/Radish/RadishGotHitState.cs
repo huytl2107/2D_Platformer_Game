@@ -29,4 +29,11 @@ public class RadishGotHitState : EnemiesGotHitState
     {
 
     }
+
+    
+    private IEnumerator SwitchToIdleState()
+    {
+        yield return new WaitForSeconds(1f);
+        SwitchState(factory.RadishIdle());
+    }
 }
