@@ -96881,6 +96881,9 @@ MonoBehaviour:
   - tag: DustEffect
     prefab: {fileID: 3440398734839536474, guid: 0c92b5f0330c13940a71e4cbede69e51, type: 3}
     size: 20
+  - tag: SnailEffect
+    prefab: {fileID: 9173669656776098461, guid: 679e95ca35d3ba04ab0843a677aba991, type: 3}
+    size: 5
 --- !u!1001 &1403722434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100915,11 +100918,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7293869960212836659, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 128.9
+      value: 114
       objectReference: {fileID: 0}
     - target: {fileID: 7293869960212836659, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.4
+      value: 38.9
       objectReference: {fileID: 0}
     - target: {fileID: 7293869960212836659, guid: 1484545cc75016f4b85fa0c5b9241c86, type: 3}
       propertyPath: m_LocalPosition.z

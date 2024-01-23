@@ -17,23 +17,26 @@ public class SnailGotHitState : EnemiesGotHitState
             enemy.Rb.AddForce(Vector2.up * 4f, ForceMode2D.Impulse);
             enemy.EnemiesDeath();
         }
-        else if(enemy.Health < 1)
+        else if (enemy.Health < 1)
         {
             enemy.Anim.SetInteger("State", (int)StateEnum.ESnailState.jumpHit);
             enemy.StartCoroutine(SwitchToShellAttackState());
-
         }
         else
         {
             enemy.Anim.SetInteger("State", (int)StateEnum.ESnailState.jumpHit);
             enemy.Rb.bodyType = RigidbodyType2D.Dynamic;
+            EffectPooler.Instant.GetPoolObject("SnailEffect", enemy.transform.position, Quaternion.identity);
             enemy.StartCoroutine(SwitchToShellState());
         }
     }
 
     public override void UpdateState()
     {
-
+        if (enemy.Health == 0)
+        {
+            enemy.Rb.velocity = new Vector2(enemy.WalkSpeed * 10f, enemy.Rb.velocity.y);
+        }
     }
 
     private IEnumerator SwitchToShellState()
