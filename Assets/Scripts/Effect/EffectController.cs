@@ -5,6 +5,7 @@ using UnityEngine;
 public class EffectController : MonoBehaviour
 {
     private ParticleSystem _effect;
+    [SerializeField] private float _lifeTime = 1f;
     void Awake()
     {
         _effect = GetComponentInChildren<ParticleSystem>();
@@ -13,7 +14,7 @@ public class EffectController : MonoBehaviour
     public void OnEnable() 
     {
         _effect.Play();
-        Invoke("DisableObject", 1f);
+        Invoke("DisableObject", _lifeTime);
     }
 
     private void DisableObject()

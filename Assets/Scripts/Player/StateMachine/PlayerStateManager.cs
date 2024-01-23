@@ -18,7 +18,7 @@ public class PlayerStateManager : MonoBehaviour
     private Collider2D _col;
     private Animator _anim;
     private Transform _myTransform;
-    private ParticleSystem _dust;
+    private Vector3 _dustPosition;
 
     [Header("Move and Jump")]
     [SerializeField] private float _speed = 8f;
@@ -93,7 +93,7 @@ public class PlayerStateManager : MonoBehaviour
     public bool CanThrowWeapon { get => _canThrowWeapon; set => _canThrowWeapon = value; }
     public GameObject CurrentWeapon { get => _currentWeapon; set => _currentWeapon = value; }
     public float GotHitDirX { get => _gotHitDirX; set => _gotHitDirX = value; }
-    public ParticleSystem Dust { get => _dust; set => _dust = value; }
+    public Vector3 DustPosition { get => _dustPosition; set => _dustPosition = value; }
 
     // Start is called before the first frame update
     private void Awake()
@@ -104,7 +104,6 @@ public class PlayerStateManager : MonoBehaviour
         Sprite = GetComponent<SpriteRenderer>();
         Col = GetComponent<BoxCollider2D>();
         Anim = GetComponent<Animator>();
-        Dust = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Start()
@@ -256,5 +255,11 @@ public class PlayerStateManager : MonoBehaviour
     public void DestroyObject(GameObject objectToDestroy)
     {
         Destroy(objectToDestroy);
+    }
+
+    public void SpawnDustEffcect()
+    {
+        DustPosition = new Vector3(transform.position.x, transform.position.y - .95f, transform.position.z);
+        EffectPooler.Instant.GetPoolObject("DustEffect", DustPosition, (DirX > 0) ? Quaternion.identity : Quaternion.Euler(0,7.5f,0)); //Chưa hiểu tại sao xoay 180 nó k hoạt động???
     }
 }

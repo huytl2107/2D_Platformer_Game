@@ -6,6 +6,6 @@ public class PlantBullet : BulletController, IPieceBulletSpawn
 {
     public override void SpawnPiece()
     {
-        EffectPooler.Instant.GetPoolObject("PlantPiece", transform.position, _isRight ? Quaternion.Euler(0,0,0) : Quaternion.Euler(0,-180,0));
+        EffectPooler.Instant.GetPoolObject("PlantPiece", transform.position, _isRight ? Quaternion.identity : Quaternion.Euler(0,-180,0));
     }
 }

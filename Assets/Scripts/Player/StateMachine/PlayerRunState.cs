@@ -8,8 +8,8 @@ public class PlayerRunState : PlayerBaseState
 
     public override void EnterState()
     {
-        player.Dust.Play();
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.run);
+        player.SpawnDustEffcect();
     }
 
     public override void UpdateState()
@@ -29,7 +29,7 @@ public class PlayerRunState : PlayerBaseState
         {
             if (Input.GetButtonDown("Jump"))
             {
-                player.Dust.Play();
+                player.SpawnDustEffcect();
                 player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
                 SwitchState(factory.Jump());
             }

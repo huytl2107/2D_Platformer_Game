@@ -24,7 +24,7 @@ public class PlayerIdleState : PlayerBaseState
         {
             if (Input.GetButtonDown("Jump"))
             {
-                player.Dust.Play();
+                player.SpawnDustEffcect();
                 player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
                 SwitchState(factory.Jump());
             }

@@ -53,8 +53,8 @@ public class PlayerFallState : PlayerBaseState
         }
         else if (player.IsGrounded())
         {
+            player.SpawnDustEffcect();
             player.IsDoubleJump = false;
-            player.Dust.Play();
             if (player.DirX == 0)
             {
                 SwitchState(factory.Idle());
