@@ -17,12 +17,9 @@ public class BirdStateManager : EnemiesStateManager
         HandleGroundDetection();
     }
 
-        private void OnTriggerEnter2D(Collider2D other)
+    public override void GotHit()
     {
-        if (other.gameObject.name == "Player")
-        {
-            CurrentState = State.BirdGotHit();
-            CurrentState.EnterState();
-        }
+        CurrentState = State.BirdGotHit();
+        CurrentState.EnterState();
     }
 }

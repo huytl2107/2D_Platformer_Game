@@ -21,13 +21,10 @@ public class BeeStateManager : EnemiesStateManager
         PlayerCheck();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void GotHit()
     {
-        if (other.gameObject.name == "Player")
-        {
-            CurrentState = State.BeeGotHit();
-            CurrentState.EnterState();
-        }
+        CurrentState = State.BeeGotHit();
+        CurrentState.EnterState();
     }
 
     private void Fire()

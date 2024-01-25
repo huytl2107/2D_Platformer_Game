@@ -18,6 +18,11 @@ public class BunnyStateManager : EnemiesStateManager
         HandleGroundDetection();
     }
 
+    public override void GotHit()
+    {
+        //
+    }
+
     public override void HandleGroundDetection()
     {
         if (SeeGround)

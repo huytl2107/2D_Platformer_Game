@@ -96,6 +96,30 @@ public abstract class EnemiesStateManager : MonoBehaviour
         WallCheck();
     }
 
+    public virtual void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Trap"))
+        {
+            GotHit();
+        }
+    }
+
+    public virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "Player")
+        {
+            GotHit();
+        }
+        else if (other.gameObject.CompareTag("DeathZone"))
+        {
+            //-100 để đảm bảo vào luôn DeathState
+            Health -= 100;
+            GotHit();
+        }
+    }
+
+    public abstract void GotHit();
+
     public virtual void WallCheck()
     {
         Vector2 rayDirection;
@@ -223,6 +247,8 @@ public abstract class EnemiesStateManager : MonoBehaviour
         }
     }
 
+    #region Death
+
     public void EnemiesDeath()
     {
         StartCoroutine(DestroyEnemies());
@@ -233,4 +259,6 @@ public abstract class EnemiesStateManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
+
+    #endregion Death
 }

@@ -25,12 +25,9 @@ public class RadishStateManager : EnemiesStateManager
         HandleGroundDetection();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void GotHit()
     {
-        if (other.CompareTag("Player"))
-        {
-            CurrentState = State.RadishGotHit();
-            CurrentState.EnterState();
-        }
+        CurrentState = State.RadishGotHit();
+        CurrentState.EnterState();
     }
 }

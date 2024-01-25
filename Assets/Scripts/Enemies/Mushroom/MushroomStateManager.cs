@@ -24,13 +24,10 @@ public class MushroomStateManager : EnemiesStateManager
         HandleGroundDetection();
         CurrentState.UpdateState();
     }
-
-        private void OnTriggerEnter2D(Collider2D other)
+    
+    public override void GotHit()
     {
-        if (other.gameObject.name == "Player")
-        {
-            CurrentState = State.MushRoomGotHit();
-            CurrentState.EnterState();
-        }
+        CurrentState = State.MushRoomGotHit();
+        CurrentState.EnterState();
     }
 }

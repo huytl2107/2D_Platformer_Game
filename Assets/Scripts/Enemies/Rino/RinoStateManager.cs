@@ -20,13 +20,10 @@ public class RinoStateManager : EnemiesStateManager
         PlayerCheck();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void GotHit()
     {
-        if (other.gameObject.name == "Player")
-        {
-            CurrentState = State.RinoGotHit();
-            CurrentState.EnterState();
-        }
+        CurrentState = State.RinoGotHit();
+        CurrentState.EnterState();
     }
 
     public override void HandleGroundDetection()

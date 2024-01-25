@@ -25,13 +25,9 @@ public class DuckStateManager : EnemiesStateManager
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    public override void GotHit()
     {
-        if(other.gameObject.CompareTag("Trap"))
-        {
-            CurrentState = State.DuckGotHit();
-            CurrentState.EnterState();
-
-        }    
+        CurrentState = State.DuckGotHit();
+        CurrentState.EnterState();
     }
 }

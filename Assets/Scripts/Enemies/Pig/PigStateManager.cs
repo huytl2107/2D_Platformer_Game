@@ -22,12 +22,9 @@ public class PigStateManager : EnemiesStateManager
         PlayerCheck();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void GotHit()
     {
-        if (other.gameObject.name == "Player")
-        {
-            CurrentState = State.PigGotHit();
-            CurrentState.EnterState();
-        }
+        CurrentState = State.PigGotHit();
+        CurrentState.EnterState();
     }
 }

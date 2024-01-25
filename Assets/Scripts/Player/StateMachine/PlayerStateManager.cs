@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Threading;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -180,6 +181,20 @@ public class PlayerStateManager : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         _cangotHit = true;
+        if(other.gameObject.CompareTag("NPC"))
+        {
+            CurrentState = State.Idle();
+            CurrentState.EnterState();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other) 
+    {
+        if(other.gameObject.CompareTag("NPC"))
+        {
+            CurrentState = State.InteractNPC();
+            CurrentState.EnterState();
+        }
     }
 
     public bool IsGrounded()

@@ -40,4 +40,9 @@ public class ChameleonStateManager : EnemiesStateManager
             Player.CurrentState.EnterState();
         }
     }
+
+    public override void GotHit()
+    {
+        //
+    }
 }

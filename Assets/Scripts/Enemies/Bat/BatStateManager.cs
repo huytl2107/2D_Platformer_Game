@@ -23,4 +23,10 @@ public class BatStateManager : EnemiesStateManager
             CurrentState.EnterState();
         }
     }
+
+    public override void GotHit()
+    {
+        CurrentState = State.BatGotHit();
+        CurrentState.EnterState();
+    }
 }

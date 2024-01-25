@@ -33,4 +33,9 @@ public class PlantStateManager : EnemiesStateManager
             bulletController.SetDirection(RaycastDirX);
         }
     }
+
+    public override void GotHit()
+    {
+
+    }
 }

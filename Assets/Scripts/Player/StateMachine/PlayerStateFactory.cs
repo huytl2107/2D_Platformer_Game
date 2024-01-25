@@ -46,4 +46,8 @@ public class PlayerStateFactory
     {
         return new PlayerThrowWeaponState(_context, this);
     }
+    public PlayerBaseState InteractNPC()
+    {
+        return new PlayerInteractNPCState(_context, this);
+    }
 }

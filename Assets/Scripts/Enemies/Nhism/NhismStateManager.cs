@@ -7,7 +7,7 @@ public class NhismStateManager : EnemiesStateManager
     public override void Start()
     {
         CurrentState = State.NhismNonSpikes();
-        CurrentState. EnterState();
+        CurrentState.EnterState();
     }
 
     public override void Update()
@@ -16,12 +16,9 @@ public class NhismStateManager : EnemiesStateManager
         HandleGroundDetection();
     }
 
-        private void OnTriggerEnter2D(Collider2D other)
+    public override void GotHit()
     {
-        if (other.gameObject.name == "Player")
-        {
-            CurrentState = State.NhismGotHit();
-            CurrentState.EnterState();
-        }
+        CurrentState = State.NhismGotHit();
+        CurrentState.EnterState();
     }
 }

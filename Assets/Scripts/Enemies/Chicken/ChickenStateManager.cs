@@ -16,4 +16,11 @@ public class ChickenStateManager : EnemiesStateManager
         PlayerCheck();
     }
 
+
+    public override void GotHit()
+    {
+        CurrentState = State.ChickenGotHit();
+        CurrentState.EnterState();
+    }
+
 }
