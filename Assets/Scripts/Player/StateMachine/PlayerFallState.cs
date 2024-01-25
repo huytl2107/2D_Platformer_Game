@@ -18,6 +18,8 @@ public class PlayerFallState : PlayerBaseState
         player.CanMove();
         CheckSwitchState();
         PlayerStateManager.UpdateObjectDirX(player);
+
+        //Hạn chế tốc độ rơi
         if (player.Rb.velocity.y <= -25f)
         {
             player.Rb.velocity = new Vector2(player.Rb.velocity.x, -25f);
@@ -53,7 +55,6 @@ public class PlayerFallState : PlayerBaseState
         }
         else if (player.IsGrounded())
         {
-            player.SpawnDustEffcect();
             player.IsDoubleJump = false;
             if (player.DirX == 0)
             {
