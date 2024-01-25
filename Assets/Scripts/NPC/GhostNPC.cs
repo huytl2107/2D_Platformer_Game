@@ -13,6 +13,8 @@ public class GhostNPC : NPC
     private enum state { idle, appear, disappear };
     private Animator anim;
     private SpriteRenderer sprite;
+    private Text _chatText;
+    [SerializeField] private float _timeLoadText = .05f;
 
     private void Start()
     {
@@ -21,20 +23,7 @@ public class GhostNPC : NPC
         Color currentColor = sprite.color;
         currentColor.a = 0f; // Đặt alpha thành 0 để ẩn
         sprite.color = currentColor;
-    }
-    protected override void StartConversation()
-    {
-        if (canContunies)
-        {
-            canContunies = false;
-            notification.SetActive(false);
-            chatBox.SetActive(true);
-            Text chatText = chatBox.GetComponentInChildren<Text>();
-            chatText.text = text[currentIndex];
-            currentIndex++;
-            Debug.Log("Ghost: Hello Bro!!!");
-            Invoke("ShowNotification", 1f);
-        }
+        _chatText = chatBox.GetComponentInChildren<Text>();
     }
 
     private new void Update()
@@ -47,7 +36,7 @@ public class GhostNPC : NPC
         }
         if (isPlayerInRange && (Input.GetButtonDown("Jump")))
         {
-            // Người chơi nhấn Y, thực hiện hành động nói chuyện hoặc mở hộp thoại
+            // Người chơi nhấn Space, mở hộp thoại chat
             if (currentIndex >= text.Length)
             {
                 notification.SetActive(false);
@@ -60,6 +49,31 @@ public class GhostNPC : NPC
             }
         }
     }
+
+    protected override void StartConversation()
+    {
+        if (canContunies)
+        {
+            canContunies = false;
+            notification.SetActive(false);
+            chatBox.SetActive(true);
+            _chatText.text = "";
+            StartCoroutine(DisplayText(text[currentIndex]));
+            currentIndex++;
+            Debug.Log("Ghost: Hello Bro!!!");
+            Invoke("ShowNotification", 1f);
+        }
+    }
+
+    private IEnumerator DisplayText(string displayText)
+    {
+        for (int i=0; i<displayText.Length; i++)
+        {
+            _chatText.text += displayText[i];
+            yield return new WaitForSeconds(_timeLoadText);
+        }
+    }
+
     private void ShowNotification()
     {
         notification.SetActive(true);

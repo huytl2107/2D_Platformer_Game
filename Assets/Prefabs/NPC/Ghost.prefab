@@ -722,6 +722,7 @@ MonoBehaviour:
   - Hello guy
   - text 1
   - text 2
+  _timeLoadText: 0.05
 --- !u!1 &8603952136873908944
 GameObject:
   m_ObjectHideFlags: 0
