@@ -111,7 +111,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         CurrentState = State.Idle();
         CurrentState.EnterState();
-        PlayerHealthController.Instant.UpdatePlayerHealthUI();
+        UIManager.Instant.UpdatePlayerHealthUI();
     }
 
     // Update is called once per frame
@@ -157,8 +157,7 @@ public class PlayerStateManager : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Apple"))
         {
-            _fruitNumb += 1;
-            _fruitText.text = "Fruit: " + _fruitNumb;
+            UIManager.Instant.UpdateFruitText();
             Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("Trap"))
@@ -171,7 +170,7 @@ public class PlayerStateManager : MonoBehaviour
         }
         else if(other.gameObject.CompareTag("DeathZone"))
         {
-            PlayerHealthController.Instant.PlayerHealth -=10;
+            UIManager.Instant.PlayerHealth -=10;
             CurrentState.ExitState();
             CurrentState = State.GotHit();
             CurrentState.EnterState();
