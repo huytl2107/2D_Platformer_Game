@@ -48,10 +48,6 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Sound Effect")]
     [SerializeField] private AudioSource _gotHitSound;
 
-    [Header("ItemCollector")]
-    [SerializeField] private Text _fruitText;
-    private int _fruitNumb = 0;
-
     [Header("Button")]
     [SerializeField] private KeyCode _throwWeaponKey = KeyCode.J;
     [SerializeField] private KeyCode _dashKey = KeyCode.LeftShift;

@@ -12,7 +12,6 @@ public class PlayerJumpState : PlayerBaseState
     //OriginialGravity = 9f;
     public override void EnterState()
     {
-        SoundManager.Instant.PlaySound("Jump");
         player.IsDoubleJump = false;
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.jump);
         //player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
