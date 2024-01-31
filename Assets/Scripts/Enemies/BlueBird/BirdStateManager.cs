@@ -17,6 +17,10 @@ public class BirdStateManager : EnemiesStateManager
         HandleGroundDetection();
     }
 
+    public override void HandleGroundDetection()
+    {
+    }
+
     public override void GotHit()
     {
         CurrentState = State.BirdGotHit();

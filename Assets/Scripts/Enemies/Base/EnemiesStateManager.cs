@@ -227,22 +227,24 @@ public abstract class EnemiesStateManager : MonoBehaviour
         {
             if (IsRightPlayer())
             {
-                Sprite.flipX = false;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+
             }
             else
             {
-                Sprite.flipX = true;
+                transform.rotation = Quaternion.Euler(0, 180, 0);
             }
         }
         else
         {
             if (IsRightPlayer())
             {
-                Sprite.flipX = true;
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+
             }
             else
             {
-                Sprite.flipX = false;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
     }

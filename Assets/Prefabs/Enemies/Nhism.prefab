@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 8858094540989153711}
   - component: {fileID: 8858094540989153708}
   - component: {fileID: 4685968068486830509}
+  - component: {fileID: 1564488780823052980}
   m_Layer: 2
   m_Name: Nhism
   m_TagString: Enemies
@@ -195,7 +196,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00681442, y: -0.23169333}
+  m_Offset: {x: 0.00681442, y: -0.30678368}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -206,7 +207,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.836856, y: 1.1616133}
+  m_Size: {x: 1.836856, y: 1.0114326}
   m_EdgeRadius: 0
 --- !u!50 &8858094540989153711
 Rigidbody2D:
@@ -278,3 +279,29 @@ MonoBehaviour:
     m_Bits: 4
   _plusXBullet: 0
   _plusYBullet: 0
+--- !u!61 &1564488780823052980
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858094540989153709}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0046930313, y: 0.29567146}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.75, y: 1.625}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.5954685, y: 0.17010117}
+  m_EdgeRadius: 0

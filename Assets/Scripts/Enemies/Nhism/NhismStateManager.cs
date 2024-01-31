@@ -21,4 +21,14 @@ public class NhismStateManager : EnemiesStateManager
         CurrentState = State.NhismGotHit();
         CurrentState.EnterState();
     }
+
+    public void SpikeIn()
+    {
+        tag = "Trap";
+    }
+
+    public void SpikesOut()
+    {
+        tag = "Enemies";
+    }
 }

@@ -1,19 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class DestroyPlatform : MonoBehaviour
 {
-    [SerializeField] private float waitToDestroy;
+    Rigidbody2D rb;
+
+    private void Start() {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.name == "Player")
         {
-            Invoke("Destroy", 3f);
+            StartCoroutine(FallAndDestroy());
         }
     }
-    private void Destroy()
+
+    private void FixedUpdate()
     {
+        rb.velocity = new Vector2(0f, -10f);
+    }
+
+    private IEnumerator FallAndDestroy()
+    {
+        yield return new WaitForSeconds(1f);
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 }

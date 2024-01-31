@@ -46,6 +46,7 @@ public class UIManager : Singleton<UIManager>
 
     public void UpdatePlayerHealthUI()
     {
+        if(PlayerHealth > 3) PlayerHealth = 3;
         switch (PlayerHealth)
         {
             case 3:
