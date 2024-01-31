@@ -10,15 +10,13 @@ public class Parallax : MonoBehaviour
     private CameraController _cam;
     private float _startPosX;
     private float _startPosY;
-    private float _length;
+    [SerializeField] private float _length = 40f;
     [SerializeField] private float _xParalaxEffect;
     [SerializeField] private float _yParalaxEffect;
 
     void Awake()
     {
         _cam = FindObjectOfType<CameraController>();
-        //_length = GetComponent<TilemapRenderer>().bounds.size.x;
-        _length = 40;
     }
 
     private void Start()

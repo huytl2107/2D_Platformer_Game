@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SoundManager : Singleton<SoundManager>
 {
+    public override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
+    }
+
     [System.Serializable]
     public class Pool 
     {
@@ -26,6 +32,9 @@ public class SoundManager : Singleton<SoundManager>
             for(int i=0 ; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
+
+                //Đảm bảo sound được thêm vào sound Manager không bị hủy khi load sceneS
+                DontDestroyOnLoad(obj);
                 obj.SetActive(false);
                 objectsPool.Enqueue(obj);
             }    
