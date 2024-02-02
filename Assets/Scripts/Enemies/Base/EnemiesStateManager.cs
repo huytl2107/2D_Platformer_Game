@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Linq;
 
 public abstract class EnemiesStateManager : MonoBehaviour
 {
@@ -85,6 +86,13 @@ public abstract class EnemiesStateManager : MonoBehaviour
         if (FlipObject)
         {
             FlipXObject();
+        }
+
+        //Bỏ qua va chạm giữa các Enemies với nhau
+        Collider2D[] colliders = GameObject.FindGameObjectsWithTag("Enemies").Select(go => go.GetComponent<Collider2D>()).ToArray();
+        foreach (Collider2D collider in colliders)
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collider);
         }
     }
 

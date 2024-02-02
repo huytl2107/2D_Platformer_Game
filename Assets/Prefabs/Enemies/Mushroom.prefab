@@ -206,7 +206,7 @@ MonoBehaviour:
   _distanceWallCheck: 2
   _ground:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
   _ignoreLayer:
     serializedVersion: 2
     m_Bits: 4
