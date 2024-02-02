@@ -125,7 +125,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Trap") || (other.gameObject.CompareTag("Enemies") && _cangotHit))
+        if (other.gameObject.CompareTag("Trap") || other.gameObject.CompareTag("RockHead") || (other.gameObject.CompareTag("Enemies") && _cangotHit))
         {
             GotHitDirX = ((transform.position.x - other.transform.position.x) > 0) ? 1 : -1;
 

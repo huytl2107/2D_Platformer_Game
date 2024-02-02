@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7834106718852912891}
   - component: {fileID: 7834106718852912884}
   - component: {fileID: 5677571074520267227}
+  - component: {fileID: 4762011323203561117}
   m_Layer: 2
   m_Name: Bat
   m_TagString: Enemies
@@ -101,7 +102,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03727895, y: 0}
+  m_Offset: {x: 0.0073698163, y: -0.10767245}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -112,7 +113,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8707386, y: 1.0479841}
+  m_Size: {x: 0.9305569, y: 0.8326392}
   m_EdgeRadius: 0
 --- !u!50 &7834106718852912891
 Rigidbody2D:
@@ -184,3 +185,29 @@ MonoBehaviour:
     m_Bits: 4
   _plusXBullet: 0
   _plusYBullet: 0
+--- !u!61 &4762011323203561117
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834106718852912893}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.52638626}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.875, y: 1.875}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.81729126, y: 0.34368134}
+  m_EdgeRadius: 0

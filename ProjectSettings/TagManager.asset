@@ -16,6 +16,8 @@ TagManager:
   - Enemies
   - StrongEnemies
   - DeathZone
+  - None
+  - RockHead
   layers:
   - Default
   - TransparentFX
