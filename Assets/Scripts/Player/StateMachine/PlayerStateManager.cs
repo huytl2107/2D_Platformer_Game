@@ -114,6 +114,7 @@ public class PlayerStateManager : MonoBehaviour
     private void Update()
     {
         WallCheck();
+        Debug.Log("can got hit: " + _cangotHit);
         CurrentState.UpdateState();
     }
 
@@ -128,9 +129,7 @@ public class PlayerStateManager : MonoBehaviour
         {
             GotHitDirX = ((transform.position.x - other.transform.position.x) > 0) ? 1 : -1;
 
-            CurrentState.ExitState();
-            CurrentState = State.GotHit();
-            CurrentState.EnterState();
+            SwitchToGotHitState();
         }
         else if (other.gameObject.name == "Trampoline")
         {
@@ -160,36 +159,44 @@ public class PlayerStateManager : MonoBehaviour
         {
             GotHitDirX = ((transform.position.x - other.transform.position.x) > 0) ? 1 : -1;
 
-            CurrentState.ExitState();
-            CurrentState = State.GotHit();
-            CurrentState.EnterState();
+            SwitchToGotHitState();
         }
-        else if(other.gameObject.CompareTag("DeathZone"))
+        else if (other.gameObject.CompareTag("DeathZone"))
         {
-            UIManager.Instant.PlayerHealth -=10;
-            CurrentState.ExitState();
-            CurrentState = State.GotHit();
-            CurrentState.EnterState();
+            UIManager.Instant.PlayerHealth -= 10;
+            SwitchToGotHitState();
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         _cangotHit = true;
-        if(other.gameObject.CompareTag("NPC"))
+        if (other.gameObject.CompareTag("NPC"))
         {
             CurrentState = State.Idle();
             CurrentState.EnterState();
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other) 
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("NPC"))
+        if (other.gameObject.CompareTag("NPC"))
         {
             CurrentState = State.InteractNPC();
             CurrentState.EnterState();
         }
+        if(other.gameObject.CompareTag("Trap") && _cangotHit)
+        {
+            _cangotHit = false;
+            SwitchToGotHitState();
+        }
+    }
+
+    private void SwitchToGotHitState()
+    {
+        CurrentState.ExitState();
+        CurrentState = State.GotHit();
+        CurrentState.EnterState();
     }
 
     public bool IsGrounded()
@@ -200,7 +207,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public static void UpdateObjectDirX(PlayerStateManager player)
     {
-        player.transform.rotation = Quaternion.Euler(0,(player.RaycastDirX > 0) ? 0 : 180,0);
+        player.transform.rotation = Quaternion.Euler(0, (player.RaycastDirX > 0) ? 0 : 180, 0);
     }
 
     public IEnumerator Dash(PlayerStateManager player)
@@ -277,6 +284,6 @@ public class PlayerStateManager : MonoBehaviour
     public void SpawnDustEffcect()
     {
         DustPosition = new Vector3(transform.position.x, transform.position.y - .95f, transform.position.z);
-        EffectPooler.Instant.GetPoolObject("DustEffect", DustPosition, (DirX > 0) ? Quaternion.identity : Quaternion.Euler(0,7.5f,0)); //Chưa hiểu tại sao xoay 180 nó k hoạt động???
+        EffectPooler.Instant.GetPoolObject("DustEffect", DustPosition, (DirX > 0) ? Quaternion.identity : Quaternion.Euler(0, 7.5f, 0)); //Chưa hiểu tại sao xoay 180 nó k hoạt động???
     }
 }

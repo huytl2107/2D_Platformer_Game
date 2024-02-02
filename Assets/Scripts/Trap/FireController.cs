@@ -6,48 +6,36 @@ public class FireController : MonoBehaviour
 {
     private Animator anim;
     private Collider2D col;
-    [SerializeField] private float waitTime = 1f;
-    [SerializeField] private float firstDelay = 0;
-    private bool isChanged = false;
-    private bool isCalled = false;
+    [SerializeField] private float _delay = 0;
+    [SerializeField] private float _coolDown = 1.5f;
     
     // Start is called before the first frame update
     private void Start()
     {
         anim = GetComponent<Animator>();
         col = GetComponent<Collider2D>();
+        StartCoroutine(On());
     }
 
-    // Update is called once per frame
-    private void Update()
+    private IEnumerator AwakeFire()
     {
-        if(!isCalled)
-        {
-            Invoke("On", firstDelay);
-            isCalled = true;
-        }
+        yield return new WaitForSeconds(_delay);
+        StartCoroutine(On());
     }
-    private void On()
+
+    private IEnumerator On()
     {
-        if(!isChanged)
-        {
-        isChanged = true;
+        yield return new WaitForSeconds(_coolDown);
         anim.SetBool("State", true);
-        col.isTrigger = true;
-        Invoke("Off", waitTime);
-        Debug.Log("On");
-        }
+        gameObject.tag = "Trap";
+        StartCoroutine(Off());
     }
-    private void Off()
+    private IEnumerator Off()
     {
-        if(isChanged)
-        {
-        isChanged = false;
+        yield return new WaitForSeconds(_coolDown);
         anim.SetBool("State", false);
-        col.isTrigger = false;
-        Invoke("On", waitTime);
-        Debug.Log("Off");
-        }
+        gameObject.tag = "Untagged";
+        StartCoroutine(On());
     }
 
 }
