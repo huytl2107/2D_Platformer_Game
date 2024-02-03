@@ -220,11 +220,11 @@ public abstract class EnemiesStateManager : MonoBehaviour
             float distanceToFirstPosition = transform.position.x - FirstPosition.x;
             if (distanceToFirstPosition > 0)
             {
-                Sprite.flipX = false;
+                transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             else
             {
-                Sprite.flipX = true;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
     }
