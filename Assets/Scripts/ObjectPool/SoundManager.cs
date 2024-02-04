@@ -11,21 +11,33 @@ public class SoundManager : Singleton<SoundManager>
     }
 
     [System.Serializable]
-    public class Pool 
+    public class Sound 
     {
         public string tag;
         public GameObject prefab;
         public int size;
     }
-    public List<Pool> pools;
+    public List<Sound> sounds;
 
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    public Dictionary<string, Queue<GameObject>> soundsDictionary;
+
+    [System.Serializable]
+    public class Music 
+    {
+        public string tag;
+        public GameObject prefab;
+        public int size;
+    }
+    public List<Music> musics;
+
+    public Dictionary<string, Queue<GameObject>> musicsDictionary;
     
     void Start()
     {
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        soundsDictionary = new Dictionary<string, Queue<GameObject>>();
+        musicsDictionary = new Dictionary<string, Queue<GameObject>>();
 
-        foreach(Pool pool in pools) 
+        foreach(Sound pool in sounds) 
         {
             Queue<GameObject> objectsPool = new Queue<GameObject>();
 
@@ -38,22 +50,55 @@ public class SoundManager : Singleton<SoundManager>
                 obj.SetActive(false);
                 objectsPool.Enqueue(obj);
             }    
-            poolDictionary.Add(pool.tag, objectsPool);
+            soundsDictionary.Add(pool.tag, objectsPool);
         }
+
+        foreach(Music pool in musics) 
+        {
+            Queue<GameObject> objectsPool = new Queue<GameObject>();
+
+            for(int i=0 ; i < pool.size; i++)
+            {
+                GameObject obj = Instantiate(pool.prefab);
+
+                //Đảm bảo sound được thêm vào sound Manager không bị hủy khi load sceneS
+                DontDestroyOnLoad(obj);
+                obj.SetActive(false);
+                objectsPool.Enqueue(obj);
+            }    
+            musicsDictionary.Add(pool.tag, objectsPool);
+        }
+
     }
 
     public GameObject PlaySound(string tag)
     {
-        if(!poolDictionary.ContainsKey(tag))
+        if(!soundsDictionary.ContainsKey(tag))
         {
             Debug.Log("Key " + tag + " doesn't exist!!!");
             return null;
         }
 
-        GameObject objToSpawn = poolDictionary[tag].Dequeue();
+        GameObject objToSpawn = soundsDictionary[tag].Dequeue();
         objToSpawn.SetActive(true);
 
-        poolDictionary[tag].Enqueue(objToSpawn);
+        soundsDictionary[tag].Enqueue(objToSpawn);
+
+        return objToSpawn;
+    }
+
+    public GameObject PlayMusic(string tag)
+    {
+        if(!musicsDictionary.ContainsKey(tag))
+        {
+            Debug.Log("Key " + tag + " doesn't exist!!!");
+            return null;
+        }
+
+        GameObject objToSpawn = musicsDictionary[tag].Dequeue();
+        objToSpawn.SetActive(true);
+
+        musicsDictionary[tag].Enqueue(objToSpawn);
 
         return objToSpawn;
     }
