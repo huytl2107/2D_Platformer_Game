@@ -11,6 +11,15 @@ public class ButtonController : MonoBehaviour
     }
     public void ExitGame()
     {
-        GameManager.Instant.Quit();
+        GameManager.Instant.ExitGame();
+    }
+    public void RestartLevel()
+    {
+        GameManager.Instant.RestartLevel();
+    }
+
+    public void ReturnHome()
+    {
+        GameManager.Instant.ReturnHome();
     }
 }

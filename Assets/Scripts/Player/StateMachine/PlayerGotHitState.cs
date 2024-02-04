@@ -2,7 +2,6 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 
 public class PlayerGotHitState : PlayerBaseState
 {
@@ -38,6 +37,7 @@ public class PlayerGotHitState : PlayerBaseState
         {
             player.Anim.SetTrigger("Death");
             player.Rb.bodyType = RigidbodyType2D.Static;
+            player.Col.isTrigger = true;
             player.StartCoroutine(Death());
         }
     }
@@ -66,12 +66,11 @@ public class PlayerGotHitState : PlayerBaseState
 
     private IEnumerator Death()
     {
-        Debug.Log("Hello from IEnumerator");
         //Chờ 1s rồi restart level
         yield return new WaitForSeconds(1f);
         //Vì singleton không load lại nên cần trả máu Player về 3 trước khi restart level;
         UIManager.Instant.PlayerHealth = 3;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        UIManager.Instant.PopUpLosePanel();
     }
 
     public override void ExitState()

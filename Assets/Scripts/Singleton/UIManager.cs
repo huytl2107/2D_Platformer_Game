@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
+    [Header("UI")]
+    [SerializeField] GameObject _startMenu;
+    [SerializeField] GameObject _option;
+    [SerializeField] GameObject _exitConfirm;
+    [SerializeField] GameObject _losePanel;
+
     //Sử dụng Singleton để quản lý PlayerHealth, lưu lại qua các scene;
     [Header("Health")]
     [SerializeField] private int _playerHealth;
@@ -37,16 +43,41 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    public void Start()
+    {
+        LoadHomeUI();
+    }
 
+    public void LoadHomeUI()
+    {
+        if (_startMenu != null) _startMenu.SetActive(true);
+        if (_option != null) _option.SetActive(false);
+        if (_exitConfirm != null) _exitConfirm.SetActive(false);
+        if (_losePanel != null) _losePanel.SetActive(false);
+    }
+
+    public void HideAllUI()
+    {
+        if (_startMenu != null) _startMenu.SetActive(false);
+        if (_option != null) _option.SetActive(false);
+        if (_exitConfirm != null) _exitConfirm.SetActive(false);
+        if (_losePanel != null) _losePanel.SetActive(false);
+    }
+
+    public void PopUpLosePanel()
+    {
+        if (_losePanel != null) _losePanel.SetActive(true);
+    }
+
+    #region HealthAndFruits
     public void GotHit()
     {
         PlayerHealth -= 1;
         Debug.Log(PlayerHealth);
     }
-
     public void UpdatePlayerHealthUI()
     {
-        if(PlayerHealth > 3) PlayerHealth = 3;
+        if (PlayerHealth > 3) PlayerHealth = 3;
         switch (PlayerHealth)
         {
             case 3:
@@ -76,4 +107,5 @@ public class UIManager : Singleton<UIManager>
         FruitNumb += 1;
         FruitText.text = "Fruit: " + FruitNumb;
     }
+    #endregion HealthAndFruits
 }
