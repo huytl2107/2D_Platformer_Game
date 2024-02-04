@@ -26,7 +26,6 @@ public class PlayerGotHitState : PlayerBaseState
             player.GotHitSound.Play();
             //Transition từ AnyState, tắt Can transition to self để không treo ở frame đàu.
             player.Anim.SetBool("GotHit", true);
-
             player.Rb.velocity = new Vector2(0f,0f);
             player.Rb.gravityScale = 12f;
             player.Rb.AddForce(Vector2.up * player.JumpForce/1.5f, ForceMode2D.Impulse);
@@ -36,8 +35,8 @@ public class PlayerGotHitState : PlayerBaseState
         else
         {
             player.Anim.SetTrigger("Death");
-            player.Rb.bodyType = RigidbodyType2D.Static;
             player.Col.isTrigger = true;
+            player.Rb.bodyType = RigidbodyType2D.Static;
             player.StartCoroutine(Death());
         }
     }
@@ -68,6 +67,7 @@ public class PlayerGotHitState : PlayerBaseState
     {
         //Chờ 1s rồi restart level
         yield return new WaitForSeconds(1f);
+        player.Col.enabled = false;
         //Vì singleton không load lại nên cần trả máu Player về 3 trước khi restart level;
         UIManager.Instant.PlayerHealth = 3;
         UIManager.Instant.PopUpLosePanel();

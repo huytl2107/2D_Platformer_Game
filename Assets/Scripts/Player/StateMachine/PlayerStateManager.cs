@@ -166,6 +166,10 @@ public class PlayerStateManager : MonoBehaviour
             UIManager.Instant.PlayerHealth -= 10;
             SwitchToGotHitState();
         }
+        else if (other.gameObject.CompareTag("Finish"))
+        {
+            Rb.bodyType = RigidbodyType2D.Static;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

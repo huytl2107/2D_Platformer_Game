@@ -241,6 +241,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 117372743741763359, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 347464672478812298, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -253,9 +257,25 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2050786525838683803, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2457525104136961886, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
       propertyPath: m_Name
       value: LosePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899503219065864473, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400107967456321044, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122335643581892739, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
+      propertyPath: m_Name
+      value: Win
       objectReference: {fileID: 0}
     - target: {fileID: 6256910001816344828, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
       propertyPath: m_AnchoredPosition.x

@@ -11,7 +11,13 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
     }
 
-    public void StartGame()
+    public void LoadLevel(int level)
+    {
+        SceneManager.LoadScene(level);
+        UIManager.Instant.HideAllUI();
+    }
+
+    public void NextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         UIManager.Instant.HideAllUI();
@@ -26,6 +32,26 @@ public class GameManager : Singleton<GameManager>
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         UIManager.Instant.HideAllUI();
+    }
+
+    public void ExitButton()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            UIManager.Instant.LoadHomeUI();
+        }
+        else
+        {
+            UIManager.Instant.HideAllUI();
+            if(UIManager.Instant.PlayerHealth < 0)
+            {
+                UIManager.Instant.PopUpLosePanel();
+            }
+            else
+            {
+                UIManager.Instant.PopUpWinPanel();
+            }
+        }
     }
 
     public void ReturnHome()

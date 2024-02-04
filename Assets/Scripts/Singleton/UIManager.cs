@@ -9,7 +9,10 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] GameObject _startMenu;
     [SerializeField] GameObject _option;
     [SerializeField] GameObject _exitConfirm;
+    [SerializeField] GameObject _menuLevel;
     [SerializeField] GameObject _losePanel;
+    [SerializeField] GameObject _winPanel;
+
 
     //Sử dụng Singleton để quản lý PlayerHealth, lưu lại qua các scene;
     [Header("Health")]
@@ -48,25 +51,45 @@ public class UIManager : Singleton<UIManager>
         LoadHomeUI();
     }
 
-    public void LoadHomeUI()
-    {
-        if (_startMenu != null) _startMenu.SetActive(true);
-        if (_option != null) _option.SetActive(false);
-        if (_exitConfirm != null) _exitConfirm.SetActive(false);
-        if (_losePanel != null) _losePanel.SetActive(false);
-    }
-
     public void HideAllUI()
     {
         if (_startMenu != null) _startMenu.SetActive(false);
         if (_option != null) _option.SetActive(false);
         if (_exitConfirm != null) _exitConfirm.SetActive(false);
+        if (_menuLevel != null) _menuLevel.SetActive(false);
         if (_losePanel != null) _losePanel.SetActive(false);
+        if (_winPanel != null) _winPanel.SetActive(false);
+    }
+
+    public void LoadHomeUI()
+    {
+        HideAllUI();
+        if (_startMenu != null) _startMenu.SetActive(true);
     }
 
     public void PopUpLosePanel()
     {
-        if (_losePanel != null) _losePanel.SetActive(true);
+        _losePanel.SetActive(true);
+    }
+
+    public void PopUpWinPanel()
+    {
+        _winPanel.SetActive(true);
+    }
+
+    public void PopUpMenuLevel()
+    {
+        _menuLevel.SetActive(true);
+    }
+
+    public void PopUpOption()
+    {
+        _option.SetActive(true);
+    }
+
+    public void PopUpExitForm()
+    {
+        _exitConfirm.SetActive(true);
     }
 
     #region HealthAndFruits
