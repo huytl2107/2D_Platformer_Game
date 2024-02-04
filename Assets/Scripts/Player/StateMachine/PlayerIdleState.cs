@@ -24,7 +24,7 @@ public class PlayerIdleState : PlayerBaseState
         {
             if (Input.GetButtonDown("Jump"))
             {
-                SoundManager.Instant.PlaySound("Jump");
+                SoundManager.Instant.PlaySound(GameEnum.ESound.jump);
                 player.SpawnDustEffcect();
                 player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
                 SwitchState(factory.Jump());

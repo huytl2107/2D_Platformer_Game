@@ -13,7 +13,8 @@ public class SoundManager : Singleton<SoundManager>
     [System.Serializable]
     public class Sound
     {
-        public string tag;
+        //Sử dụng enum thay vì string;
+        public GameEnum.ESound tag;
         public GameObject prefab;
         public int size;
     }
@@ -24,7 +25,7 @@ public class SoundManager : Singleton<SoundManager>
     [System.Serializable]
     public class Music
     {
-        public string tag;
+        public GameEnum.EMusic tag;
         public GameObject prefab;
         public int size = 1;
     }
@@ -50,7 +51,7 @@ public class SoundManager : Singleton<SoundManager>
                 obj.SetActive(false);
                 objectsPool.Enqueue(obj);
             }
-            soundsDictionary.Add(pool.tag, objectsPool);
+            soundsDictionary.Add(pool.tag.ToString(), objectsPool);
         }
 
         foreach (Music pool in musics)
@@ -66,13 +67,14 @@ public class SoundManager : Singleton<SoundManager>
                 obj.SetActive(false);
                 objectsPool.Enqueue(obj);
             }
-            musicsDictionary.Add(pool.tag, objectsPool);
+            musicsDictionary.Add(pool.tag.ToString(), objectsPool);
         }
         PlayIndexMusic();
     }
 
-    public GameObject PlaySound(string tag)
+    public GameObject PlaySound(GameEnum.ESound eTag)
     {
+        string tag = eTag.ToString();
         if (!soundsDictionary.ContainsKey(tag))
         {
             Debug.Log("Key " + tag + " doesn't exist!!!");
@@ -87,8 +89,9 @@ public class SoundManager : Singleton<SoundManager>
         return objToSpawn;
     }
 
-    public GameObject PlayMusic(string tag)
+    public GameObject PlayMusic(GameEnum.EMusic eTag)
     {
+        string tag = eTag.ToString();
         if (!musicsDictionary.ContainsKey(tag))
         {
             Debug.Log("Key " + tag + " doesn't exist!!!");
@@ -118,6 +121,6 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlayIndexMusic()
     {
-        PlayMusic("0");
+        PlayMusic(GameEnum.EMusic.MusicIndex);
     }
 }

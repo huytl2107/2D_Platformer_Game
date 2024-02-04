@@ -17,7 +17,7 @@ public class PlayerGotHitState : PlayerBaseState
     public override void EnterState()
     {
         //Phát âm thanh
-        SoundManager.Instant.PlaySound("GotHit");
+        SoundManager.Instant.PlaySound(GameEnum.ESound.gotHit);
 
         //Trừ máu Player ngay khi vào GotHitState rồi mới check If Else
         UIManager.Instant.GotHit();

@@ -10,7 +10,7 @@ public class PlayerWallJumpState : PlayerBaseState
     public override void EnterState()
     {
         player.IsDoubleJump = false;
-        SoundManager.Instant.PlaySound("Jump");
+        SoundManager.Instant.PlaySound(GameEnum.ESound.jump);
         player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.wallJump);
     }

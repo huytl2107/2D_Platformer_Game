@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - tag: Jump
+  - tag: 0
     prefab: {fileID: 4890811929540665756, guid: bb82e43b67fe0ed45b90e72ccc9ddbac, type: 3}
     size: 2
-  - tag: GotHit
+  - tag: 1
     prefab: {fileID: 4890811929540665756, guid: b75ce03741a8e8f4590893a00111195e, type: 3}
     size: 2
   musics:

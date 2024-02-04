@@ -8,7 +8,7 @@ public class PlayerDoubleJumpState : PlayerBaseState
 
     public override void EnterState()
     {
-        SoundManager.Instant.PlaySound("Jump");
+        SoundManager.Instant.PlaySound(GameEnum.ESound.jump);
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.doubleJump);
         player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
     }
