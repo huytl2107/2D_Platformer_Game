@@ -15,12 +15,18 @@ public class GameManager : Singleton<GameManager>
     {
         SceneManager.LoadScene(level);
         UIManager.Instant.HideAllUI();
+        if(SceneManager.GetActiveScene().buildIndex == level)
+        return;
+
+        //Không chạy lại nhạc khi player load lại màn chơi cũ
+        SoundManager.Instant.PlayMusic(level.ToString());
     }
 
     public void NextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         UIManager.Instant.HideAllUI();
+        SoundManager.Instant.PlayMusic((SceneManager.GetActiveScene().buildIndex + 1).ToString());
     }
 
     public void ExitGame()
@@ -58,5 +64,6 @@ public class GameManager : Singleton<GameManager>
     {
         SceneManager.LoadScene(0);
         UIManager.Instant.LoadHomeUI();
+        SoundManager.Instant.PlayMusic("0");
     }
 }

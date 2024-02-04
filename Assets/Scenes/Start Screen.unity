@@ -128,7 +128,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2705277034138594742, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
   m_PrefabInstance: {fileID: 1724010710}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &665650697
+--- !u!1 &1474073987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2457525104136961886, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
+  m_PrefabInstance: {fileID: 1724010710}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1559968278
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -137,7 +142,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1379492734662897276, guid: fca5047b1ee04c2409bf349e40a9f9f1, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1379492734662897276, guid: fca5047b1ee04c2409bf349e40a9f9f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -183,41 +188,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1379492734662897279, guid: fca5047b1ee04c2409bf349e40a9f9f1, type: 3}
-      propertyPath: sounds.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379492734662897279, guid: fca5047b1ee04c2409bf349e40a9f9f1, type: 3}
-      propertyPath: sounds.Array.data[0].tag
-      value: Jump
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379492734662897279, guid: fca5047b1ee04c2409bf349e40a9f9f1, type: 3}
-      propertyPath: sounds.Array.data[1].tag
-      value: GotHit
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379492734662897279, guid: fca5047b1ee04c2409bf349e40a9f9f1, type: 3}
-      propertyPath: sounds.Array.data[0].size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379492734662897279, guid: fca5047b1ee04c2409bf349e40a9f9f1, type: 3}
-      propertyPath: sounds.Array.data[1].size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379492734662897279, guid: fca5047b1ee04c2409bf349e40a9f9f1, type: 3}
-      propertyPath: sounds.Array.data[0].prefab
-      value: 
-      objectReference: {fileID: 4890811929540665756, guid: bb82e43b67fe0ed45b90e72ccc9ddbac, type: 3}
-    - target: {fileID: 1379492734662897279, guid: fca5047b1ee04c2409bf349e40a9f9f1, type: 3}
-      propertyPath: sounds.Array.data[1].prefab
-      value: 
-      objectReference: {fileID: 4890811929540665756, guid: b75ce03741a8e8f4590893a00111195e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fca5047b1ee04c2409bf349e40a9f9f1, type: 3}
---- !u!1 &1474073987 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2457525104136961886, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
-  m_PrefabInstance: {fileID: 1724010710}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1575763436
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +232,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1724010710
 PrefabInstance:
@@ -339,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 2025237439}
     - target: {fileID: 8760522628629867843, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8760522628629867843, guid: 3fc2ea6e61a6a0147b70f6116d976e35, type: 3}
       propertyPath: m_LocalPosition.x

@@ -44,10 +44,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925e917fd67a42f4b963138cf323d47c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools:
+  sounds:
   - tag: Jump
     prefab: {fileID: 4890811929540665756, guid: bb82e43b67fe0ed45b90e72ccc9ddbac, type: 3}
     size: 2
   - tag: GotHit
     prefab: {fileID: 4890811929540665756, guid: b75ce03741a8e8f4590893a00111195e, type: 3}
     size: 2
+  musics:
+  - tag: 0
+    prefab: {fileID: 6752918084250824925, guid: df165ebdca0d078449b651075137c4c4, type: 3}
+    size: 1
+  - tag: 1
+    prefab: {fileID: 6752918084250824925, guid: 850b6b3106df97b4a878aae8de5bb086, type: 3}
+    size: 1
+  - tag: 2
+    prefab: {fileID: 6752918084250824925, guid: 10b09670b667b074c9fc67d3fd6611c6, type: 3}
+    size: 1
+  - tag: 3
+    prefab: {fileID: 6752918084250824925, guid: bf85169932a93b148b50875ea40fb7c7, type: 3}
+    size: 1
+  - tag: 4
+    prefab: {fileID: 6752918084250824925, guid: 75c1f2ced2f950441ad8e9053c646b3c, type: 3}
+    size: 1
