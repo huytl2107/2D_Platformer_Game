@@ -18,6 +18,7 @@ TagManager:
   - DeathZone
   - None
   - RockHead
+  - Box
   layers:
   - Default
   - TransparentFX

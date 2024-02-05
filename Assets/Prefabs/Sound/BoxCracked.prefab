@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4890811929540665755}
   - component: {fileID: 4890811929540665753}
   m_Layer: 0
-  m_Name: PlantGotHitSound
+  m_Name: BoxCracked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

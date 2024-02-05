@@ -11,6 +11,6 @@ public class PlantGotHitState : EnemiesGotHitState
     public override void EnterState()
     {
         base.EnterState();
-        SoundManager.Instant.PlaySound(GameEnum.ESound.plantGotHit);
+        SoundManager.Instant.PlaySound(GameEnum.ESound.boxCracked);
     }
 }

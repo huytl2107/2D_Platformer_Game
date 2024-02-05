@@ -141,11 +141,10 @@ public class PlayerStateManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemies"))
+        if (other.gameObject.CompareTag("Enemies") || other.gameObject.CompareTag("Box"))
         {
             _cangotHit = false;
             Rb.gravityScale = 9f;
-            Rb.velocity = new Vector2(Rb.velocity.x, 0f);
             Rb.velocity = new Vector2(Rb.velocity.x, JumpForce);
             CurrentState = State.Jump();
             CurrentState.EnterState();

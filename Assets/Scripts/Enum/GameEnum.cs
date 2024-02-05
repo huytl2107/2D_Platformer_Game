@@ -24,7 +24,7 @@ public class GameEnum
         hitGroundSound,
         gameOver,
         gameWin,
-        plantGotHit,
+        itemCollectedSound,
 
     }
 

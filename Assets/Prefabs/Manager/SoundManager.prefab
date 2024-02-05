@@ -79,7 +79,7 @@ MonoBehaviour:
     prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
     size: 2
   - tag: 11
-    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    prefab: {fileID: 4890811929540665756, guid: 072bdbcdee097c142894e92442754971, type: 3}
     size: 2
   - tag: 12
     prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
@@ -104,9 +104,6 @@ MonoBehaviour:
     size: 2
   - tag: 19
     prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
-    size: 2
-  - tag: 20
-    prefab: {fileID: 4890811929540665756, guid: 072bdbcdee097c142894e92442754971, type: 3}
     size: 2
   musics:
   - tag: 0
