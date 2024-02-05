@@ -8,8 +8,11 @@ public class RadishGotHitState : EnemiesGotHitState
     {
     }
 
+    Vector3 _pos;
+
     public override void EnterState()
     {
+        _pos = new Vector2(enemy.transform.position.x, enemy.transform.position.y + 1f);
         enemy.Health -=1;
         if (enemy.Health < 0)
         {
@@ -19,6 +22,7 @@ public class RadishGotHitState : EnemiesGotHitState
         }
         else
         {
+            EffectPooler.Instant.GetPoolObject("RadishPiece", _pos, Quaternion.identity);
             enemy.Anim.SetInteger("State", (int)StateEnum.ERadishState.gotHit);
             enemy.Rb.bodyType = RigidbodyType2D.Dynamic;
             enemy.StartCoroutine(SwitchToIdleState());

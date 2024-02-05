@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4245551240312836495}
   - component: {fileID: 1601854344873276936}
-  - component: {fileID: 5425897138886546684}
+  - component: {fileID: 1051438137264051889}
   m_Layer: 0
   m_Name: MusicLV4
   m_TagString: Untagged
@@ -43,7 +43,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 07f391589664f4e85904fa28802b4aa8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0dd99a1cf264e4b4fa771ea0a09d6ddd, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -129,7 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5425897138886546684
+--- !u!114 &1051438137264051889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +138,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6752918084250824925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e55fbe60a1fd4114b995ba8b305f1fc6, type: 3}
+  m_Script: {fileID: 11500000, guid: e980859540f530e4d95c76b171b50484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
