@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIManager : Singleton<UIManager>
 {
     [Header("UI")]
+    [SerializeField] GameObject _backgroundUI;
     [SerializeField] GameObject _startMenu;
     [SerializeField] GameObject _option;
     [SerializeField] GameObject _exitConfirm;
@@ -66,6 +67,7 @@ public class UIManager : Singleton<UIManager>
 
     public void HideAllUI()
     {
+        if (_backgroundUI != null) _backgroundUI.SetActive(false);
         if (_startMenu != null) _startMenu.SetActive(false);
         if (_option != null) _option.SetActive(false);
         if (_exitConfirm != null) _exitConfirm.SetActive(false);
@@ -77,6 +79,7 @@ public class UIManager : Singleton<UIManager>
     public void LoadHomeUI()
     {
         HideAllUI();
+        if (_backgroundUI != null) _backgroundUI.SetActive(true);
         if (_startMenu != null) _startMenu.SetActive(true);
     }
 
