@@ -27,6 +27,7 @@ public class TrunkStateManager : EnemiesStateManager
         //CurrentWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
 
         GameObject bullet = ObjectPooler.Instant.GetPoolObject("TrunkBullet", bulletPosition, Quaternion.identity);
+        SoundManager.Instant.PlaySound(GameEnum.ESound.enemyShoot);
         if (bullet != null)
         {
             BulletController axeController = bullet.GetComponent<BulletController>();

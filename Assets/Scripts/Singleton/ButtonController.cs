@@ -38,6 +38,7 @@ public class ButtonController : MonoBehaviour
     public void RestartLevel()
     {
         PlaySfx();
+        UIManager.Instant.ResetFruitText();
         GameManager.Instant.RestartLevel();
     }
 
@@ -62,6 +63,7 @@ public class ButtonController : MonoBehaviour
     public void NextLevel()
     {
         PlaySfx();
+        UIManager.Instant.SaveFruitsNumb();
         GameManager.Instant.NextLevel();
     }
 }

@@ -26,6 +26,7 @@ public class PlantStateManager : EnemiesStateManager
         Vector3 bulletPosition = new Vector3(transform.position.x + PlusXBullet * RaycastDirX, transform.position.y + PlusYBullet, transform.position.z);
         //CurrentWeapon = Instantiate(_weapon, weaponPosition, transform.rotation);
 
+        SoundManager.Instant.PlaySound(GameEnum.ESound.enemyShoot);
         GameObject bullet = ObjectPooler.Instant.GetPoolObject("Bullet", bulletPosition, Quaternion.identity);
         if (bullet != null)
         {

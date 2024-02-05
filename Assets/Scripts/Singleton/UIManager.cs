@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +26,14 @@ public class UIManager : Singleton<UIManager>
 
     [Header("ItemCollector")]
     [SerializeField] private Text _fruitText;
+    
     private int _fruitNumb = 0;
+
+    //FruitLevel
+    private int _fruitLevel1 = 0;
+    private int _fruitLevel2 = 0;
+    private int _fruitLevel3 = 0;
+    private int _fruitLevel4 = 0;
 
     public int PlayerHealth { get => _playerHealth; set => _playerHealth = value; }
     public Image Head1 { get => _head1; set => _head1 = value; }
@@ -49,6 +57,11 @@ public class UIManager : Singleton<UIManager>
     public void Start()
     {
         LoadHomeUI();
+    }
+
+    public bool IsWinPanelActive()
+    {
+        return _winPanel.activeInHierarchy;
     }
 
     public void HideAllUI()
@@ -96,7 +109,6 @@ public class UIManager : Singleton<UIManager>
     public void GotHit()
     {
         PlayerHealth -= 1;
-        Debug.Log(PlayerHealth);
     }
     public void UpdatePlayerHealthUI()
     {
@@ -129,6 +141,31 @@ public class UIManager : Singleton<UIManager>
     {
         FruitNumb += 1;
         FruitText.text = "Fruit: " + FruitNumb;
+    }
+
+    public void SaveFruitsNumb()
+    {
+        switch(GameManager.Instant.GetBuildIndex())
+        {
+            case 1: _fruitLevel1 = FruitNumb - (_fruitLevel2 + _fruitLevel3 + _fruitLevel4); break;
+            case 2: _fruitLevel2 = FruitNumb - (_fruitLevel1 + _fruitLevel3 + _fruitLevel4); break;
+            case 3: _fruitLevel3 = FruitNumb - (_fruitLevel2 + _fruitLevel1 + _fruitLevel4); break;
+            case 4: _fruitLevel4 = FruitNumb - (_fruitLevel2 + _fruitLevel3 + _fruitLevel1); break;
+        }
+    }
+    public void ResetFruitText()
+    {
+        switch(GameManager.Instant.GetBuildIndex())
+        {
+            //Vì func UpdateFruitText sẽ +1 nên -1 trước
+            //Chỉ reset Fruits của màn đang chơi;
+            case 1: FruitNumb = _fruitLevel2 + _fruitLevel3 + _fruitLevel4 - 1; break;
+            case 2: FruitNumb = _fruitLevel1 + _fruitLevel3 + _fruitLevel4 - 1; break;
+            case 3: FruitNumb = _fruitLevel1 + _fruitLevel2 + _fruitLevel4 - 1; break;
+            case 4: FruitNumb = _fruitLevel1 + _fruitLevel2 + _fruitLevel3 - 1; break;
+            default: FruitNumb -= 1; break;
+        }
+        UpdateFruitText();
     }
     #endregion HealthAndFruits
 }

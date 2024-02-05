@@ -11,16 +11,31 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
     }
 
+    public int GetBuildIndex()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
+    }
+
     public void LoadLevel(int level)
     {
+        if(UIManager.Instant.IsWinPanelActive())
+        {
+            UIManager.Instant.SaveFruitsNumb();
+        }
         SceneManager.LoadScene(level);
         UIManager.Instant.HideAllUI();
-
+        StartCoroutine(ResetFruitText());
         //Không chạy lại nhạc khi player load lại màn chơi cũ
         if(SceneManager.GetActiveScene().buildIndex == level)
         return;
-
         SoundManager.Instant.PlayMusic((GameEnum.EMusic)level);
+    }
+
+    //Đợi nó lưu rồi hãy reset Text;
+    public IEnumerator ResetFruitText()
+    {
+        yield return new WaitForSeconds(.1f);
+        UIManager.Instant.ResetFruitText();
     }
 
     public void NextLevel()
