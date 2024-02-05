@@ -34,6 +34,10 @@ public class EnemiesStateFactory
     {
         return new PlantAttackState(_context, this);
     }
+    public EnemiesBaseState PlantGotHit()
+    {
+        return new PlantGotHitState(_context, this);
+    }
 
     //AngryPig
     public EnemiesBaseState PigWalk()

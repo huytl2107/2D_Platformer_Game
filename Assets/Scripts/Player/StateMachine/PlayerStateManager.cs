@@ -290,4 +290,9 @@ public class PlayerStateManager : MonoBehaviour
         DustPosition = new Vector3(transform.position.x, transform.position.y - .95f, transform.position.z);
         EffectPooler.Instant.GetPoolObject("DustEffect", DustPosition, (DirX > 0) ? Quaternion.identity : Quaternion.Euler(0, 7.5f, 0)); //Chưa hiểu tại sao xoay 180 nó k hoạt động???
     }
+
+    public void PlayFootStepSound()
+    {
+        SoundManager.Instant.PlaySound(GameEnum.ESound.footStep);
+    }
 }

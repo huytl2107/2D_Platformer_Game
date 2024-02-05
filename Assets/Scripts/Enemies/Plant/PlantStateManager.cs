@@ -36,6 +36,8 @@ public class PlantStateManager : EnemiesStateManager
 
     public override void GotHit()
     {
-
+        CurrentState.ExitState();
+        CurrentState = State.PlantGotHit();
+        CurrentState.EnterState();
     }
 }

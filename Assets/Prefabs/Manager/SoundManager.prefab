@@ -45,11 +45,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - tag: 0
+  - tag: 1
     prefab: {fileID: 4890811929540665756, guid: bb82e43b67fe0ed45b90e72ccc9ddbac, type: 3}
     size: 2
-  - tag: 1
+  - tag: 2
     prefab: {fileID: 4890811929540665756, guid: b75ce03741a8e8f4590893a00111195e, type: 3}
+    size: 2
+  - tag: 3
+    prefab: {fileID: 4890811929540665756, guid: 46c200741eaad71438b13539422a79bb, type: 3}
+    size: 5
+  - tag: 0
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 4
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 5
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 6
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 7
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 8
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 9
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 10
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 11
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 12
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 13
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 14
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 15
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 16
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 17
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 18
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 19
+    prefab: {fileID: 4890811929540665756, guid: 3e532a48ffd87914e9e0a1028969a402, type: 3}
+    size: 2
+  - tag: 20
+    prefab: {fileID: 4890811929540665756, guid: 072bdbcdee097c142894e92442754971, type: 3}
     size: 2
   musics:
   - tag: 0

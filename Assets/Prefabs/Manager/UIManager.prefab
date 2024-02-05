@@ -1302,7 +1302,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1887720940795301469}
         m_TargetAssemblyTypeName: ButtonController, Assembly-CSharp
-        m_MethodName: ReturnHome
+        m_MethodName: ExitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
