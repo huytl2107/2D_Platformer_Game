@@ -15,7 +15,6 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] GameObject _losePanel;
     [SerializeField] GameObject _winPanel;
 
-
     //Sử dụng Singleton để quản lý PlayerHealth, lưu lại qua các scene;
     [Header("Health")]
     [SerializeField] private int _playerHealth;

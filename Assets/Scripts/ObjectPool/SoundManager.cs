@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SoundManager : Singleton<SoundManager>
 {
+    private float _soundVolume;
+    private float _musicVolume;
+
     public override void Awake()
     {
         base.Awake();
@@ -122,5 +125,50 @@ public class SoundManager : Singleton<SoundManager>
     public void PlayIndexMusic()
     {
         PlayMusic(GameEnum.EMusic.MusicIndex);
+    }
+
+    //Thay đổi âm lượng
+    public void ChangeSoundVolume(float volume)
+    {
+        _soundVolume = volume;
+        ApplyVolumeToAllSounds();
+    }
+
+    public void ChangeMusicVolume(float volume)
+    {
+        _musicVolume = volume;
+        ApplyVolumeToAllMusic();
+    }
+
+    // Phương thức áp dụng giá trị âm lượng cho tất cả các âm thanh
+    private void ApplyVolumeToAllSounds()
+    {
+        foreach (var queue in soundsDictionary.Values)
+        {
+            foreach (var obj in queue)
+            {
+                AudioSource audioSource = obj.GetComponent<AudioSource>();
+                if (audioSource != null)
+                {
+                    audioSource.volume = _soundVolume;
+                }
+            }
+        }
+    }
+
+    // Phương thức áp dụng giá trị âm lượng cho tất cả các nhạc
+    private void ApplyVolumeToAllMusic()
+    {
+        foreach (var queue in musicsDictionary.Values)
+        {
+            foreach (var obj in queue)
+            {
+                AudioSource audioSource = obj.GetComponent<AudioSource>();
+                if (audioSource != null)
+                {
+                    audioSource.volume = _musicVolume;
+                }
+            }
+        }
     }
 }
