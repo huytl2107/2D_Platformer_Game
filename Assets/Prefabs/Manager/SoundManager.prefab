@@ -83,7 +83,7 @@ MonoBehaviour:
     size: 2
   - tag: 12
     prefab: {fileID: 4890811929540665756, guid: 66766596d828967438323142383ffeae, type: 3}
-    size: 2
+    size: 5
   - tag: 13
     prefab: {fileID: 4890811929540665756, guid: 0e4cd149b804e7d4dba26c4230c1abbf, type: 3}
     size: 2

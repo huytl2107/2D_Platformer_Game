@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3649598012195961107}
   - component: {fileID: 3649598012195961104}
   - component: {fileID: 2542490254680781178}
+  - component: {fileID: 3655545449469876367}
   m_Layer: 0
   m_Name: OnlyFans
   m_TagString: Untagged
@@ -181,6 +182,18 @@ AreaEffector2D:
   m_ForceTarget: 0
   m_Drag: 0
   m_AngularDrag: 300
+--- !u!114 &3655545449469876367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649598012195961118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb3d35eba8e4194988b79ba2a17f670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9068232730540284460
 GameObject:
   m_ObjectHideFlags: 0

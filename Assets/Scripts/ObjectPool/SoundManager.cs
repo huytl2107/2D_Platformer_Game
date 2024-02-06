@@ -91,6 +91,25 @@ public class SoundManager : Singleton<SoundManager>
 
         return objToSpawn;
     }
+    
+    //Gọi 3D sound cần set vị trí
+    public GameObject PlaySound(GameEnum.ESound eTag, Vector3 position)
+    {
+        string tag = eTag.ToString();
+        if (!soundsDictionary.ContainsKey(tag))
+        {
+            Debug.Log("Key " + tag + " doesn't exist!!!");
+            return null;
+        }
+
+        GameObject objToSpawn = soundsDictionary[tag].Dequeue();
+        objToSpawn.SetActive(true);
+
+        objToSpawn.transform.position = position;
+        soundsDictionary[tag].Enqueue(objToSpawn);
+
+        return objToSpawn;
+    }
 
     public GameObject PlayMusic(GameEnum.EMusic eTag)
     {
