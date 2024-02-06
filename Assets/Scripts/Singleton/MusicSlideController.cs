@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundSlideController : MonoBehaviour
+public class MusicSlideController : MonoBehaviour
 {
     private Slider _volumeSlider;
 
@@ -12,9 +12,9 @@ public class SoundSlideController : MonoBehaviour
         _volumeSlider = GetComponent<Slider>();
     }
 
-    public void ChangeSoundVolume()
+    public void ChangeMusicVolume()
     {
         if(_volumeSlider != null) //CheckNull
-            SoundManager.Instant.ChangeSoundVolume(_volumeSlider.value);
+            SoundManager.Instant.ChangeMusicVolume(_volumeSlider.value);
     }
 }

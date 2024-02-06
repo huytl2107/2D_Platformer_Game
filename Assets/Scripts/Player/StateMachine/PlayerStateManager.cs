@@ -45,9 +45,6 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private LayerMask _ground;
     [SerializeField] private LayerMask _ignoreLayer;
 
-    [Header("Sound Effect")]
-    [SerializeField] private AudioSource _gotHitSound;
-
     [Header("Button")]
     [SerializeField] private KeyCode _throwWeaponKey = KeyCode.J;
     [SerializeField] private KeyCode _dashKey = KeyCode.LeftShift;
@@ -68,8 +65,6 @@ public class PlayerStateManager : MonoBehaviour
     public Collider2D Col { get => _col; set => _col = value; }
     public Animator Anim { get => _anim; set => _anim = value; }
     public Transform MyTransform { get => _myTransform; set => _myTransform = value; }
-
-    public AudioSource GotHitSound { get => _gotHitSound; set => _gotHitSound = value; }
 
     public float Speed { get => _speed; set => _speed = value; }
     public float DirX { get => _dirX; set => _dirX = value; }
@@ -148,11 +143,6 @@ public class PlayerStateManager : MonoBehaviour
             Rb.velocity = new Vector2(Rb.velocity.x, JumpForce);
             CurrentState = State.Jump();
             CurrentState.EnterState();
-        }
-        else if (other.gameObject.CompareTag("Apple"))
-        {
-            UIManager.Instant.UpdateFruitText();
-            Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("Trap"))
         {

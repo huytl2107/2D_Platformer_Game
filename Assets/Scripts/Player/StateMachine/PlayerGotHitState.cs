@@ -16,14 +16,11 @@ public class PlayerGotHitState : PlayerBaseState
 
     public override void EnterState()
     {
-        //Phát âm thanh
-        SoundManager.Instant.PlaySound(GameEnum.ESound.gotHit);
-
         //Trừ máu Player ngay khi vào GotHitState rồi mới check If Else
         UIManager.Instant.GotHit();
         if (UIManager.Instant.PlayerHealth >= 0)
         {
-            player.GotHitSound.Play();
+            SoundManager.Instant.PlaySound(GameEnum.ESound.gotHit);
             //Transition từ AnyState, tắt Can transition to self để không treo ở frame đàu.
             player.Anim.SetBool("GotHit", true);
             player.Rb.velocity = new Vector2(0f,0f);
@@ -34,6 +31,7 @@ public class PlayerGotHitState : PlayerBaseState
         }
         else
         {
+            SoundManager.Instant.PlaySound(GameEnum.ESound.deathSound);
             player.Anim.SetTrigger("Death");
             player.Col.isTrigger = true;
             player.Rb.bodyType = RigidbodyType2D.Static;

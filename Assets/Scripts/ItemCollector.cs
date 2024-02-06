@@ -5,22 +5,13 @@ using UnityEngine.UI;
 
 public class ItemCollector : MonoBehaviour
 {
-    private int fruits = 0;
-    [SerializeField] private Text fruitsText;
-    [SerializeField] private AudioSource collectItemSoundEffect;
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (col.gameObject.CompareTag("Apple"))
+        if(other.gameObject.name == "Player")
         {
-            Destroy(col.gameObject);
-            fruits++;
-            fruitsText.text = "Fruits: " + fruits;
-            collectItemSoundEffect.Play();
-        }
-        if (col.gameObject.CompareTag("LivesItem"))
-        {
-            Destroy(col.gameObject);
-            collectItemSoundEffect.Play();
+            SoundManager.Instant.PlaySound(GameEnum.ESound.itemCollectedSound);
+            UIManager.Instant.UpdateFruitText();
+            Destroy(gameObject);
         }
     }
 }
