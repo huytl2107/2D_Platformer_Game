@@ -48,6 +48,12 @@ public class ButtonController : MonoBehaviour
         GameManager.Instant.ExitButton();
     }
 
+    public void ExitButtonSetting()
+    {
+        PlaySfx();
+        GameManager.Instant.ExitButtonSetting();
+    }
+
     public void ReturnHome()
     {
         PlaySfx();

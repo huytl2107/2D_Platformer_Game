@@ -10,6 +10,7 @@ public class SnailGotHitState : EnemiesGotHitState
 
     public override void EnterState()
     {
+        SoundManager.Instant.PlaySound(GameEnum.ESound.enemyGotHit);
         enemy.Health -= 1;
         if (enemy.Health < 0)
         {

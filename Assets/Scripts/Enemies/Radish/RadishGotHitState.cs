@@ -12,6 +12,7 @@ public class RadishGotHitState : EnemiesGotHitState
 
     public override void EnterState()
     {
+        SoundManager.Instant.PlaySound(GameEnum.ESound.enemyGotHit);
         _pos = new Vector2(enemy.transform.position.x, enemy.transform.position.y + 1f);
         enemy.Health -=1;
         if (enemy.Health < 0)

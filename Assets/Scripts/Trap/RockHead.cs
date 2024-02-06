@@ -27,6 +27,7 @@ public class RockHead : MonoBehaviour
     {
         if(col.collider.CompareTag("Ground"))
         {
+            SoundManager.Instant.PlaySound(GameEnum.ESound.hitGroundSound);
             rb.AddForce(Vector2.up * 7f, ForceMode2D.Impulse);
             anim.SetTrigger("Death");
             Invoke("Destroy", .5f);

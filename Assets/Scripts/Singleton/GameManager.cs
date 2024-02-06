@@ -76,6 +76,18 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void ExitButtonSetting()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            UIManager.Instant.LoadHomeUI();
+        }
+        else
+        {
+            UIManager.Instant.HideAllUI();
+        }
+    }
+
     public void ReturnHome()
     {
         SceneManager.LoadScene(0);
