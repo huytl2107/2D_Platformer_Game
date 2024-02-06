@@ -10,6 +10,7 @@ public class RinoHitWallState : EnemiesIdleState
 
     public override void EnterState()
     {
+        SoundManager.Instant.PlaySound(GameEnum.ESound.rinoHitWallSound);
         enemy.Anim.SetInteger("State", (int)StateEnum.ERinoState.hitWall);
         enemy.Rb.AddForce(Vector2.up*8.5f, ForceMode2D.Impulse);
         enemy.StartCoroutine(SwitchToIdleState());

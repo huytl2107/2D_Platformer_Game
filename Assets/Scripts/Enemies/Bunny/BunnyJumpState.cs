@@ -11,6 +11,7 @@ public class BunnyJumpState : EnemiesWalkState
     public override void EnterState()
     {
         base.EnterState();
+        SoundManager.Instant.PlaySound(GameEnum.ESound.bunnyJumpSound);
         enemy.Rb.gravityScale = 9f;
         enemy.Rb.AddForce(Vector2.up * 30f, ForceMode2D.Impulse);
         enemy.Anim.SetInteger("State", (int)StateEnum.EBunnyState.jump);

@@ -13,6 +13,7 @@ public class Trampoline : MonoBehaviour
     {
         if(col.gameObject.name == "Player")
         {
+            SoundManager.Instant.PlaySound(GameEnum.ESound.trampolineSound);
             anim.SetBool("State", true);
             Rigidbody2D playerRB = col.GetComponent<Rigidbody2D>();
             playerRB.AddForce(Vector2.up * thrust, ForceMode2D.Impulse);

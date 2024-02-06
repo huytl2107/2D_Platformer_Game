@@ -25,6 +25,8 @@ public class GameEnum
         gameOver,
         gameWin,
         itemCollectedSound,
+        finishSound,
+        plantDeath
 
     }
 
