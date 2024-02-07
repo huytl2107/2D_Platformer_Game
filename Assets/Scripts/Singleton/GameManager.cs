@@ -62,6 +62,10 @@ public class GameManager : Singleton<GameManager>
         {
             UIManager.Instant.LoadHomeUI();
         }
+        else if(SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            UIManager.Instant.HideAllUI();
+        }
         else
         {
             UIManager.Instant.HideAllUI();

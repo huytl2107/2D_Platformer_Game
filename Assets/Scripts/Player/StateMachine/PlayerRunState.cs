@@ -34,10 +34,10 @@ public class PlayerRunState : PlayerBaseState
                 player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
                 SwitchState(factory.Jump());
             }
-            else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
-            {
-                SwitchState(factory.ThrowWeapon());
-            }
+            //else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
+            //{
+            //    SwitchState(factory.ThrowWeapon());
+            //}
             else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CurrentWeapon != null)
             {
                 player.transform.position = player.CurrentWeapon.transform.position;

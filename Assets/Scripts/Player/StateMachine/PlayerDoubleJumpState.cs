@@ -34,10 +34,11 @@ public class PlayerDoubleJumpState : PlayerBaseState
         {
             SwitchState(factory.WallSlide());
         }
-        else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
-        {
-            SwitchState(factory.ThrowWeapon());
-        }
+        //Tạm bỏ tính năng này vì chưa biết để làm gì :v
+        //else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
+        //{
+        //    SwitchState(factory.ThrowWeapon());
+        //}
         else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CurrentWeapon != null)
         {
             player.transform.position = player.CurrentWeapon.transform.position;

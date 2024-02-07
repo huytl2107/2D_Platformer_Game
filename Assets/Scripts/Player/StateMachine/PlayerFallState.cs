@@ -41,10 +41,10 @@ public class PlayerFallState : PlayerBaseState
         {
             SwitchState(factory.Dash());
         }
-        else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
-        {
-            SwitchState(factory.ThrowWeapon());
-        }
+        //else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
+        //{
+        //    SwitchState(factory.ThrowWeapon());
+        //}
         else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CurrentWeapon != null)
         {
             player.transform.position = player.CurrentWeapon.transform.position;
