@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2374624642918116294}
   - component: {fileID: 2374624642918116288}
   - component: {fileID: 2374624642918116291}
+  - component: {fileID: 7582397952749043554}
   m_Layer: 0
   m_Name: Saw
   m_TagString: Trap
@@ -149,3 +150,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7582397952749043554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2374624642918116292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d513079d7120b45a951ecf84777175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

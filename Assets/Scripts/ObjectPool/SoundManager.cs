@@ -120,7 +120,7 @@ public class SoundManager : Singleton<SoundManager>
             return null;
         }
 
-        StopAllMusic();
+        StopAllSound();
 
         GameObject objToSpawn = musicsDictionary[tag].Dequeue();
         objToSpawn.SetActive(true);
@@ -130,9 +130,16 @@ public class SoundManager : Singleton<SoundManager>
         return objToSpawn;
     }
 
-    public void StopAllMusic()
+    public void StopAllSound()
     {
         foreach (var queue in musicsDictionary.Values)
+        {
+            foreach (var obj in queue)
+            {
+                obj.SetActive(false);
+            }
+        }
+        foreach (var queue in soundsDictionary.Values)
         {
             foreach (var obj in queue)
             {

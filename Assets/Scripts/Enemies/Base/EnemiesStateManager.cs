@@ -106,7 +106,7 @@ public abstract class EnemiesStateManager : MonoBehaviour
 
     public virtual void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Trap"))
+        if (other.gameObject.CompareTag("Trap") || other.gameObject.CompareTag("RockHead"))
         {
             GotHit();
         }

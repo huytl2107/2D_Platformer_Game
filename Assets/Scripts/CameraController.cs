@@ -14,6 +14,7 @@ public class CameraController : Singleton<CameraController>
     [SerializeField] private float _minX = -1000;
     [SerializeField] private float _maxX = 1000;
 
+    private float _camPosY;
     public override void Awake()
     {   
         base.Awake();
@@ -38,25 +39,26 @@ public class CameraController : Singleton<CameraController>
             _offset.y -= 6;
         }
 
+        _camPosY = Player.position.y + _offset.y;
         Vector3 target;
         //Đặt toàn bộ targer.z vè -10 để đảm bảo camera k bị che lấp
         if (Player.transform.position.x < _minX)
         {
-            target = new Vector3(_minX, Player.position.y + _offset.y, -10f);
+            target = new Vector3(_minX, _camPosY, -10f);
         }
         else if (Player.transform.position.x > _maxX)
         {
-            target = new Vector3(_maxX, Player.position.y + _offset.y, -10f);
+            target = new Vector3(_maxX, _camPosY, -10f);
         }
         else
         {
             if (faceLeft)
             {
-                target = new Vector3(Player.position.x - _offset.x, Player.position.y + _offset.y, -10f);
+                target = new Vector3(Player.position.x - _offset.x, _camPosY, -10f);
             }
             else
             {
-                target = new Vector3(Player.position.x + _offset.x, Player.position.y + _offset.y, -10f);
+                target = new Vector3(Player.position.x + _offset.x, _camPosY, -10f);
             }
         }
 

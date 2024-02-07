@@ -16,6 +16,7 @@ public class SpikedBall : MonoBehaviour
 
     void Start()
     {
+        SoundManager.Instant.PlaySound(GameEnum.ESound.spikedBallSound);
         _distance = Math.Abs(_target.position.x - transform.position.x);
     }
 

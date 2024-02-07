@@ -8,6 +8,7 @@ public class PlayerDashState : PlayerBaseState
 
     public override void EnterState()
     {
+        SoundManager.Instant.PlaySound(GameEnum.ESound.dashSound);
         player.StartCoroutine(player.Dash(player));
         player.Rb.gravityScale = 0f;
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.dash);

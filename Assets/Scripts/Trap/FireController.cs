@@ -14,7 +14,7 @@ public class FireController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         col = GetComponent<Collider2D>();
-        StartCoroutine(On());
+        StartCoroutine(AwakeFire());
     }
 
     private IEnumerator AwakeFire()
@@ -25,16 +25,17 @@ public class FireController : MonoBehaviour
 
     private IEnumerator On()
     {
-        yield return new WaitForSeconds(_coolDown);
+        SoundManager.Instant.PlaySound(GameEnum.ESound.fireTrapSound, transform.position);
         anim.SetBool("State", true);
         gameObject.tag = "Trap";
+        yield return new WaitForSeconds(_coolDown);
         StartCoroutine(Off());
     }
     private IEnumerator Off()
     {
-        yield return new WaitForSeconds(_coolDown);
         anim.SetBool("State", false);
         gameObject.tag = "Untagged";
+        yield return new WaitForSeconds(_coolDown);
         StartCoroutine(On());
     }
 
