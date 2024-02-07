@@ -80,7 +80,7 @@ MonoBehaviour:
     size: 2
   - tag: 11
     prefab: {fileID: 4890811929540665756, guid: 072bdbcdee097c142894e92442754971, type: 3}
-    size: 2
+    size: 5
   - tag: 12
     prefab: {fileID: 4890811929540665756, guid: 66766596d828967438323142383ffeae, type: 3}
     size: 5

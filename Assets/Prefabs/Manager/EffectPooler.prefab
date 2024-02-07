@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3066148226997544871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3066148226997544869}
+  - component: {fileID: 3066148226997544868}
+  m_Layer: 0
+  m_Name: EffectPooler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3066148226997544869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066148226997544871}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.647277, y: 0.57510674, z: -0.1354361}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3066148226997544868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066148226997544871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17e9ae9e7a68aea409731748b3982274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: PlantPiece
+    prefab: {fileID: 2214834530547924787, guid: 9df362b2321e3db4ca1e553cbd960696, type: 3}
+    size: 1
+  - tag: TrunkPiece
+    prefab: {fileID: 879618083773594136, guid: d133e5dd539604a4bb2b23eb40176aa1, type: 3}
+    size: 1
+  - tag: BeePiece
+    prefab: {fileID: 615275099344214397, guid: 8dfbc52c930eb6e4c8ebfcaa602737a4, type: 3}
+    size: 1
+  - tag: DustEffect
+    prefab: {fileID: 3440398734839536474, guid: 0c92b5f0330c13940a71e4cbede69e51, type: 3}
+    size: 20
+  - tag: SnailEffect
+    prefab: {fileID: 9173669656776098461, guid: 679e95ca35d3ba04ab0843a677aba991, type: 3}
+    size: 5
+  - tag: BoxPiece
+    prefab: {fileID: 615275099344214397, guid: 14e3660d33e7aab429edda96a8174940, type: 3}
+    size: 3
+  - tag: RadishPiece
+    prefab: {fileID: 615275099344214397, guid: 14e3660d33e7aab429edda96a8174940, type: 3}
+    size: 5
