@@ -7,7 +7,7 @@ Very thanks for:
 - [Brackeys](https://www.youtube.com/@Brackeys)
 - [HuynnGameDev](https://www.tiktok.com/@gamedevtoi)
 
-Asset:
+Game Asset:
 - Pixel Adventure 1+2 by Pixel Frog
 - Legacy Fantasy by Anokolisa
 - SunnyLand Woods by Ansimuz
