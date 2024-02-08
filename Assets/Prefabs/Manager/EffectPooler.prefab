@@ -64,5 +64,5 @@ MonoBehaviour:
     prefab: {fileID: 615275099344214397, guid: 14e3660d33e7aab429edda96a8174940, type: 3}
     size: 3
   - tag: RadishPiece
-    prefab: {fileID: 615275099344214397, guid: 14e3660d33e7aab429edda96a8174940, type: 3}
+    prefab: {fileID: 615275099344214397, guid: 386b49777ebc90f4bbe78bf298a80b08, type: 3}
     size: 5

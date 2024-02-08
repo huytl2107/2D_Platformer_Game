@@ -8,7 +8,6 @@ public class TrunkAttackState : EnemiesAttackState
     public TrunkAttackState(EnemiesStateManager currentContext, EnemiesStateFactory currentState) : base(currentContext, currentState)
     {
     }
-    private bool _switched = false;
     public override void EnterState()
     {
         base.EnterState();
@@ -18,6 +17,8 @@ public class TrunkAttackState : EnemiesAttackState
             enemy.Rb.AddForce(Vector2.up * 3f, ForceMode2D.Impulse);
         }
         enemy.Anim.SetInteger("State", (int)StateEnum.ETrunkState.attack);
+        
+        enemy.StartCoroutine(AnimCoolDown());
     }
 
     public override void UpdateState()
@@ -29,10 +30,6 @@ public class TrunkAttackState : EnemiesAttackState
     {
         base.CheckSwitchState();
         enemy.Rb.velocity = new Vector2(-enemy.WalkSpeed * 1.5f * enemy.RaycastDirX, enemy.Rb.velocity.y);
-        if (!_switched)
-        {
-            enemy.StartCoroutine(AnimCoolDown());
-        }
         if (enemy.SeePlayer)
         {
             _seenPlayer = true;
@@ -49,7 +46,7 @@ public class TrunkAttackState : EnemiesAttackState
 
     public IEnumerator AnimCoolDown()
     {
-        _switched = true;
+        Debug.Log("Anim trunk cooldown");
         yield return new WaitForSeconds(.4f);
         enemy.Anim.SetInteger("State", (int)StateEnum.ETrunkState.coolDownAttack);
         yield return new WaitForSeconds(.6f);
@@ -58,13 +55,14 @@ public class TrunkAttackState : EnemiesAttackState
             enemy.Rb.AddForce(Vector2.up * 3f, ForceMode2D.Impulse);
         }
         enemy.Anim.SetInteger("State", (int)StateEnum.ETrunkState.attack);
-        _switched = false;
+        enemy.StartCoroutine(AnimCoolDown());
     }
 
     public IEnumerator DelayBeforeSwitchState()
     {
-        yield return new WaitForSeconds(1.5f);
         _seenPlayer = false;
+        yield return new WaitForSeconds(1.5f);
+        enemy.StopCoroutine(AnimCoolDown());
         SwitchState(factory.TrunkWalk());
     }
 }

@@ -31,6 +31,7 @@ public class PlayerGotHitState : PlayerBaseState
         }
         else
         {
+            player.tag = "Untagged";
             SoundManager.Instant.PlaySound(GameEnum.ESound.deathSound);
             player.Anim.SetTrigger("Death");
             player.Col.isTrigger = true;
