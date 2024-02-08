@@ -32,7 +32,7 @@ public class PlayerDashState : PlayerBaseState
         }
         else if(player.IsDashing)
         {
-            
+            //Dash 
         }
         else if (player.Rb.velocity.y < .1f)
         {

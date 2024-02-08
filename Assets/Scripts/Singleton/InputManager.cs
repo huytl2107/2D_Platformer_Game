@@ -12,8 +12,9 @@ public class InputManager : Singleton<InputManager>
     [SerializeField] private InputActionReference _Jump;
     [SerializeField] private InputActionReference _Dash;
     [SerializeField] private InputActionReference _LookDown;
-    [SerializeField] private bool _jumpPressed;
-    [SerializeField] private bool _dashPressed;
+    private float _jumpValue = 0f;
+    private float _dashValue = 0f;
+    private float _lookDownValue = 0f;
 
     public override void Awake()
     {
@@ -23,14 +24,17 @@ public class InputManager : Singleton<InputManager>
     private void Update()
     {
         Vector2 moveInput = _moveAction.action.ReadValue<Vector2>();
+        _jumpValue = _Jump.action.ReadValue<float>();
+        _dashValue = _Dash.action.ReadValue<float>();
+        _lookDownValue = _LookDown.action.ReadValue<float>();
         _xAxis = moveInput.x;
         _dirX = Input.GetAxisRaw("Horizontal");
     }
 
     public bool Jump()
     {
-        float jumpValue = _Jump.action.ReadValue<float>();
-        if (jumpValue > 0)
+        _jumpValue = _Jump.action.ReadValue<float>();
+        if (_jumpValue > 0)
             return true;
         if (Input.GetButtonDown("Jump"))
             return true;
@@ -39,8 +43,8 @@ public class InputManager : Singleton<InputManager>
 
     public bool Dash()
     {
-        float dashValue = _Dash.action.ReadValue<float>();
-        if (dashValue > 0)
+        _dashValue = _Dash.action.ReadValue<float>();
+        if (_dashValue > 0)
             return true;
         if (Input.GetKeyDown(KeyCode.LeftShift))
             return true;
@@ -70,8 +74,8 @@ public class InputManager : Singleton<InputManager>
 
     public bool Down()
     {
-        float lookDownValue = _LookDown.action.ReadValue<float>();
-        if (lookDownValue > 0)
+        _lookDownValue = _LookDown.action.ReadValue<float>();
+        if (_lookDownValue > 0)
             return true;
         if (Input.GetKeyDown(KeyCode.LeftShift))
             return true;
