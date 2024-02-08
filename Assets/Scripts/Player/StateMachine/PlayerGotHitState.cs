@@ -67,8 +67,8 @@ public class PlayerGotHitState : PlayerBaseState
         //Chờ 1s rồi restart level
         yield return new WaitForSeconds(1f);
         player.Col.enabled = false;
-        //Vì singleton không load lại nên cần trả máu Player về 3 trước khi restart level;
-        UIManager.Instant.PlayerHealth = 3;
+        //Bỏ cái này đi nếu k sẽ bug UI
+        //UIManager.Instant.PlayerHealth = 3;
         UIManager.Instant.PopUpLosePanel();
     }
 

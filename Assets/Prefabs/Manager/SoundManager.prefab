@@ -114,6 +114,9 @@ MonoBehaviour:
   - tag: 22
     prefab: {fileID: 4890811929540665756, guid: 6c76d1ccfccfef74eac4ae2059456d70, type: 3}
     size: 2
+  - tag: 23
+    prefab: {fileID: 4890811929540665756, guid: 7463dace699fc864ea11422441e93320, type: 3}
+    size: 6
   musics:
   - tag: 0
     prefab: {fileID: 6752918084250824925, guid: df165ebdca0d078449b651075137c4c4, type: 3}

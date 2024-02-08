@@ -26,8 +26,8 @@ public class GameEnum
         gameWin,
         itemCollectedSound,
         finishSound,
-        plantDeath
-
+        plantDeath,
+        bulletHit
     }
 
     public enum EMusic

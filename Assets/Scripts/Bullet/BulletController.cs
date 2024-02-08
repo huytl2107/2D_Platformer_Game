@@ -44,5 +44,6 @@ public class BulletController : MonoBehaviour
 
     public virtual void SpawnPiece()
     {
+        SoundManager.Instant.PlaySound(GameEnum.ESound.bulletHit);
     }
 }

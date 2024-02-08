@@ -38,6 +38,7 @@ public class ButtonController : MonoBehaviour
     public void RestartLevel()
     {
         PlaySfx();
+        UIManager.Instant.PlayerHealth = 3;
         UIManager.Instant.ResetFruitText();
         GameManager.Instant.RestartLevel();
     }
@@ -63,12 +64,16 @@ public class ButtonController : MonoBehaviour
     public void LoadLevel()
     {
         PlaySfx();
+        if(UIManager.Instant.PlayerHealth < 0)
+        UIManager.Instant.PlayerHealth = 3;
         GameManager.Instant.LoadLevel(_level);
     }
 
     public void NextLevel()
     {
         PlaySfx();
+        if(UIManager.Instant.PlayerHealth < 0)
+        UIManager.Instant.PlayerHealth = 3;
         UIManager.Instant.SaveFruitsNumb();
         GameManager.Instant.NextLevel();
     }

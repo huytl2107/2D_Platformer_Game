@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeeBullet : BulletController, IPieceBulletSpawn
+public class BeeBullet : BulletController
 {
     public new void FixedUpdate()
     {
@@ -11,6 +11,7 @@ public class BeeBullet : BulletController, IPieceBulletSpawn
 
     public override void SpawnPiece()
     {
+        base.SpawnPiece();
         EffectPooler.Instant.GetPoolObject("BeePiece", transform.position, _isRight ? Quaternion.identity : Quaternion.Euler(0,-180,0));
     }
 }
