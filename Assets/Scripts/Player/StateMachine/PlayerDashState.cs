@@ -21,26 +21,24 @@ public class PlayerDashState : PlayerBaseState
 
     public override void FixedUpdateState()
     {
-
+        player.Rb.velocity = new Vector2(player.RaycastDirX * player.DashForce, 0);
     }
 
     public override void CheckSwitchState()
     {
-        player.DirX = Input.GetAxisRaw("Horizontal");
-        //Kiểm tra nếu thấy Tường thì ngay lập tức chuyển sang WallSlideState
         if (player.IsSeeingGround && player.IsDashing)
         {
             SwitchState(factory.WallSlide());
         }
-        else if (player.IsDashing)
+        else if(player.IsDashing)
         {
-            player.Rb.velocity = new Vector2(player.RaycastDirX * player.DashForce, 0);
+            
         }
         else if (player.Rb.velocity.y < .1f)
         {
             SwitchState(factory.Fall());
         }
-        else if (player.DirX != 0)
+        else if (InputManager.Instant.Moving())
         {
             SwitchState(factory.Run());
         }

@@ -77,4 +77,5 @@ public class ButtonController : MonoBehaviour
         UIManager.Instant.SaveFruitsNumb();
         GameManager.Instant.NextLevel();
     }
+
 }

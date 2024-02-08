@@ -13,7 +13,6 @@ public class EnemiesAttackState : EnemiesBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from Attack State");
     }
 
     public override void ExitState()

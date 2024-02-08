@@ -25,12 +25,11 @@ public class PlayerWallSlideState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        player.DirX = Input.GetAxisRaw("Horizontal");
-        if ((player.DirX > 0 && player.RaycastDirX < 0) || (player.DirX < 0 && player.RaycastDirX > 0))
+        if ((InputManager.Instant.Right() && player.RaycastDirX < 0) || (InputManager.Instant.Left() && player.RaycastDirX > 0))
         {
             SwitchState(factory.Fall());
         }
-        else if (Input.GetButtonDown("Jump"))
+        else if (InputManager.Instant.Jump())
         {
             SwitchState(factory.WallJump());
         }

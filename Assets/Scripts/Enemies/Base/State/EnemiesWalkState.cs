@@ -13,7 +13,6 @@ public class EnemiesWalkState : EnemiesBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from Walk State");
     }
 
     public override void ExitState()

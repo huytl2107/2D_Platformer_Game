@@ -27,28 +27,18 @@ public class PlayerRunState : PlayerBaseState
     {
         if (player.IsGrounded())
         {
-            if (Input.GetButtonDown("Jump"))
+            if (InputManager.Instant.Jump())
             {
                 SoundManager.Instant.PlaySound(GameEnum.ESound.jump);
                 player.SpawnDustEffcect();
                 player.Rb.AddForce(Vector2.up * player.JumpForce, ForceMode2D.Impulse);
                 SwitchState(factory.Jump());
             }
-            //else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
-            //{
-            //    SwitchState(factory.ThrowWeapon());
-            //}
-            else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CurrentWeapon != null)
-            {
-                player.transform.position = player.CurrentWeapon.transform.position;
-                player.DestroyObject(player.CurrentWeapon);
-                player.CurrentWeapon = null;
-            }
-            else if (Input.GetKeyDown(player.DashKey) && player.CanDash)
+            else if (InputManager.Instant.Dash() && player.CanDash)
             {
                 SwitchState(factory.Dash());
             }
-            else if (player.DirX == 0)
+            else if (!InputManager.Instant.Moving())
             {
                 SwitchState(factory.Idle());
             }

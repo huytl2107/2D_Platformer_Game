@@ -67,7 +67,8 @@ public class PlayerGotHitState : PlayerBaseState
         //Chờ 1s rồi restart level
         yield return new WaitForSeconds(1f);
         player.Col.enabled = false;
-        //Bỏ cái này đi nếu k sẽ bug UI
+
+        //Bỏ cái này đi nếu k sẽ bug UI, reset lại máu tại button Reset
         //UIManager.Instant.PlayerHealth = 3;
         UIManager.Instant.PopUpLosePanel();
     }

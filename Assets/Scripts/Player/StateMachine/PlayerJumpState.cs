@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerBaseState
 {
+    private float _time;
     public PlayerJumpState(PlayerStateManager currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
     {
     }
@@ -11,6 +12,7 @@ public class PlayerJumpState : PlayerBaseState
     //OriginialGravity = 9f;
     public override void EnterState()
     {
+        _time = 0f;
         player.IsDoubleJump = false;
         player.Anim.SetInteger("State", (int)StateEnum.EPlayerState.jump);
         //player.Rb.velocity = new Vector2(player.Rb.velocity.x, player.JumpForce);
@@ -18,6 +20,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void UpdateState()
     {
+        _time += Time.deltaTime;
         CheckSwitchState();
         PlayerStateManager.UpdateObjectDirX(player);
     }
@@ -29,21 +32,9 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        if (Input.GetKeyDown(player.DashKey) && player.CanDash)
+        if (InputManager.Instant.Dash() && player.CanDash)
         {
             SwitchState(factory.Dash());
-        }
-        //else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
-        //{
-        //    SwitchState(factory.ThrowWeapon());
-        //}
-        else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CurrentWeapon != null)
-        {
-            player.transform.position = player.CurrentWeapon.transform.position;
-            player.DestroyObject(player.CurrentWeapon);
-            player.CurrentWeapon = null;
-            player.Rb.velocity = new Vector2(player.Rb.velocity.x, 0f);
-            SwitchState(factory.Fall());
         }
         else if (player.IsSeeingGround)
         {
@@ -55,7 +46,7 @@ public class PlayerJumpState : PlayerBaseState
             {
                 SwitchState(factory.Fall());
             }
-            else if (Input.GetButtonDown("Jump"))
+            else if (InputManager.Instant.Jump() && _time > .5f) //Delay ra tí để k bị dính button nhảy 2 lần
             {
                 player.IsDoubleJump = true;
                 SwitchState(factory.DoubleJump());
@@ -66,14 +57,6 @@ public class PlayerJumpState : PlayerBaseState
     public override void ExitState()
     {
 
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) 
-    {
-        if(other.gameObject.CompareTag("Ground"))
-        {
-            player.Col.isTrigger = true;
-        }
     }
 
 }

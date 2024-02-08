@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7293869960212836658}
   - component: {fileID: 7293869960212836656}
   - component: {fileID: 7293869960212836663}
+  - component: {fileID: 6201382406142963271}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5771895dd2e3f3c45a71fd167dd4f12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveAction: {fileID: -3750294936976905300, guid: 17fc2857fc0b12f4fbbcccf521072829, type: 3}
   _speed: 12
   _jumpForce: 35
   _dashForce: 30
@@ -117,7 +119,6 @@ MonoBehaviour:
   _ignoreLayer:
     serializedVersion: 2
     m_Bits: 1
-  _gotHitSound: {fileID: 0}
   _throwWeaponKey: 106
   _dashKey: 304
 --- !u!50 &7293869960212836657
@@ -295,3 +296,33 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &6201382406142963271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7293869960212836654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 17fc2857fc0b12f4fbbcccf521072829, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

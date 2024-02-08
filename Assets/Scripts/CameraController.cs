@@ -34,7 +34,7 @@ public class CameraController : Singleton<CameraController>
         if (currentX > lastX) faceLeft = false; else if (currentX < lastX) faceLeft = true;
         lastX = Mathf.RoundToInt(Player.position.x);
 
-        if (Input.GetKey(KeyCode.S))
+        if (InputManager.Instant.Down())
         {
             _offset.y -= 6;
         }

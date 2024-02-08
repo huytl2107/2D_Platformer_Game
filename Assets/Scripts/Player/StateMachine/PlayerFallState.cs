@@ -37,35 +37,23 @@ public class PlayerFallState : PlayerBaseState
         {
             SwitchState(factory.WallSlide());
         }
-        else if (Input.GetKeyDown(player.DashKey) && player.CanDash)
+        else if (InputManager.Instant.Dash() && player.CanDash)
         {
             SwitchState(factory.Dash());
-        }
-        //else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CanThrowWeapon)
-        //{
-        //    SwitchState(factory.ThrowWeapon());
-        //}
-        else if (Input.GetKeyDown(player.ThrowWeaponKey) && player.CurrentWeapon != null)
-        {
-            player.transform.position = player.CurrentWeapon.transform.position;
-            player.DestroyObject(player.CurrentWeapon);
-            player.CurrentWeapon = null;
-            player.Rb.velocity = new Vector2(player.Rb.velocity.x, 0f);
-            SwitchState(factory.Fall());
         }
         else if (player.IsGrounded())
         {
             player.IsDoubleJump = false;
-            if (player.DirX == 0)
-            {
-                SwitchState(factory.Idle());
-            }
-            else
+            if (InputManager.Instant.Moving())
             {
                 SwitchState(factory.Run());
             }
+            else
+            {
+                SwitchState(factory.Idle());
+            }
         }
-        else if (Input.GetButtonDown("Jump") && !player.IsDoubleJump)
+        else if (InputManager.Instant.Jump() && !player.IsDoubleJump)
         {
             player.IsDoubleJump = true;
             SwitchState(factory.DoubleJump());

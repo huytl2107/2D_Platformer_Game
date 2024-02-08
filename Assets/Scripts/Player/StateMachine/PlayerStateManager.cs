@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 //Sử dụng State Manager để quản lý các State của Player giúp tách biệt các hành vi
@@ -264,7 +265,19 @@ public class PlayerStateManager : MonoBehaviour
 
     public void CanMove()
     {
-        DirX = Input.GetAxisRaw("Horizontal");
+        if(InputManager.Instant.Left())
+        {
+            DirX = -1;
+        }
+        else if(InputManager.Instant.Right())
+        {
+            DirX = 1;
+        }
+        else
+        {
+            DirX = 0;
+        }
+
         Rb.velocity = new Vector2(DirX * Speed, Rb.velocity.y);
     }
 
