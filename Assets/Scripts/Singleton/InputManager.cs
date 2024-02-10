@@ -24,9 +24,6 @@ public class InputManager : Singleton<InputManager>
     private void Update()
     {
         Vector2 moveInput = _moveAction.action.ReadValue<Vector2>();
-        _jumpValue = _Jump.action.ReadValue<float>();
-        _dashValue = _Dash.action.ReadValue<float>();
-        _lookDownValue = _LookDown.action.ReadValue<float>();
         _xAxis = moveInput.x;
         _dirX = Input.GetAxisRaw("Horizontal");
     }
