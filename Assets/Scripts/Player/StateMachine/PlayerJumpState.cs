@@ -46,7 +46,7 @@ public class PlayerJumpState : PlayerBaseState
             {
                 SwitchState(factory.Fall());
             }
-            else if (InputManager.Instant.Jump() && _time > .5f) //Delay ra tí để k bị dính button nhảy 2 lần
+            else if (InputManager.Instant.Jump() && _time > .25f) //Delay ra tí để k bị dính button nhảy 2 lần tren mobile
             {
                 player.IsDoubleJump = true;
                 SwitchState(factory.DoubleJump());
